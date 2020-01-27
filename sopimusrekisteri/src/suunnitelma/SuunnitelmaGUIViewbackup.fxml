@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import fi.jyu.mit.fxgui.ComboBoxChooser?>
+<?import fi.jyu.mit.fxgui.ListChooser?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="suunnitelma.SuunnitelmaGUIController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Tiedosto">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Tallenna" />
+                  <MenuItem mnemonicParsing="false" text="Avaa..." />
+                  <MenuItem mnemonicParsing="false" text="Sulje" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Toiminnot">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Tarkasta joukkueet..." />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Apua">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Apua" />
+                  <MenuItem mnemonicParsing="false" text="Tietoja" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <left>
+      <TabPane tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab text="Pelaaja">
+            <content>
+              <AnchorPane>
+                     <children>
+                        <SplitPane dividerPositions="0.29797979797979796">
+                          <items>
+                            <AnchorPane>
+                                 <children>
+                                    <VBox>
+                                       <children>
+                                          <GridPane>
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <ComboBoxChooser maxWidth="1.7976931348623157E308" rivit="Pelaaja (kaikki)&#10;Pelaaja (vapaat agentit)&#10;Joukkue&#10;Sarja" GridPane.columnIndex="1" />
+                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hakuehto" GridPane.halignment="RIGHT">
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hakusana" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                             </children>
+                                          </GridPane>
+                                          <ListChooser />
+                                          <ButtonBar prefHeight="40.0" prefWidth="200.0">
+                                            <buttons>
+                                              <Button mnemonicParsing="false" text="Lisää pelaaja" />
+                                            </buttons>
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" top="10.0" />
+                                             </VBox.margin>
+                                          </ButtonBar>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane>
+                                 <children>
+                                    <VBox prefWidth="285.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pelaajan tiedot" />
+                                          <Separator maxWidth="1.7976931348623157E308" />
+                                          <GridPane>
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Etunimi" GridPane.halignment="RIGHT">
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                                <Text layoutX="53.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sukunimi" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Syntymäaika" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kansallisuus" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pelaaja-ID" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
+                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                             </children>
+                                          </GridPane>
+                                          <ButtonBar>
+                                            <buttons>
+                                                <Button mnemonicParsing="false" text="Poista" />
+                                              <Button mnemonicParsing="false" text="Muokkaa" />
+                                            </buttons>
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                             <padding>
+                                                <Insets bottom="30.0" top="10.0" />
+                                             </padding>
+                                          </ButtonBar>
+                                          <Separator maxWidth="1.7976931348623157E308" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sopimuksen tiedot" />
+                                          <Separator maxWidth="1.7976931348623157E308" />
+                                          <GridPane>
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Joukkue" GridPane.halignment="RIGHT">
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Alkamisvuosi" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Päättymisvuosi" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Palkka per kausi" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
+                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                             </children>
+                                          </GridPane>
+                                          <ButtonBar>
+                                             <buttons>
+                                                <Button mnemonicParsing="false" text="Poista" />
+                                                <Button mnemonicParsing="false" text="Siirrä" />
+                                                <Button mnemonicParsing="false" text="Uusi" />
+                                             </buttons>
+                                             <padding>
+                                                <Insets bottom="10.0" top="10.0" />
+                                             </padding>
+                                          </ButtonBar>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Joukkue">
+            <content>
+              <AnchorPane>
+                     <children>
+                        <SplitPane dividerPositions="0.29797979797979796">
+                           <items>
+                              <AnchorPane>
+                                 <children>
+                                    <VBox>
+                                       <children>
+                                          <GridPane>
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <ComboBoxChooser maxWidth="1.7976931348623157E308" rivit="Joukkue&#10;Sarja" GridPane.columnIndex="1" />
+                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hakuehto" GridPane.halignment="RIGHT">
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hakusana" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                             </children>
+                                          </GridPane>
+                                          <ListChooser />
+                                          <ButtonBar prefHeight="40.0" prefWidth="200.0">
+                                             <buttons>
+                                                <Button mnemonicParsing="false" text="Lisää joukkue" />
+                                             </buttons>
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" top="10.0" />
+                                             </VBox.margin>
+                                          </ButtonBar>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane>
+                                 <children>
+                                    <VBox prefWidth="285.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Joukkueen tiedot" />
+                                          <Separator maxWidth="1.7976931348623157E308" />
+                                          <GridPane>
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nimi" GridPane.halignment="RIGHT">
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                                <Text layoutX="53.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kaupunki" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nimen lyhenne" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Omistaja" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Yhteystieto" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
+                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                             </children>
+                                          </GridPane>
+                                          <ButtonBar>
+                                             <buttons>
+                                                <Button mnemonicParsing="false" text="Poista" />
+                                                <Button mnemonicParsing="false" text="Muokkaa" />
+                                             </buttons>
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                             <padding>
+                                                <Insets bottom="30.0" top="10.0" />
+                                             </padding>
+                                          </ButtonBar>
+                                          <Separator maxWidth="1.7976931348623157E308" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sopimukset" />
+                                          <Separator maxWidth="1.7976931348623157E308" />
+                                          <GridPane>
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lukumäärä" GridPane.halignment="RIGHT">
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kauden palkat" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
+                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                             </children>
+                                          </GridPane>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                           </items>
+                        </SplitPane>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Sarja">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <SplitPane dividerPositions="0.29797979797979796">
+                           <items>
+                              <AnchorPane>
+                                 <children>
+                                    <VBox>
+                                       <children>
+                                          <GridPane>
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hakusana" GridPane.halignment="RIGHT">
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                             </children>
+                                          </GridPane>
+                                          <ListChooser />
+                                          <ButtonBar prefHeight="40.0" prefWidth="200.0">
+                                             <buttons>
+                                                <Button mnemonicParsing="false" text="Lisää sarja" />
+                                             </buttons>
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" top="10.0" />
+                                             </VBox.margin>
+                                          </ButtonBar>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane>
+                                 <children>
+                                    <VBox prefWidth="285.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sarjan tiedot" />
+                                          <Separator maxWidth="1.7976931348623157E308" />
+                                          <GridPane>
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nimi" GridPane.halignment="RIGHT">
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
+                                             </children>
+                                          </GridPane>
+                                          <Separator maxWidth="1.7976931348623157E308">
+                                             <padding>
+                                                <Insets top="20.0" />
+                                             </padding></Separator>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pelaajasopimuksen säännöt" />
+                                          <Separator maxWidth="1.7976931348623157E308" />
+                                          <GridPane>
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Min. Kausipalkka" GridPane.halignment="RIGHT">
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Max. Kausipalkka" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Max. Kesto" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
+                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                          <Separator maxWidth="1.7976931348623157E308">
+                                             <padding>
+                                                <Insets top="20.0" />
+                                             </padding>
+                                          </Separator>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Joukkueen sopimusten säännöt" />
+                                          <Separator maxWidth="1.7976931348623157E308" />
+                                          <GridPane>
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Max. Lukumäärä" GridPane.halignment="RIGHT">
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Min. Kausimenot" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Max. Kausimenot" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
+                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                          <ButtonBar>
+                                             <buttons>
+                                                <Button mnemonicParsing="false" text="Poista" />
+                                                <Button mnemonicParsing="false" text="Muokkaa" />
+                                             </buttons>
+                                             <padding>
+                                                <Insets bottom="30.0" top="10.0" />
+                                             </padding>
+                                          </ButtonBar>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                           </items>
+                        </SplitPane>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </left>
+</BorderPane>
