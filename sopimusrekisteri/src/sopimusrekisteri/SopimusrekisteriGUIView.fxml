@@ -21,26 +21,26 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="suunnitelma.SuunnitelmaGUIController">
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sopimusrekisteri.SopimusrekisteriGUIController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="Tiedosto">
             <items>
-              <MenuItem mnemonicParsing="false" text="Tallenna" />
-                  <MenuItem mnemonicParsing="false" text="Avaa..." />
-                  <MenuItem mnemonicParsing="false" text="Sulje" />
+              <MenuItem mnemonicParsing="false" onAction="#handleTallenna" text="Tallenna" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleLataa" text="Avaa..." />
+                  <MenuItem mnemonicParsing="false" onAction="#handleSulje" text="Sulje" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Toiminnot">
             <items>
-              <MenuItem mnemonicParsing="false" text="Tarkasta joukkueet..." />
+              <MenuItem mnemonicParsing="false" onAction="#handleTarkistaJoukkuuet" text="Tarkasta joukkueet..." />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Apua">
             <items>
-              <MenuItem mnemonicParsing="false" text="Apua" />
-                  <MenuItem mnemonicParsing="false" text="Tietoja" />
+              <MenuItem mnemonicParsing="false" onAction="#handleApua" text="Apua" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleTietoja" text="Tietoja" />
             </items>
           </Menu>
         </menus>
@@ -84,10 +84,10 @@
                                                 </Text>
                                              </children>
                                           </GridPane>
-                                          <ListChooser rivit="Vapaaherra, Veikko" />
+                                          <ListChooser rivit="Aho, Sebastian&#10;Datsyuk, Jeesus&#10;Hronek, Filip&#10;Kessel, Phil&#10;Koivu, Mikko&#10;Teräväinen, Teuvo&#10;van Riemsdyk, Trevor&#10;Vapaaherra, Veikko" />
                                           <ButtonBar prefHeight="40.0" prefWidth="200.0">
                                             <buttons>
-                                              <Button mnemonicParsing="false" text="Lisää pelaaja" />
+                                              <Button mnemonicParsing="false" onAction="#handlePelaajaLisaa" text="Lisää pelaaja" />
                                             </buttons>
                                              <VBox.margin>
                                                 <Insets bottom="10.0" top="10.0" />
@@ -144,8 +144,8 @@
                                                       <Insets left="5.0" right="5.0" />
                                                    </GridPane.margin>
                                                 </Text>
-                                                <TextField maxWidth="1.7976931348623157E308" text="Veikko" GridPane.columnIndex="1" />
-                                                <TextField maxWidth="1.7976931348623157E308" text="Vapaaherra" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <TextField maxWidth="1.7976931348623157E308" text="Aho" GridPane.columnIndex="1" />
+                                                <TextField maxWidth="1.7976931348623157E308" text="Sebastian" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <TextField maxWidth="1.7976931348623157E308" text="01.01.1900" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                 <TextField maxWidth="1.7976931348623157E308" text="Suomi" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                                 <TextField maxWidth="1.7976931348623157E308" text="FIN313131" GridPane.columnIndex="1" GridPane.rowIndex="4" />
@@ -153,8 +153,8 @@
                                           </GridPane>
                                           <ButtonBar>
                                             <buttons>
-                                                <Button mnemonicParsing="false" text="Poista" />
-                                              <Button mnemonicParsing="false" text="Muokkaa" />
+                                                <Button mnemonicParsing="false" onAction="#handlePelaajaPoista" text="Poista" />
+                                              <Button mnemonicParsing="false" onAction="#handlePelaajaMuokkaa" text="Muokkaa" />
                                             </buttons>
                                              <VBox.margin>
                                                 <Insets />
@@ -198,17 +198,17 @@
                                                       <Insets left="5.0" right="5.0" />
                                                    </GridPane.margin>
                                                 </Text>
-                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
-                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                <TextField maxWidth="1.7976931348623157E308" text="Hurricanes (Carolina)" GridPane.columnIndex="1" />
+                                                <TextField maxWidth="1.7976931348623157E308" text="2019" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <TextField maxWidth="1.7976931348623157E308" text="2025" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <TextField maxWidth="1.7976931348623157E308" text="8000000" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                              </children>
                                           </GridPane>
                                           <ButtonBar>
                                              <buttons>
-                                                <Button mnemonicParsing="false" text="Poista" />
-                                                <Button mnemonicParsing="false" text="Siirrä" />
-                                                <Button mnemonicParsing="false" text="Uusi" />
+                                                <Button mnemonicParsing="false" onAction="#handleSopimusPoista" text="Poista" />
+                                                <Button mnemonicParsing="false" onAction="#handleSopimusSiirra" text="Siirrä" />
+                                                <Button mnemonicParsing="false" onAction="#handleSopimusUusi" text="Uusi" />
                                              </buttons>
                                              <padding>
                                                 <Insets bottom="10.0" top="10.0" />
@@ -261,10 +261,10 @@
                                                 </Text>
                                              </children>
                                           </GridPane>
-                                          <ListChooser rivit="Lämäri (Veteli)&#10;Räpellys (Närpiö)&#10;Turmio (Kolari)" />
+                                          <ListChooser rivit="Coyotes (Arizona)&#10;Garbage Fire (Detroit)&#10;Hurricanes (Carolina)&#10;Lämäri (Veteli)&#10;Räpellys (Närpiö)&#10;Turmio (Kolari)&#10;Wild (Minnesota)" />
                                           <ButtonBar prefHeight="40.0" prefWidth="200.0">
                                              <buttons>
-                                                <Button mnemonicParsing="false" text="Lisää joukkue" />
+                                                <Button mnemonicParsing="false" onAction="#handleJoukkueLisaa" text="Lisää joukkue" />
                                              </buttons>
                                              <VBox.margin>
                                                 <Insets bottom="10.0" top="10.0" />
@@ -315,16 +315,16 @@
                                                       <Insets left="5.0" right="5.0" />
                                                    </GridPane.margin>
                                                 </Text>
-                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
-                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                <TextField maxWidth="1.7976931348623157E308" text="Coyotes" GridPane.columnIndex="1" />
+                                                <TextField maxWidth="1.7976931348623157E308" text="Arizona" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <TextField maxWidth="1.7976931348623157E308" text="Karhukopla" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <TextField maxWidth="1.7976931348623157E308" text="176671@karhukopla.vif" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                              </children>
                                           </GridPane>
                                           <ButtonBar>
                                              <buttons>
-                                                <Button mnemonicParsing="false" text="Poista" />
-                                                <Button mnemonicParsing="false" text="Muokkaa" />
+                                                <Button mnemonicParsing="false" onAction="#handleJoukkuePoista" text="Poista" />
+                                                <Button mnemonicParsing="false" onAction="#handleJoukkueMuokkaa" text="Muokkaa" />
                                              </buttons>
                                              <VBox.margin>
                                                 <Insets />
@@ -356,8 +356,8 @@
                                                       <Insets left="5.0" right="5.0" />
                                                    </GridPane.margin>
                                                 </Text>
-                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
-                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <TextField maxWidth="1.7976931348623157E308" text="2" GridPane.columnIndex="1" />
+                                                <TextField maxWidth="1.7976931348623157E308" text="12500000" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                              </children>
                                           </GridPane>
                                        </children>
@@ -404,7 +404,7 @@
                                           <ListChooser rivit="Hokiliiga&#10;Kaljaliiga" />
                                           <ButtonBar prefHeight="40.0" prefWidth="200.0">
                                              <buttons>
-                                                <Button mnemonicParsing="false" text="Lisää sarja" />
+                                                <Button mnemonicParsing="false" onAction="#handleSarjaLisaa" text="Lisää sarja" />
                                              </buttons>
                                              <VBox.margin>
                                                 <Insets bottom="10.0" top="10.0" />
@@ -437,7 +437,7 @@
                                                       <Insets left="5.0" right="5.0" />
                                                    </GridPane.margin>
                                                 </Text>
-                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
+                                                <TextField maxWidth="1.7976931348623157E308" text="Hokiliiga" GridPane.columnIndex="1" />
                                              </children>
                                           </GridPane>
                                           <Separator maxWidth="1.7976931348623157E308">
@@ -472,9 +472,9 @@
                                                       <Insets left="5.0" right="5.0" />
                                                    </GridPane.margin>
                                                 </Text>
-                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
-                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <TextField maxWidth="1.7976931348623157E308" text="700000" GridPane.columnIndex="1" />
+                                                <TextField maxWidth="1.7976931348623157E308" text="12500000" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <TextField maxWidth="1.7976931348623157E308" text="8" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                              </children>
                                           </GridPane>
                                           <Separator maxWidth="1.7976931348623157E308">
@@ -510,15 +510,15 @@
                                                       <Insets left="5.0" right="5.0" />
                                                    </GridPane.margin>
                                                 </Text>
-                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
-                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <TextField maxWidth="1.7976931348623157E308" text="50" GridPane.columnIndex="1" />
+                                                <TextField maxWidth="1.7976931348623157E308" text="60240000" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <TextField maxWidth="1.7976931348623157E308" text="81500000" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                              </children>
                                           </GridPane>
                                           <ButtonBar>
                                              <buttons>
-                                                <Button mnemonicParsing="false" text="Poista" />
-                                                <Button mnemonicParsing="false" text="Muokkaa" />
+                                                <Button mnemonicParsing="false" onAction="#handleSarjaPoista" text="Poista" />
+                                                <Button mnemonicParsing="false" onAction="#handleSarjaMuokkaa" text="Muokkaa" />
                                              </buttons>
                                              <padding>
                                                 <Insets bottom="30.0" top="10.0" />

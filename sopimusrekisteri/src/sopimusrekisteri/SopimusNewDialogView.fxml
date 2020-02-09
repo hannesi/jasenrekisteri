@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="suunnitelma.SuunnitelmaGUIController">
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fi.jyu.mit.fxgui.ModalController">
    <left>
       <VBox prefWidth="285.0" BorderPane.alignment="CENTER">
          <children>
@@ -52,22 +52,22 @@
                         <Insets left="5.0" right="5.0" />
                      </GridPane.margin>
                   </Text>
-                  <TextField disable="true" maxWidth="1.7976931348623157E308" text="2019" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField disable="true" maxWidth="1.7976931348623157E308" text="2025" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField disable="true" maxWidth="1.7976931348623157E308" text="8000000" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <ComboBoxChooser maxWidth="1.7976931348623157E308" rivit="Arizona Coyotes&#10;Carolina Hurricanes&#10;Detroit Garbage Fire&#10;Minnesota Wild&#10;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pelaaja" GridPane.halignment="RIGHT">
                      <GridPane.margin>
                         <Insets left="5.0" right="5.0" />
                      </GridPane.margin>
                   </Text>
-                  <TextField maxWidth="1.7976931348623157E308" text="Aho, Sebastian" GridPane.columnIndex="1" />
+                  <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
                </children>
             </GridPane>
             <ButtonBar>
                <buttons>
-                  <Button mnemonicParsing="false" text="Peruuta" />
-                  <Button mnemonicParsing="false" text="Tallenna" />
+                  <Button mnemonicParsing="false" onAction="#handleDefaultCancel" text="Peruuta" />
+                  <Button mnemonicParsing="false" onAction="#handleDefaultOK" text="Tallenna" />
                </buttons>
                <padding>
                   <Insets bottom="10.0" top="10.0" />

@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="suunnitelma.SuunnitelmaGUIController">
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fi.jyu.mit.fxgui.ModalController">
    <left>
       <VBox prefWidth="285.0" BorderPane.alignment="CENTER">
          <children>
@@ -50,16 +50,16 @@
                         <Insets left="5.0" right="5.0" />
                      </GridPane.margin>
                   </Text>
-                  <TextField maxWidth="1.7976931348623157E308" text="Hurricanes" GridPane.columnIndex="1" />
-                  <TextField maxWidth="1.7976931348623157E308" text="Carolina" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField maxWidth="1.7976931348623157E308" text="Aku Ankka" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField maxWidth="1.7976931348623157E308" text="aku@ankka.vif" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField maxWidth="1.7976931348623157E308" text="" GridPane.columnIndex="1" />
+                  <TextField maxWidth="1.7976931348623157E308" text="" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField maxWidth="1.7976931348623157E308" text="" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField maxWidth="1.7976931348623157E308" text="" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
             </GridPane>
             <ButtonBar>
                <buttons>
-                  <Button mnemonicParsing="false" text="Peruuta" />
-                  <Button mnemonicParsing="false" text="Tallenna" />
+                  <Button mnemonicParsing="false" onAction="#handleDefaultCancel" text="Peruuta" />
+                  <Button mnemonicParsing="false" onAction="#handleDefaultOK" text="Tallenna" />
                </buttons>
                <VBox.margin>
                   <Insets />

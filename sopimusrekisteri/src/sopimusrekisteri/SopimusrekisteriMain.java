@@ -1,4 +1,4 @@
-package suunnitelma;
+package sopimusrekisteri;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -8,21 +8,21 @@ import javafx.fxml.FXMLLoader;
 
 
 /**
- * @author Käyttäjä
- * @version 15.1.2020
+ * @author Hannes KoivusipilÃ¤
+ * @version 9.2.2020
  *
  */
-public class SuunnitelmaMain extends Application {
+public class SopimusrekisteriMain extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            FXMLLoader ldr = new FXMLLoader(getClass().getResource("SuunnitelmaGUIView.fxml"));
+            FXMLLoader ldr = new FXMLLoader(getClass().getResource("SopimusrekisteriGUIView.fxml"));
             final Pane root = ldr.load();
             //final SuunnitelmaGUIController suunnitelmaCtrl = (SuunnitelmaGUIController) ldr.getController();
             Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("suunnitelma.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("sopimusrekisteri.css").toExternalForm());
             primaryStage.setScene(scene);
-            primaryStage.setTitle("Suunnitelma");
+            primaryStage.setTitle("Sopimusrekisteri");
             primaryStage.show();
         } catch(Exception e) {
             e.printStackTrace();
@@ -30,7 +30,7 @@ public class SuunnitelmaMain extends Application {
     }
 
     /**
-     * @param args Ei käytössä
+     * @param args Ei kï¿½ytï¿½ssï¿½
      */
     public static void main(String[] args) {
         launch(args);

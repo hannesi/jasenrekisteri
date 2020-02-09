@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="suunnitelma.SuunnitelmaGUIController">
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fi.jyu.mit.fxgui.ModalController">
    <left>
       <VBox prefWidth="285.0" BorderPane.alignment="CENTER">
          <children>
@@ -32,7 +32,7 @@
                         <Insets left="5.0" right="5.0" />
                      </GridPane.margin>
                   </Text>
-                  <TextField maxWidth="1.7976931348623157E308" text="Hokiliiga" GridPane.columnIndex="1" />
+                  <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
                </children>
             </GridPane>
             <Separator maxWidth="1.7976931348623157E308">
@@ -68,9 +68,9 @@
                         <Insets left="5.0" right="5.0" />
                      </GridPane.margin>
                   </Text>
-                  <TextField maxWidth="1.7976931348623157E308" text="700000" GridPane.columnIndex="1" />
-                  <TextField maxWidth="1.7976931348623157E308" text="12500000" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField maxWidth="1.7976931348623157E308" text="8" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
+                  <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
             <Separator maxWidth="1.7976931348623157E308">
@@ -106,15 +106,15 @@
                         <Insets left="5.0" right="5.0" />
                      </GridPane.margin>
                   </Text>
-                  <TextField maxWidth="1.7976931348623157E308" text="50" GridPane.columnIndex="1" />
-                  <TextField maxWidth="1.7976931348623157E308" text="60240000" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField maxWidth="1.7976931348623157E308" text="81500000" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
+                  <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
             <ButtonBar>
                <buttons>
-                  <Button mnemonicParsing="false" text="Peruuta" />
-                  <Button mnemonicParsing="false" text="Tallenna" />
+                  <Button mnemonicParsing="false" onAction="#handleDefaultCancel" text="Peruuta" />
+                  <Button mnemonicParsing="false" onAction="#handleDefaultOK" text="Tallenna" />
                </buttons>
                <padding>
                   <Insets bottom="30.0" top="10.0" />

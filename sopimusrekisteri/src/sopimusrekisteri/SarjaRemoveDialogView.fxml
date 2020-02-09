@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="suunnitelma.SuunnitelmaGUIController">
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fi.jyu.mit.fxgui.ModalController">
    <left>
       <VBox BorderPane.alignment="CENTER">
          <children>
@@ -16,15 +16,15 @@
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin></Text>
-            <CheckBox mnemonicParsing="false" text="Olen varma että haluan poistaa pelaajan/joukkueen/sarjan X pysyvästi.">
+            <CheckBox mnemonicParsing="false" text="Olen varma että haluan poistaa sarjan pysyvästi.">
                <VBox.margin>
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </CheckBox>
             <ButtonBar>
                <buttons>
-                  <Button mnemonicParsing="false" text="Peruuta" />
-                  <Button mnemonicParsing="false" text="Poista" />
+                  <Button mnemonicParsing="false" onAction="#handleDefaultCancel" text="Peruuta" />
+                  <Button mnemonicParsing="false" onAction="#handleDefaultOK" text="Poista" />
                </buttons>
                <VBox.margin>
                   <Insets />
