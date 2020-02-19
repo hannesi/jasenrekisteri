@@ -21,6 +21,14 @@ public class Pelaaja {
     private static int seuraavaPid;
     
     
+    /**palauttaa pelaaja-id:n
+     * @return pid
+     */
+    public int getPid() {
+        return pid;
+    }
+    
+    
     /**
      * tulostetaan pelaajan tiedot
      * @param out tietovirta, johon tulostetaan

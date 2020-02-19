@@ -48,7 +48,7 @@ public class Pelaajat {
      * pelaajat.lisaa(p1); #THROWS SailoException
      */
     public void lisaa(Pelaaja p) throws SailoException {
-        if (lkm >= alkiot.length) throw new SailoException("Liikaa alkioita!");
+        if (lkm >= alkiot.length) throw new SailoException("Liikaa alkioita!"); //TODO: taulukon korvaaminen tilavammalla
         alkiot[lkm++] = p;
     }
     
