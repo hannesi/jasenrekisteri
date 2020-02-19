@@ -3,6 +3,7 @@ package sopimusrekisteri;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.Date;
+import java.util.Random;
 
 /**
  * @author Hannes Koivusipilä
@@ -11,10 +12,10 @@ import java.util.Date;
  */
 public class Pelaaja {
     
-    private int pid;    //Pelaaja-id
+    private int     pid;            //Pelaaja-id
     private String  sukunimi        = "";
     private String  etunimi         = "";
-    private Date    syntymaaika     = new Date();
+    private String  syntymaaika     = "";
     private String  kansallisuus    = "";
     
     private static int seuraavaPid;
@@ -72,13 +73,13 @@ public class Pelaaja {
 
     /**
      * apumetodi luokan testaamiseen
-     * @example
-     * <pre name="test">
-     * Pelaaja p = new Pelaaja();
-     * </pre>
      */
-    private void taytaPelaaja() {
-        // TODO Auto-generated method stub
+    public void taytaPelaaja() {
+        sukunimi = "Doe";
+        etunimi = "John";
+        Random rand = new Random();
+        syntymaaika = Integer.toString(rand.nextInt(9999));
+        kansallisuus = "Yhdysvallat";
         
     }
 
