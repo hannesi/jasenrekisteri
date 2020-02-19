@@ -1,4 +1,4 @@
-package sopimusrekisteri;
+package fxSopimusrekisteri;
 
 import fi.jyu.mit.fxgui.*;
 import javafx.fxml.FXML;

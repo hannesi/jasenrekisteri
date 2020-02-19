@@ -1,4 +1,4 @@
-package sopimusrekisteri;
+package fxSopimusrekisteri;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
