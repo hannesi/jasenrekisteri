@@ -86,9 +86,25 @@ public class Pelaaja {
         sukunimi = "Doe";
         etunimi = "John";
         Random rand = new Random();
-        syntymaaika = Integer.toString(rand.nextInt(9999));
+        syntymaaika = Integer.toString(rand.nextInt(9999)); //TODO: muista muuttaa oikeaksi syntymäajaksi
         kansallisuus = "Yhdysvallat";
         
+    }
+
+
+    /**palauttaa pelaajan nimen muodossa "Sukunimi, Etunimi"
+     * @return pelaajan nimi
+     */
+    public String getNimi() {
+        return sukunimi + ", " + etunimi;
+    }
+    
+    
+    /**palauttaa pelaajan syntymäajan
+     * @return pelaajan syntymäaika
+     */
+    public String getSyntymaaika() {
+        return syntymaaika;
     }
 
 }

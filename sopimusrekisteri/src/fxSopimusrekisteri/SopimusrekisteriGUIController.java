@@ -1,14 +1,33 @@
 package fxSopimusrekisteri;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import fi.jyu.mit.fxgui.*;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.TextField;
+import sopimusrekisteri.Pelaaja;
+import sopimusrekisteri.SailoException;
+import sopimusrekisteri.Sopimusrekisteri;
 
 /**
  * @author Hannes Koivusipilä
  * @version 9.2.2020
  *
  */
-public class SopimusrekisteriGUIController {
+public class SopimusrekisteriGUIController implements Initializable {
+
+    
+    //Pelaaja-tabi
+    @FXML ListChooser<Pelaaja> chooserPelaajat;
+    @FXML TextField pTextfieldSyntymaaika;
+    
+    
+    @Override
+    public void initialize(URL url, ResourceBundle bundle) {
+            alusta();
+    }
     
     @FXML void handleApua() {
         apua();
@@ -82,7 +101,14 @@ public class SopimusrekisteriGUIController {
         tietoja();
     }
       
-    //=====================================================================================
+    //=====================================Tämän alapuolella ie suoraa käyttöliittymään liittyvää koodia================================================
+    
+    private Sopimusrekisteri sopimusrekisteri;
+    
+    private void alusta() {
+        chooserPelaajat.clear();
+        chooserPelaajat.addSelectionListener(e -> naytaPelaaja());
+    }
     
     private void tallenna() {
         Dialogs.showMessageDialog("Ei osata vielä tallentaa!");
@@ -121,7 +147,47 @@ public class SopimusrekisteriGUIController {
     }
     
     private void pelaajaLisaa() {
-        ModalController.showModal(SopimusrekisteriGUIController.class.getResource("PelaajaNewDialogView.fxml"), "Lisää pelaaja", null, "");
+        Pelaaja p = new Pelaaja();
+        p.rekisteroi();
+        p.taytaPelaaja();//TODO: Korvaa oikealla dialogilla
+        try {
+            sopimusrekisteri.lisaa(p);
+        } catch (SailoException e) {
+            Dialogs.showMessageDialog("Virhe: " + e.getMessage());
+            return;
+        }
+        hae(p.getPid());
+        //ModalController.showModal(SopimusrekisteriGUIController.class.getResource("PelaajaNewDialogView.fxml"), "Lisää pelaaja", null, "");
+    }
+    
+    
+    private void hae(int pid) {
+        chooserPelaajat.clear();
+        int index = 0;
+        for (int i = 0; i < sopimusrekisteri.getPelaajia(); i++) {
+            Pelaaja p = sopimusrekisteri.annaPelaaja(i);
+            if (p.getPid() == pid) index = i;
+            chooserPelaajat.add(p.getNimi(), p);
+        }
+        chooserPelaajat.setSelectedIndex(index);
+        naytaPelaaja();
+    }
+    
+    
+    private void naytaPelaaja() {
+        Pelaaja pKohdalla = chooserPelaajat.getSelectedObject();
+        if (pKohdalla == null) return;
+
+        pTextfieldSyntymaaika.setText("");
+        pTextfieldSyntymaaika.setText(pKohdalla.getSyntymaaika());
+        
+        /*
+        areaLisenssi.setText("");
+        try (PrintStream os = TextAreaOutputStream.getTextPrintStream(areaLisenssi)){
+            pKohdalla.tulosta(os); 
+        }
+        */
+        
     }
     
     private void pelaajaMuokkaa() {
@@ -154,6 +220,15 @@ public class SopimusrekisteriGUIController {
     
     private void sopimusSiirra() {
         ModalController.showModal(SopimusrekisteriGUIController.class.getResource("SopimusTransferDialogView.fxml"), "Siirrä sopimus", null, "");
+    }
+
+    /**
+     * Asetetaan kontrollerin sopimusrekisteriviite
+     * @param sopimusrekisteri sopimusrekisteri johon viitataan
+     */
+    public void setSopimusrekisteri(Sopimusrekisteri sopimusrekisteri) {
+        this.sopimusrekisteri = sopimusrekisteri;
+        
     }
     
 }

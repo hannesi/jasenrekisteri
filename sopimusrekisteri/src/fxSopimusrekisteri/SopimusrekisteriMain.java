@@ -2,6 +2,7 @@ package fxSopimusrekisteri;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import sopimusrekisteri.Sopimusrekisteri;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.fxml.FXMLLoader;
@@ -18,11 +19,15 @@ public class SopimusrekisteriMain extends Application {
         try {
             FXMLLoader ldr = new FXMLLoader(getClass().getResource("SopimusrekisteriGUIView.fxml"));
             final Pane root = ldr.load();
-            //final SuunnitelmaGUIController suunnitelmaCtrl = (SuunnitelmaGUIController) ldr.getController();
+            final SopimusrekisteriGUIController sopimusrekisteriCtrl = (SopimusrekisteriGUIController) ldr.getController();
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("sopimusrekisteri.css").toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.setTitle("Sopimusrekisteri");
+            
+            Sopimusrekisteri sopimusrekisteri = new Sopimusrekisteri();
+            sopimusrekisteriCtrl.setSopimusrekisteri(sopimusrekisteri);
+            
             primaryStage.show();
         } catch(Exception e) {
             e.printStackTrace();
