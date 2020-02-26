@@ -13,6 +13,9 @@ public class Pelaajat {
     private Pelaaja[]           alkiot;
     
     
+    /**
+     * luokka hoitaa Pelaaja-olioiden hallinnan
+     */
     public Pelaajat() {
         alkiot = new Pelaaja[MAX_PELAAJIA];
     }

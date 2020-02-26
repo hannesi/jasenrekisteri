@@ -38,6 +38,10 @@ public class Sopimusrekisteri {
     }
     
     
+    /**
+     * main sisältää vain Sopimusrekisteri-luokan testaamista
+     * @param args ei käytössä
+     */
     public static void main(String[] args) {
         Sopimusrekisteri sr = new Sopimusrekisteri();
         
