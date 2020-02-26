@@ -7,17 +7,18 @@ package sopimusrekisteri;
  */
 public class Pelaajat {
 
-    private static final int    MAX_PELAAJIA    = 5;
-    private int                 lkm             = 0;
-    private String              tiedostonNimi   = "";
-    private Pelaaja[]           alkiot;
+    private static final int    PELAAJAT_KASVATUS   = 5;
+    private static final int    MAX_PELAAJIA        = 5;
+    private int                 lkm                 = 0;
+    private String              tiedostonNimi       = "";
+    private Pelaaja[]           pelaajat;
     
     
     /**
      * luokka hoitaa Pelaaja-olioiden hallinnan
      */
     public Pelaajat() {
-        alkiot = new Pelaaja[MAX_PELAAJIA];
+        pelaajat = new Pelaaja[MAX_PELAAJIA];
     }
     
     
@@ -48,11 +49,27 @@ public class Pelaajat {
      * pelaajat.anna(3) === p2; #THROWS IndexOutOfBoundsException
      * pelaajat.lisaa(p1); pelaajat.getLkm() === 4;
      * pelaajat.lisaa(p1); pelaajat.getLkm() === 5;
-     * pelaajat.lisaa(p1); #THROWS SailoException
+     * pelaajat.lisaa(p1); pelaajat.getLkm() === 6;
      */
     public void lisaa(Pelaaja p) throws SailoException {
-        if (lkm >= alkiot.length) throw new SailoException("Liikaa alkioita!"); //TODO: taulukon korvaaminen tilavammalla
-        alkiot[lkm++] = p;
+        if (lkm >= pelaajat.length)
+            kasvataTaulukko();
+            //throw new SailoException("Liikaa alkioita!");
+
+        pelaajat[lkm++] = p;
+    }
+    
+    /**
+     * Siirtää pelaajat-taulukon sisällön alkuperäisessä järjestyksessä uuteen taulukkoon, 
+     * joka on kooltaan PELAAJAT_KASVATUS indeksiä suurempi.
+     * 
+     * pelaajat viittaa operaation jälkeen uuteen suurempaan taulukkoon. Alkuperäinen pelaajat muuttuu roskaksi!
+     */
+    private void kasvataTaulukko() {
+        var tempPelaajat = new Pelaaja[pelaajat.length + PELAAJAT_KASVATUS];
+        for (int i = 0; i < pelaajat.length; i++)
+            tempPelaajat[i] = pelaajat[i];
+        pelaajat = tempPelaajat;
     }
     
     
@@ -64,7 +81,7 @@ public class Pelaajat {
      */
     public Pelaaja anna(int i) throws IndexOutOfBoundsException {
         if (i < 0 || lkm <= i) throw new IndexOutOfBoundsException("Laiton indeksi:" + i);
-        return alkiot[i];
+        return pelaajat[i];
     }
     
     
