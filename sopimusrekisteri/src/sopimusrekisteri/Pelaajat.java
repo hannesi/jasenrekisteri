@@ -34,7 +34,6 @@ public class Pelaajat {
     /**
      * Lisää uuden pelaajan tietorakenteeseen. Ottaa Pelaajan omistukseensa.
      * @param p lisättävän Pelaajan viite
-     * @throws SailoException jos liikaa alkioita
      * @example
      * <pre name="test">
      * #THROWS SailoException
@@ -51,13 +50,14 @@ public class Pelaajat {
      * pelaajat.lisaa(p1); pelaajat.getLkm() === 5;
      * pelaajat.lisaa(p1); pelaajat.getLkm() === 6;
      */
-    public void lisaa(Pelaaja p) throws SailoException {
+    public void lisaa(Pelaaja p) {
         if (lkm >= pelaajat.length)
             kasvataTaulukko();
             //throw new SailoException("Liikaa alkioita!");
 
         pelaajat[lkm++] = p;
     }
+    
     
     /**
      * Siirtää pelaajat-taulukon sisällön alkuperäisessä järjestyksessä uuteen taulukkoon, 
@@ -97,18 +97,15 @@ public class Pelaajat {
         p2.taytaPelaaja();
         p2.rekisteroi();
         
+        
+        pelaajat.lisaa(p1);
+        pelaajat.lisaa(p2);
+        pelaajat.lisaa(p2);
+        pelaajat.lisaa(p2);
+        pelaajat.lisaa(p2);
+        pelaajat.lisaa(p2);
+        pelaajat.lisaa(p2);
 
-        try {
-            pelaajat.lisaa(p1);
-            pelaajat.lisaa(p2);
-            pelaajat.lisaa(p2);
-            pelaajat.lisaa(p2);
-            pelaajat.lisaa(p2);
-            pelaajat.lisaa(p2);
-            pelaajat.lisaa(p2);
-        } catch (SailoException e) {
-            System.err.println(e.getMessage());
-        }
 
         
         System.out.println("===Pelaajat-luokan testit alla===");
@@ -116,6 +113,10 @@ public class Pelaajat {
             Pelaaja pelaaja = pelaajat.anna(i);
             pelaaja.tulosta(System.out);
         }
+        System.out.println("Pelaajan muokkaaminen:");
+        p1.tulosta(System.out);
+        p1.muokkaa("Mynttinen", "Pertti", "02.01.2000", "Suomi");
+        p1.tulosta(System.out);
 
     }
 

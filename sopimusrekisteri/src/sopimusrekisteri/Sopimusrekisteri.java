@@ -13,9 +13,8 @@ public class Sopimusrekisteri {
     /**
      * Lisätään uusi pelaaja
      * @param p Lisättävä pelaaja
-     * @throws SailoException Jos ei mahdu
      */
-    public void lisaa(Pelaaja p) throws SailoException {
+    public void lisaa(Pelaaja p) {
         pelaajat.lisaa(p);
     }
     
@@ -53,21 +52,17 @@ public class Sopimusrekisteri {
         p2.taytaPelaaja();
         p2.rekisteroi();
         
-        
-        try {
-            sr.lisaa(p1);
-            sr.lisaa(p2);
-            sr.lisaa(p2);
-            sr.lisaa(p2);
-            sr.lisaa(p2);
-            sr.lisaa(p2);
-            sr.lisaa(p2);
-            sr.lisaa(p2);
-            sr.lisaa(p2);
-        } catch (SailoException e) {
-            System.err.println(e.getMessage());
-            System.err.flush();
-        }
+
+        sr.lisaa(p1);
+        sr.lisaa(p2);
+        sr.lisaa(p2);
+        sr.lisaa(p2);
+        sr.lisaa(p2);
+        sr.lisaa(p2);
+        sr.lisaa(p2);
+        sr.lisaa(p2);
+        sr.lisaa(p2);
+
         
         System.out.println("===sopimusrekisterin testaus alla====");
         for (int i = 0; i < sr.getPelaajia(); i++) {

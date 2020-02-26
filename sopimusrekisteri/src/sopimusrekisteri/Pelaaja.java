@@ -21,12 +21,66 @@ public class Pelaaja {
     
     
     /**palauttaa pelaaja-id:n
-     * @return pid
+     * @return pelaajan pid
      */
     public int getPid() {
         return pid;
     }
     
+
+    /**palauttaa pelaajan nimen muodossa "Sukunimi, Etunimi"
+     * @return pelaajan nimi
+     */
+    public String getNimi() {
+        return sukunimi + ", " + etunimi;
+    }
+    
+    /**
+     * palauttaa pelaajan sukunimen
+     * @return pelaajan sukunimi
+     */
+    public String getSukunimi() {
+        return sukunimi;
+    }
+    
+    /**
+     * palauttaa pelaajan etunimen
+     * @return pelaajan etunimi
+     */
+    public String getEtunimi() {
+        return etunimi;
+    }
+    
+    
+    /**palauttaa pelaajan syntymäajan
+     * @return pelaajan syntymäaika
+     */
+    public String getSyntymaaika() {
+        return syntymaaika;
+    }
+    
+    /**palauttaa pelaajan kansallisuuden
+     * @return pelaajan kansallisuus
+     */
+    public String getKansallisuus() {
+        return kansallisuus;
+    }
+
+    
+    
+    /**muuttaa pelaajan tiedot
+     * @param sukunimi sukunimi
+     * @param etunimi etunimi
+     * @param syntymaaika syntymäaika
+     * @param kansallisuus kansallisuus
+     */
+    @SuppressWarnings("hiding")
+    public void muokkaa(String sukunimi, String etunimi, String syntymaaika, String kansallisuus) {
+        this.sukunimi = sukunimi;
+        this.etunimi = etunimi;
+        this.syntymaaika = syntymaaika;
+        this.kansallisuus = kansallisuus;
+    }
     
     /**
      * tulostetaan pelaajan tiedot
@@ -88,22 +142,6 @@ public class Pelaaja {
         syntymaaika = Integer.toString(rand.nextInt(9999)); //TODO: muista muuttaa oikeaksi syntymäajaksi
         kansallisuus = "Yhdysvallat";
         
-    }
-
-
-    /**palauttaa pelaajan nimen muodossa "Sukunimi, Etunimi"
-     * @return pelaajan nimi
-     */
-    public String getNimi() {
-        return sukunimi + ", " + etunimi;
-    }
-    
-    
-    /**palauttaa pelaajan syntymäajan
-     * @return pelaajan syntymäaika
-     */
-    public String getSyntymaaika() {
-        return syntymaaika;
     }
 
 }
