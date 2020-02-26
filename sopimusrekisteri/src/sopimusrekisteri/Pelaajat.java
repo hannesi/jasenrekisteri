@@ -1,6 +1,7 @@
 package sopimusrekisteri;
 
 /**
+ * 
  * @author Hannes Koivusipilä
  * @version 19.2.2020
  *
@@ -49,6 +50,9 @@ public class Pelaajat {
      * pelaajat.lisaa(p1); pelaajat.getLkm() === 4;
      * pelaajat.lisaa(p1); pelaajat.getLkm() === 5;
      * pelaajat.lisaa(p1); pelaajat.getLkm() === 6;
+     * p1.rekisteroi(); p2.rekisteroi();
+     * p1.getPid() == p2.getPid() === false;
+     * </pre>
      */
     public void lisaa(Pelaaja p) {
         if (lkm >= pelaajat.length)

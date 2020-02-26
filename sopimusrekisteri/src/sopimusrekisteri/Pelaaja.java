@@ -102,7 +102,8 @@ public class Pelaaja {
     }
     
     
-    /** Antaa pelaajalle pelaaja-id:n (pid) ja kasvattaa seuraavaa rekisteröitävää pelaaja-id:tä yhdellä.
+    /** 
+     * Antaa pelaajalle pelaaja-id:n (pid) ja kasvattaa seuraavaa rekisteröitävää pelaaja-id:tä yhdellä.
      * @return pid
      */
     public int rekisteroi() {
