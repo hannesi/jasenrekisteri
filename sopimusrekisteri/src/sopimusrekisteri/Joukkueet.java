@@ -1,12 +1,16 @@
 package sopimusrekisteri;
 
 import java.util.ArrayList;
-import java.util.List;
 
+/**
+ * @author Hannes Koivusipilä
+ * @version 27.2.2020
+ *
+ */
 public class Joukkueet {
     
-    private String              tiedostonNimi   = "";
-    private ArrayList<Joukkue>  joukkueet          = new ArrayList<Joukkue>();
+    private String              tiedostonNimi       = "";
+    private ArrayList<Joukkue>  joukkueet           = new ArrayList<Joukkue>();
     
     
     /**lisää joukkue 
@@ -36,6 +40,7 @@ public class Joukkueet {
     /**Poistaa joukkueen 
      * @param j poistettava joukkue
      */
+    //TODO: kun joukkue poistetaan, poistetaan myös sopimukset, joissa se on osapuolena
     public void poista(Joukkue j) {
         joukkueet.remove(j);
     }
@@ -64,14 +69,14 @@ public class Joukkueet {
 
 
         
-        System.out.println("===Pelaajat-luokan testit alla===");
+        System.out.println("===Joukkueet-luokan testit alla===");
         for (int i = 0; i < joukkueet.getLkm(); i++) {
             var joukkue = joukkueet.get(i);
             joukkue.tulosta(System.out);
         }
-        System.out.println("Pelaajan muokkaaminen:");
+        System.out.println("Joukkueen muokkaaminen:");
         j1.tulosta(System.out);
-        //j1.muokkaa("Mynttinen", "Pertti", "02.01.2000", "Suomi");
+        j1.muokkaa("Coyotes", "Phoenix", "Karhukopla", "asd@fgh.jkl");
         j1.tulosta(System.out);
 
     }
