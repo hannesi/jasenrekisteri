@@ -332,6 +332,11 @@ public class Sopimusrekisteri {
         sr.lisaa(p1);
         sr.lisaa(p2);
         sr.lisaa(p3);
+        
+        Liiga l1 = new Liiga();
+        l1.taytaLiiga();
+        l1.rekisteroi();
+        sr.lisaa(l1);
 
         
         System.out.println("===sopimusrekisterin testaus alla====");
@@ -395,9 +400,13 @@ public class Sopimusrekisteri {
             System.err.println(e.getMessage());
             System.err.flush();
         }
+        
+        System.out.println("Liigan " + l1.getNimi() + " joukkueet:");
+        for (Joukkue j : sr.getLiiganJoukkueet(l1))
+            System.out.println(j.getNimiPitka());
 
 
-        }
+    }
 
 
 
