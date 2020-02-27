@@ -21,7 +21,10 @@ public class SopimusrekisteriGUIController implements Initializable {
     
     //Pelaaja-tabi
     @FXML ListChooser<Pelaaja> chooserPelaajat;
+    @FXML TextField pTextfieldSukunimi;
+    @FXML TextField pTextfieldEtunimi;
     @FXML TextField pTextfieldSyntymaaika;
+    @FXML TextField pTextfieldKansallisuus;
     
     
     @Override
@@ -150,12 +153,8 @@ public class SopimusrekisteriGUIController implements Initializable {
         Pelaaja p = new Pelaaja();
         p.rekisteroi();
         p.taytaPelaaja();//TODO: Korvaa oikealla dialogilla
-        try {
-            sopimusrekisteri.lisaa(p);
-        } catch (SailoException e) {
-            Dialogs.showMessageDialog("Virhe: " + e.getMessage());
-            return;
-        }
+        sopimusrekisteri.lisaa(p);
+
         hae(p.getPid());
         //ModalController.showModal(SopimusrekisteriGUIController.class.getResource("PelaajaNewDialogView.fxml"), "Lisää pelaaja", null, "");
     }
@@ -178,8 +177,10 @@ public class SopimusrekisteriGUIController implements Initializable {
         Pelaaja pKohdalla = chooserPelaajat.getSelectedObject();
         if (pKohdalla == null) return;
 
-        pTextfieldSyntymaaika.setText("");
+        pTextfieldSukunimi.setText(pKohdalla.getSukunimi());
+        pTextfieldEtunimi.setText(pKohdalla.getEtunimi());
         pTextfieldSyntymaaika.setText(pKohdalla.getSyntymaaika());
+        pTextfieldKansallisuus.setText(pKohdalla.getKansallisuus());
         
         /*
         areaLisenssi.setText("");

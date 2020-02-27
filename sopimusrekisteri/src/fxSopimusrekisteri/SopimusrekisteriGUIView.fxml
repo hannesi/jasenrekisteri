@@ -118,12 +118,12 @@
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Etunimi" GridPane.halignment="RIGHT">
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sukunimi" GridPane.halignment="RIGHT">
                                                    <GridPane.margin>
                                                       <Insets left="5.0" right="5.0" />
                                                    </GridPane.margin>
                                                 </Text>
-                                                <Text layoutX="53.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sukunimi" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                                                <Text layoutX="53.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Etunimi" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                                                    <GridPane.margin>
                                                       <Insets left="5.0" right="5.0" />
                                                    </GridPane.margin>
@@ -138,10 +138,10 @@
                                                       <Insets left="5.0" right="5.0" />
                                                    </GridPane.margin>
                                                 </Text>
-                                                <TextField maxWidth="1.7976931348623157E308" text="Aho" GridPane.columnIndex="1" />
-                                                <TextField maxWidth="1.7976931348623157E308" text="Sebastian" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <TextField fx:id="pTextfieldSukunimi" maxWidth="1.7976931348623157E308" text="Aho" GridPane.columnIndex="1" />
+                                                <TextField fx:id="pTextfieldEtunimi" maxWidth="1.7976931348623157E308" text="Sebastian" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <TextField fx:id="pTextfieldSyntymaaika" maxWidth="1.7976931348623157E308" text="01.01.1900" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <TextField maxWidth="1.7976931348623157E308" text="Suomi" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                <TextField fx:id="pTextfieldKansallisuus" maxWidth="1.7976931348623157E308" text="Suomi" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                              </children>
                                           </GridPane>
                                           <ButtonBar>
