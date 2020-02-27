@@ -56,4 +56,16 @@ public class Sopimukset {
         throw new SailoException("Ei löytynyt sopimusta jossa pid: " + pid);
     }
 
+    /**palauttaa sopimuksen pid perusteella
+     * @param pid haettavan sopimuksen pelaajaosapuolen pid
+     * @return pelaajan sopimus
+     * @throws SailoException jos ei löydy sopimusta jossa tuotu pid
+     */
+    public Sopimus getByPid(int pid) throws SailoException {
+        for (int i = 0; i < sopimukset.size(); i++)
+            if (sopimukset.get(i).getPid() == pid)
+                return sopimukset.get(i);
+        throw new SailoException("Ei löytynyt sopimusta jossa pid: " + pid);
+    }
+
 }

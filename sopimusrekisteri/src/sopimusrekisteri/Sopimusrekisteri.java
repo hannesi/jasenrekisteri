@@ -207,6 +207,23 @@ public class Sopimusrekisteri {
     }
     
     
+
+
+    /**hakee pelaajan sopimuksen
+     * @param p pelaaja jonka sopimus halutaan
+     * @return pelaajan sopimus
+     */
+    public Sopimus getPelaajanSopimus(Pelaaja p) {
+        Sopimus s = null;
+        try {
+            s = sopimukset.getByPid(p.getPid());
+        } catch (SailoException e) {
+            System.err.println(e.getMessage());
+        }
+        return s;
+    }
+    
+    
     /**
      * main sisältää vain Sopimusrekisteri-luokan testaamista
      * @param args ei käytössä
@@ -282,7 +299,9 @@ public class Sopimusrekisteri {
         sr.lisaa(p1, j3);
 
         System.out.println(p1.getNimi() + " pelaa joukkueessa " + sr.getPelaajanJoukkue(p1).getNimiPitka());
+        System.out.println(p1.getNimi() + " tienaa kaudessa " + sr.getPelaajanSopimus(p1).getPalkka());
     }
+
 
 
 
