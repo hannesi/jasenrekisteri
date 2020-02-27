@@ -76,7 +76,6 @@ public class Sopimusrekisteri {
      *  sr.lisaa(p2, j2, 1000000, 2020, 2023);
      *  sr.getPelaajanSopimus(p2).getPalkka() === 1000000;
      *  sr.poista(sr.getPelaajanSopimus(p2));
-     *  sr.getPelaajanSopimus(p2); #THROWS SailoException
      * </pre>
      */
     public void lisaa(Pelaaja p) {
