@@ -29,8 +29,15 @@ public class Joukkueet {
      * @param indeksi palautettavan joukkueen indeksi
      * @return joukkue
      */
-    public Joukkue anna(int indeksi) {
+    public Joukkue get(int indeksi) {
         return joukkueet.get(indeksi);
+    }
+    
+    /**Poistaa joukkueen 
+     * @param j poistettava joukkue
+     */
+    public void poista(Joukkue j) {
+        joukkueet.remove(j);
     }
     
     /**
@@ -59,7 +66,7 @@ public class Joukkueet {
         
         System.out.println("===Pelaajat-luokan testit alla===");
         for (int i = 0; i < joukkueet.getLkm(); i++) {
-            var joukkue = joukkueet.anna(i);
+            var joukkue = joukkueet.get(i);
             joukkue.tulosta(System.out);
         }
         System.out.println("Pelaajan muokkaaminen:");
@@ -68,6 +75,4 @@ public class Joukkueet {
         j1.tulosta(System.out);
 
     }
-
-
 }

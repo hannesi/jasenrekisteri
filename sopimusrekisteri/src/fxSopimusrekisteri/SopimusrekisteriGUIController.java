@@ -164,7 +164,7 @@ public class SopimusrekisteriGUIController implements Initializable {
         chooserPelaajat.clear();
         int index = 0;
         for (int i = 0; i < sopimusrekisteri.getPelaajia(); i++) {
-            Pelaaja p = sopimusrekisteri.annaPelaaja(i);
+            Pelaaja p = sopimusrekisteri.getPelaaja(i);
             if (p.getPid() == pid) index = i;
             chooserPelaajat.add(p.getNimi(), p);
         }

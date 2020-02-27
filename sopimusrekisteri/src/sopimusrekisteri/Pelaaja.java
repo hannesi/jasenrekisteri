@@ -68,7 +68,7 @@ public class Pelaaja {
 
     
     
-    /**muuttaa pelaajan tiedot
+    /**korvaa pelaajan tiedot
      * @param sukunimi sukunimi
      * @param etunimi etunimi
      * @param syntymaaika syntymäaika

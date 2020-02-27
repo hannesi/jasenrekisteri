@@ -20,6 +20,24 @@ public class Joukkue {
 
     private static int seuraavaJid;
     
+    
+    
+    /**korvaa joukkueen tiedot
+     * @param nimi joukkueen nimi
+     * @param kaupunki joukkueen kaupunki
+     * @param omistaja joukkueen omistaja
+     * @param yhteystieto joukkueen yhtestieto
+     */
+    @SuppressWarnings("hiding")
+    public void muokkaa(String nimi, String kaupunki, String omistaja,
+            String yhteystieto) {
+        this.nimi = nimi;
+        this.kaupunki = kaupunki;
+        this.omistaja = omistaja;
+        this.yhteystieto = yhteystieto;
+        
+    }
+    
     /**
      * tulostetaan joukkueen tiedot
      * @param out tietovirta, johon tulostetaan
@@ -79,4 +97,5 @@ public class Joukkue {
         Random rand = new Random();
         yhteystieto = Integer.toString(rand.nextInt(9999)) + "@email.vif";        
     }
+
 }
