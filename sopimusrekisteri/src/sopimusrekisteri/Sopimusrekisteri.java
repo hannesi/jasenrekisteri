@@ -7,8 +7,9 @@ package sopimusrekisteri;
  */
 public class Sopimusrekisteri {
     
-    Pelaajat pelaajat = new Pelaajat();
-    Joukkueet joukkueet = new Joukkueet();
+    Pelaajat    pelaajat    = new Pelaajat();
+    Joukkueet   joukkueet   = new Joukkueet();
+    Liigat      liigat      = new Liigat();
     
     
     /**
@@ -101,6 +102,40 @@ public class Sopimusrekisteri {
      */
     public void poista(Joukkue j) {
         joukkueet.poista(j);
+    }
+    
+    
+    
+    /**lisää uusi liiga
+     * @param l lisättävä liiga
+     */
+    public void lisaa(Liiga l) {
+        liigat.lisaa(l);
+    }
+    
+    
+    /**
+     * Palauttaa liigojen lukumäärän
+     * @return liigojen lukumäärä
+     */
+    public int getLiigoja() {
+        return liigat.getLkm();
+    }
+    
+    
+    /**Palauttaa i:nnen liigan
+     * @param i monesko liiga palautetaan
+     * @return viite i:teen liigaan
+     */
+    public Liiga getLiiga(int i) {
+        return liigat.get(i);
+    }
+    
+    /**Poistaa liigan
+     * @param l poistettava liiga
+     */
+    public void poista(Liiga l) {
+        liigat.poista(l);
     }
     
     

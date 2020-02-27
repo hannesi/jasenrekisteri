@@ -28,6 +28,9 @@ public class Liigat {
      *   l1.getNimi() == l2.getNimi() === true;
      *   l1.muokkaa("Kaljaliiga", 500, 10000, 2, 5000, 25000, 25); 
      *   l1.getNimi() == l2.getNimi() === false;
+     *   liigat.poista(l1);
+     *   liigat.get(0) == l2 === true;
+     *   liigat.getLkm() === 1;
      * </pre>
      */
     public void lisaa(Liiga l) {
