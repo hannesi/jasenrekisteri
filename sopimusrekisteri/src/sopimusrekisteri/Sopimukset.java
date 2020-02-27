@@ -39,6 +39,21 @@ public class Sopimukset {
     public void poista(Sopimus s) {
         sopimukset.remove(s);
     }
+    
 
+    //===============================================================================================
+    //Tämän alapuolella hakuun liittyviä aliohjelmia
+    
+    /**palauttaa tuodun pid vastaavan pelaajan sopimuksen joukkueosapuolen jid
+     * @param pid pelaaja-id jonka joukkuetta haetaan
+     * @return joukkueen jid
+     * @throws SailoException jos pid:lle ei löydy sopimusta 
+     */
+    public int getJidByPid(int pid) throws SailoException {
+        for (int i = 0; i < sopimukset.size(); i++)
+            if (sopimukset.get(i).getPid() == pid)
+                return sopimukset.get(i).getJid();
+        throw new SailoException("Ei löytynyt sopimusta jossa pid: " + pid);
+    }
 
 }

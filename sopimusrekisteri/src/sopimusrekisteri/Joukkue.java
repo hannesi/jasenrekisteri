@@ -45,6 +45,41 @@ public class Joukkue {
         return jid;
     }
     
+    /**palauttaa joukkueen nimen pitkässä muodossa "Kaupunki Nimi"
+     * @return joukkueen kaupunki ja nimi
+     */
+    public String getNimiPitka() {
+        return kaupunki + " " + nimi;
+    }
+    
+    /**palauttaa joukkueen nimen
+     * @return joukkueen nimi
+     */
+    public String getNimi() {
+        return nimi;
+    }
+    
+    /**palauttaa joukkueen kaupungin
+     * @return joukkueen kaupunki
+     */
+    public String getKaupunki() {
+        return kaupunki;
+    }
+    
+    /**palauttaa joukkueen omistajan
+     * @return joukkueen omistaja
+     */
+    public String getOmistaja() {
+        return omistaja;
+    }
+    
+    /**palauttaa joukkueen yhteystiedon
+     * @return joukkueen yhteystieto
+     */
+    public String getYhteystieto() {
+        return yhteystieto;
+    }
+    
     /**
      * tulostetaan joukkueen tiedot
      * @param out tietovirta, johon tulostetaan

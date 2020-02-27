@@ -16,7 +16,7 @@ public class Sopimusrekisteri {
     /**
      * Lisää uuden pelaajan
      * @param p Lisättävä pelaaja
-     *      * @example
+     * @example
      * <pre name="test">
      *  Sopimusrekisteri sr = new Sopimusrekisteri();
      *  Pelaaja p1 = new Pelaaja();
@@ -181,6 +181,31 @@ public class Sopimusrekisteri {
         liigat.poista(l);
     }
     
+
+    /**lisää uuden sopimuksen
+     * @param p pelaajaosapuoli
+     * @param j joukkueosapuoli
+     */
+    public void lisaa(Pelaaja p, Joukkue j) {
+        Sopimus s = new Sopimus(p.getPid(), j.getJid(), 1000000, 2020, 2022);
+        s.rekisteroi();
+        sopimukset.lisaa(s);
+    }
+    
+    /**etsii pelaajan joukkueen sopimuksista
+     * @param p pelaaja
+     * @return pelaajan joukkue
+     */
+    public Joukkue getPelaajanJoukkue(Pelaaja p) {
+        Joukkue j = null;
+        try {
+            j = joukkueet.getById(sopimukset.getJidByPid(p.getPid()));
+        } catch (SailoException e) {
+            System.err.println(e.getMessage());
+        }
+        return j;
+    }
+    
     
     /**
      * main sisältää vain Sopimusrekisteri-luokan testaamista
@@ -223,8 +248,10 @@ public class Sopimusrekisteri {
         
         j1.taytaJoukkue();
         j2.taytaJoukkue();
+        j3.taytaJoukkue();
         j1.rekisteroi();
         j2.rekisteroi();
+        j3.rekisteroi();
         
         sr.lisaa(j1);
         sr.lisaa(j2);
@@ -249,7 +276,14 @@ public class Sopimusrekisteri {
         System.out.println(sr.getJoukkueita());
         sr.poista(j3);
         System.out.println(sr.getJoukkueita());
-        
+        sr.lisaa(j3);
+        System.out.println("===sopimusten testaamista===");
+        //System.out.println(p1.getNimi() + " pelaa joukkueessa " + sr.getPelaajanJoukkue(p1).getNimiPitka());
+        sr.lisaa(p1, j3);
+
+        System.out.println(p1.getNimi() + " pelaa joukkueessa " + sr.getPelaajanJoukkue(p1).getNimiPitka());
     }
+
+
 
 }

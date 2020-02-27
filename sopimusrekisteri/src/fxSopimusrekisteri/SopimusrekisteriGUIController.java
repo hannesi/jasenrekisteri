@@ -3,13 +3,13 @@ package fxSopimusrekisteri;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.swing.JTextField;
+
 import fi.jyu.mit.fxgui.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
-import sopimusrekisteri.Pelaaja;
-import sopimusrekisteri.SailoException;
-import sopimusrekisteri.Sopimusrekisteri;
+import sopimusrekisteri.*;
 
 /**
  * @author Hannes Koivusipilä
@@ -21,10 +21,31 @@ public class SopimusrekisteriGUIController implements Initializable {
     
     //Pelaaja-tabi
     @FXML ListChooser<Pelaaja> chooserPelaajat;
+    @FXML ListChooser<Joukkue> chooserJoukkueet;
+    @FXML ListChooser<Liiga> chooserLiigat;
     @FXML TextField pTextfieldSukunimi;
     @FXML TextField pTextfieldEtunimi;
     @FXML TextField pTextfieldSyntymaaika;
     @FXML TextField pTextfieldKansallisuus;
+    @FXML TextField pTextfieldJoukkue;
+    @FXML TextField pTextfieldSopimusAlku;
+    @FXML TextField pTextfieldSopimusLoppu;
+    @FXML TextField pTextfieldPalkka;
+    
+    @FXML TextField jTextfieldNimi;
+    @FXML TextField jTextfieldKaupunki;
+    @FXML TextField jTextfieldOmistaja;
+    @FXML TextField jTextfieldYhteystieto;
+    
+    @FXML TextField lTextfieldNimi;
+    @FXML TextField lTextfieldMinPalkka;
+    @FXML TextField lTextfieldMaxPalkka;
+    @FXML TextField lTextfieldMaxKesto;
+    @FXML TextField lTextfieldMaxLkm;
+    @FXML TextField lTextfieldLattia;
+    @FXML TextField lTextfieldKatto;
+    
+    
     
     
     @Override
@@ -65,15 +86,15 @@ public class SopimusrekisteriGUIController implements Initializable {
     }
 
     @FXML void handleSarjaLisaa() {
-        sarjaLisaa();
+        liigaLisaa();
     }
 
     @FXML void handleSarjaMuokkaa() {
-        sarjaMuokkaa();
+        liigaMuokkaa();
     }
 
     @FXML void handleSarjaPoista() {
-        sarjaPoista();
+        liigaPoista();
     }
 
     @FXML void handleSopimusPoista() {
@@ -111,6 +132,10 @@ public class SopimusrekisteriGUIController implements Initializable {
     private void alusta() {
         chooserPelaajat.clear();
         chooserPelaajat.addSelectionListener(e -> naytaPelaaja());
+        chooserJoukkueet.clear();
+        chooserJoukkueet.addSelectionListener(e -> naytaJoukkue());
+        chooserLiigat.clear();
+        chooserLiigat.addSelectionListener(e -> naytaLiiga());
     }
     
     private void tallenna() {
@@ -138,16 +163,53 @@ public class SopimusrekisteriGUIController implements Initializable {
     }
     
     private void joukkueLisaa() {
-        ModalController.showModal(SopimusrekisteriGUIController.class.getResource("JoukkueNewDialogView.fxml"), "Lisää joukkue", null, "");
+        Joukkue j = new Joukkue();
+        j.rekisteroi();
+        j.taytaJoukkue();//TODO: Korvaa oikealla dialogilla
+        sopimusrekisteri.lisaa(j);
+
+        haeJoukkue(j.getJid());
+        //ModalController.showModal(SopimusrekisteriGUIController.class.getResource("JoukkueNewDialogView.fxml"), "Lisää joukkue", null, "");
     }
+    
+    //hakee joukkueen tiedot ruudulle jidin perusteella
+    //TODO: tämä korvataan samoin kuin haePelaaja
+    private void haeJoukkue(int jid) {
+        chooserJoukkueet.clear();
+        int index = 0;
+        for (int i = 0; i < sopimusrekisteri.getJoukkueita(); i++) {
+            Joukkue j = sopimusrekisteri.getJoukkue(i);
+            if (j.getJid() == jid) index = i;
+            chooserJoukkueet.add(j.getNimiPitka(), j);
+        }
+        chooserJoukkueet.setSelectedIndex(index);
+        naytaJoukkue();
+    } 
+    
+  //Näyttää valitun joukkueen tiedot kentissä
+    private void naytaJoukkue() {
+        Joukkue jKohdalla = chooserJoukkueet.getSelectedObject();
+        if (jKohdalla == null) return;
+        
+        jTextfieldNimi.setText(jKohdalla.getNimi());
+        jTextfieldKaupunki.setText(jKohdalla.getKaupunki());
+        jTextfieldOmistaja.setText(jKohdalla.getOmistaja());
+        jTextfieldYhteystieto.setText(jKohdalla.getYhteystieto());
+        }
+    
     
     private void joukkueMuokkaa() {
         ModalController.showModal(SopimusrekisteriGUIController.class.getResource("JoukkueEditDialogView.fxml"), "Muokkaa joukkuetta", null, "");
     }
     
     private void joukkuePoista() {
-        ModalController.showModal(SopimusrekisteriGUIController.class.getResource("JoukkueRemoveDialogView.fxml"), "Poista joukkue", null, "");
+        Joukkue jKohdalla = chooserJoukkueet.getSelectedObject();
+        if (jKohdalla == null) return;
+        sopimusrekisteri.poista(jKohdalla);
+        haeJoukkue(-1);
+        //ModalController.showModal(SopimusrekisteriGUIController.class.getResource("JoukkueRemoveDialogView.fxml"), "Poista joukkue", null, "");
     }
+    
     
     private void pelaajaLisaa() {
         Pelaaja p = new Pelaaja();
@@ -155,12 +217,13 @@ public class SopimusrekisteriGUIController implements Initializable {
         p.taytaPelaaja();//TODO: Korvaa oikealla dialogilla
         sopimusrekisteri.lisaa(p);
 
-        hae(p.getPid());
+        haePelaaja(p.getPid());
         //ModalController.showModal(SopimusrekisteriGUIController.class.getResource("PelaajaNewDialogView.fxml"), "Lisää pelaaja", null, "");
     }
     
-    
-    private void hae(int pid) {
+    //mikähän pointti pidin perusteella hakemisessa oli olevinaan?
+    //TODO: korvaa päivitä-metodilla jolle tuodaan lista listattavista pelaajista parametrina(?)
+    private void haePelaaja(int pid) {
         chooserPelaajat.clear();
         int index = 0;
         for (int i = 0; i < sopimusrekisteri.getPelaajia(); i++) {
@@ -172,7 +235,7 @@ public class SopimusrekisteriGUIController implements Initializable {
         naytaPelaaja();
     }
     
-    
+    //Näyttää valitun pelaajan tiedot kentissä
     private void naytaPelaaja() {
         Pelaaja pKohdalla = chooserPelaajat.getSelectedObject();
         if (pKohdalla == null) return;
@@ -182,6 +245,7 @@ public class SopimusrekisteriGUIController implements Initializable {
         pTextfieldSyntymaaika.setText(pKohdalla.getSyntymaaika());
         pTextfieldKansallisuus.setText(pKohdalla.getKansallisuus());
         
+        //pTextfieldJoukkue.setText(sopimusrekisteri.getPelaajanJoukkue(pKohdalla).getNimiPitka());
         /*
         areaLisenssi.setText("");
         try (PrintStream os = TextAreaOutputStream.getTextPrintStream(areaLisenssi)){
@@ -196,19 +260,62 @@ public class SopimusrekisteriGUIController implements Initializable {
     }
     
     private void pelaajaPoista() {
-        ModalController.showModal(SopimusrekisteriGUIController.class.getResource("PelaajaRemoveDialogView.fxml"), "Poista pelaaja", null, "");
+        Pelaaja pKohdalla = chooserPelaajat.getSelectedObject();
+        if (pKohdalla == null) return;
+        sopimusrekisteri.poista(pKohdalla);
+        haePelaaja(-1);
+        //ModalController.showModal(SopimusrekisteriGUIController.class.getResource("PelaajaRemoveDialogView.fxml"), "Poista pelaaja", null, "");
     }
     
-    private void sarjaLisaa() {
-        ModalController.showModal(SopimusrekisteriGUIController.class.getResource("SarjaNewDialogView.fxml"), "Lisää sarja", null, "");
+    private void liigaLisaa() {
+        Liiga l = new Liiga();
+        l.rekisteroi();
+        l.taytaLiiga();//TODO: Korvaa oikealla dialogilla
+        sopimusrekisteri.lisaa(l);
+
+        haeLiiga(l.getLid());
+        //ModalController.showModal(SopimusrekisteriGUIController.class.getResource("SarjaNewDialogView.fxml"), "Lisää sarja", null, "");
     }
     
-    private void sarjaMuokkaa() {
+  //Näyttää valitun liigan tiedot kentissä
+    private void naytaLiiga() {
+        Liiga lKohdalla = chooserLiigat.getSelectedObject();
+        if (lKohdalla == null) return;
+
+        lTextfieldNimi.setText(lKohdalla.getNimi());
+        lTextfieldMinPalkka.setText(Integer.toString(lKohdalla.getMinPalkka()));
+        lTextfieldMaxPalkka.setText(Integer.toString(lKohdalla.getMaxPalkka()));
+        lTextfieldMaxKesto.setText(Integer.toString(lKohdalla.getMaxPituus()));
+        lTextfieldLattia.setText(Integer.toString(lKohdalla.getPalkkalattia()));
+        lTextfieldKatto.setText(Integer.toString(lKohdalla.getPalkkakatto()));
+        lTextfieldMaxLkm.setText(Integer.toString(lKohdalla.getMaxSopimuksia()));
+    }
+    
+    
+    
+    private void liigaMuokkaa() {
         ModalController.showModal(SopimusrekisteriGUIController.class.getResource("SarjaEditDialogView.fxml"), "Muokkaa sarjaa", null, "");
     }
     
-    private void sarjaPoista() {
-        ModalController.showModal(SopimusrekisteriGUIController.class.getResource("SarjaRemoveDialogView.fxml"), "Poista sarja", null, "");
+    //TODO: sama hoito kuin haePelaaja
+    private void haeLiiga(int lid) {
+        chooserLiigat.clear();
+        int index = 0;
+        for (int i = 0; i < sopimusrekisteri.getLiigoja(); i++) {
+            Liiga l = sopimusrekisteri.getLiiga(i);
+            if (l.getLid() == lid) index = i;
+            chooserLiigat.add(l.getNimi(), l);
+        }
+        chooserLiigat.setSelectedIndex(index);
+        naytaLiiga();
+    }
+    
+    private void liigaPoista() {
+        Liiga lKohdalla = chooserLiigat.getSelectedObject();
+        if (lKohdalla == null) return;
+        sopimusrekisteri.poista(lKohdalla);
+        haeLiiga(-1);
+        //ModalController.showModal(SopimusrekisteriGUIController.class.getResource("SarjaRemoveDialogView.fxml"), "Poista sarja", null, "");
     }
     
     private void sopimusPoista() {

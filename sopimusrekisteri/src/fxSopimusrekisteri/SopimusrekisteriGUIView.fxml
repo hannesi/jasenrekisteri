@@ -191,10 +191,10 @@
                                                       <Insets left="5.0" right="5.0" />
                                                    </GridPane.margin>
                                                 </Text>
-                                                <TextField maxWidth="1.7976931348623157E308" text="Hurricanes (Carolina)" GridPane.columnIndex="1" />
-                                                <TextField maxWidth="1.7976931348623157E308" text="2019" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <TextField maxWidth="1.7976931348623157E308" text="2025" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <TextField maxWidth="1.7976931348623157E308" text="8000000" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                <TextField fx:id="pTextfieldJoukkue" maxWidth="1.7976931348623157E308" text="Hurricanes (Carolina)" GridPane.columnIndex="1" />
+                                                <TextField fx:id="pTextfieldSopimusAlku" maxWidth="1.7976931348623157E308" text="2019" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <TextField fx:id="pTextfieldSopimusLoppu" maxWidth="1.7976931348623157E308" text="2025" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <TextField fx:id="pTextfieldPalkka" maxWidth="1.7976931348623157E308" text="8000000" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                              </children>
                                           </GridPane>
                                           <ButtonBar>
@@ -254,7 +254,7 @@
                                                 </Text>
                                              </children>
                                           </GridPane>
-                                          <ListChooser rivit="Coyotes (Arizona)&#10;Garbage Fire (Detroit)&#10;Hurricanes (Carolina)&#10;Lämäri (Veteli)&#10;Räpellys (Närpiö)&#10;Turmio (Kolari)&#10;Wild (Minnesota)" />
+                                          <ListChooser fx:id="chooserJoukkueet" rivit="" />
                                           <ButtonBar prefHeight="40.0" prefWidth="200.0">
                                              <buttons>
                                                 <Button mnemonicParsing="false" onAction="#handleJoukkueLisaa" text="Lisää joukkue" />
@@ -308,10 +308,10 @@
                                                       <Insets left="5.0" right="5.0" />
                                                    </GridPane.margin>
                                                 </Text>
-                                                <TextField maxWidth="1.7976931348623157E308" text="Coyotes" GridPane.columnIndex="1" />
-                                                <TextField maxWidth="1.7976931348623157E308" text="Arizona" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <TextField maxWidth="1.7976931348623157E308" text="Karhukopla" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <TextField maxWidth="1.7976931348623157E308" text="176671@karhukopla.vif" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                <TextField fx:id="jTextfieldNimi" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
+                                                <TextField fx:id="jTextfieldKaupunki" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <TextField fx:id="jTextfieldOmistaja" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <TextField fx:id="jTextfieldYhteystieto" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                              </children>
                                           </GridPane>
                                           <ButtonBar>
@@ -349,8 +349,8 @@
                                                       <Insets left="5.0" right="5.0" />
                                                    </GridPane.margin>
                                                 </Text>
-                                                <TextField maxWidth="1.7976931348623157E308" text="2" GridPane.columnIndex="1" />
-                                                <TextField maxWidth="1.7976931348623157E308" text="12500000" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
+                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                              </children>
                                           </GridPane>
                                        </children>
@@ -394,7 +394,7 @@
                                                 </Text>
                                              </children>
                                           </GridPane>
-                                          <ListChooser rivit="Hokiliiga&#10;Kaljaliiga" />
+                                          <ListChooser fx:id="chooserLiigat" rivit="" />
                                           <ButtonBar prefHeight="40.0" prefWidth="200.0">
                                              <buttons>
                                                 <Button mnemonicParsing="false" onAction="#handleSarjaLisaa" text="Lisää sarja" />
@@ -430,7 +430,7 @@
                                                       <Insets left="5.0" right="5.0" />
                                                    </GridPane.margin>
                                                 </Text>
-                                                <TextField maxWidth="1.7976931348623157E308" text="Hokiliiga" GridPane.columnIndex="1" />
+                                                <TextField fx:id="lTextfieldNimi" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
                                              </children>
                                           </GridPane>
                                           <Separator maxWidth="1.7976931348623157E308">
@@ -465,9 +465,9 @@
                                                       <Insets left="5.0" right="5.0" />
                                                    </GridPane.margin>
                                                 </Text>
-                                                <TextField maxWidth="1.7976931348623157E308" text="700000" GridPane.columnIndex="1" />
-                                                <TextField maxWidth="1.7976931348623157E308" text="12500000" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <TextField maxWidth="1.7976931348623157E308" text="8" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <TextField fx:id="lTextfieldMinPalkka" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
+                                                <TextField fx:id="lTextfieldMaxPalkka" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <TextField fx:id="lTextfieldMaxKesto" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                              </children>
                                           </GridPane>
                                           <Separator maxWidth="1.7976931348623157E308">
@@ -503,9 +503,9 @@
                                                       <Insets left="5.0" right="5.0" />
                                                    </GridPane.margin>
                                                 </Text>
-                                                <TextField maxWidth="1.7976931348623157E308" text="50" GridPane.columnIndex="1" />
-                                                <TextField maxWidth="1.7976931348623157E308" text="60240000" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <TextField maxWidth="1.7976931348623157E308" text="81500000" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <TextField fx:id="lTextfieldMaxLkm" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
+                                                <TextField fx:id="lTextfieldLattia" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <TextField fx:id="lTextfieldKatto" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                              </children>
                                           </GridPane>
                                           <ButtonBar>
