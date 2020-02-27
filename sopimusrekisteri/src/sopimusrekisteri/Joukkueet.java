@@ -88,7 +88,7 @@ public class Joukkueet {
         }
         System.out.println("Joukkueen muokkaaminen:");
         j1.tulosta(System.out);
-        j1.muokkaa("Coyotes", "Phoenix", "Karhukopla", "asd@fgh.jkl");
+        j1.muokkaa("Coyotes", "Phoenix", "Karhukopla", "asd@fgh.jkl", 0);
         j1.tulosta(System.out);
 
     }

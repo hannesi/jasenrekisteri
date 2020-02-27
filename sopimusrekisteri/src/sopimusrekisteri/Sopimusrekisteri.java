@@ -18,6 +18,7 @@ public class Sopimusrekisteri {
      * @param p Lisättävä pelaaja
      * @example
      * <pre name="test">
+     *  #THROWS SailoException
      *  Sopimusrekisteri sr = new Sopimusrekisteri();
      *  Pelaaja p1 = new Pelaaja();
      *  Pelaaja p2 = new Pelaaja();
@@ -40,6 +41,37 @@ public class Sopimusrekisteri {
      *  sr.getPelaajia() === 9;
      *  sr.poista(p1);
      *  sr.getPelaajia() === 8;
+     *  Joukkue j1 = new Joukkue();
+     *  Joukkue j2 = new Joukkue();
+     *  j1.taytaJoukkue();
+     *  j1.rekisteroi();
+     *  j2.taytaJoukkue();
+     *  j2.rekisteroi();
+     *  sr.lisaa(j1);
+     *  sr.lisaa(j2);
+     *  sr.getJoukkueita() === 2;
+     *  sr.poista(j1);
+     *  sr.getJoukkue(0) === j2;
+     *  sr.getJoukkueita() === 1;
+     *  j2.muokkaa("Kiakko", "Kouvola", "K. Kummola", "k.kummola@kmail.com", 0);
+     *  j2.getNimi() === "Kiakko";
+     *  Liiga l1 = new Liiga();
+     *  Liiga l2 = new Liiga();
+     *  l1.taytaLiiga();
+     *  l1.rekisteroi();
+     *  l2.taytaLiiga();
+     *  l2.rekisteroi();
+     *  sr.lisaa(l1);
+     *  sr.lisaa(l2);
+     *  sr.getJoukkueenLiiga(j2) == l1 === true;
+     *  j2.muokkaa("Kiakko", "Kouvola", "K. Kummola", "k.kummola@kmail.com", 1);
+     *  sr.getJoukkueenLiiga(j2) == l2 === true;
+     *  sr.getLiigoja() === 2;
+     *  sr.poista(l1);
+     *  sr.getLiigoja() === 1;
+     *  sr.getJoukkueenLiiga(j2) == l2 === true;
+     *  sr.lisaa(p2, j2, 1000000, 2020, 2023);
+     *  sr.getPelaajanSopimus(p2).getPalkka() === 1000000;
      * </pre>
      */
     public void lisaa(Pelaaja p) {
@@ -185,9 +217,12 @@ public class Sopimusrekisteri {
     /**lisää uuden sopimuksen
      * @param p pelaajaosapuoli
      * @param j joukkueosapuoli
+     * @param palkka pelaajan palkka
+     * @param alkaa sopimuksen alkamisvuosi
+     * @param loppuu sopimuksen loppumisvuosi
      */
-    public void lisaa(Pelaaja p, Joukkue j) {
-        Sopimus s = new Sopimus(p.getPid(), j.getJid(), 1000000, 2020, 2022);
+    public void lisaa(Pelaaja p, Joukkue j, int palkka, int alkaa, int loppuu) {
+        Sopimus s = new Sopimus(p.getPid(), j.getJid(), palkka, alkaa, loppuu);
         s.rekisteroi();
         sopimukset.lisaa(s);
     }
@@ -221,6 +256,21 @@ public class Sopimusrekisteri {
             System.err.println(e.getMessage());
         }
         return s;
+    }
+    
+    
+    /**palauttaa liigan jossa joukkue j pelaa
+     * @param j joukkue jonka liigaa haetaan
+     * @return liiga jossa joukkue pelaa
+     */
+    public Liiga getJoukkueenLiiga(Joukkue j) {
+        Liiga l = null;
+        try {
+            l = liigat.getById(j.getLid());
+        } catch (SailoException e) {
+            System.err.println(e.getMessage());
+        }
+        return l;
     }
     
     
@@ -288,7 +338,7 @@ public class Sopimusrekisteri {
             j.tulosta(System.out);
         }
         
-        j3.muokkaa("Dumpster Fire", "Detroit", "Matti Meikäläinen", "asd@ghj.com");
+        j3.muokkaa("Dumpster Fire", "Detroit", "Matti Meikäläinen", "asd@ghj.com", 0);
         j3.tulosta(System.out);
         System.out.println(sr.getJoukkueita());
         sr.poista(j3);
@@ -296,7 +346,7 @@ public class Sopimusrekisteri {
         sr.lisaa(j3);
         System.out.println("===sopimusten testaamista===");
         //System.out.println(p1.getNimi() + " pelaa joukkueessa " + sr.getPelaajanJoukkue(p1).getNimiPitka());
-        sr.lisaa(p1, j3);
+        sr.lisaa(p1, j3, 1200000, 2020, 2022);
 
         System.out.println(p1.getNimi() + " pelaa joukkueessa " + sr.getPelaajanJoukkue(p1).getNimiPitka());
         System.out.println(p1.getNimi() + " tienaa kaudessa " + sr.getPelaajanSopimus(p1).getPalkka());

@@ -27,14 +27,16 @@ public class Joukkue {
      * @param kaupunki joukkueen kaupunki
      * @param omistaja joukkueen omistaja
      * @param yhteystieto joukkueen yhtestieto
+     * @param lid liiga-id
      */
     @SuppressWarnings("hiding")
     public void muokkaa(String nimi, String kaupunki, String omistaja,
-            String yhteystieto) {
+            String yhteystieto, int lid) {
         this.nimi = nimi;
         this.kaupunki = kaupunki;
         this.omistaja = omistaja;
         this.yhteystieto = yhteystieto;
+        this.lid = lid;
         
     }
     
@@ -43,6 +45,14 @@ public class Joukkue {
      */
     public int getJid() {
         return jid;
+    }
+    
+
+    /**palauttaa joukkueen liiga-id:n
+     * @return lid
+     */
+    public int getLid() {
+        return lid;
     }
     
     /**palauttaa joukkueen nimen pitkässä muodossa "Kaupunki Nimi"
@@ -139,5 +149,6 @@ public class Joukkue {
         Random rand = new Random();
         yhteystieto = Integer.toString(rand.nextInt(9999)) + "@email.vif";        
     }
+
 
 }
