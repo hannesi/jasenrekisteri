@@ -1,5 +1,8 @@
 package sopimusrekisteri;
 
+import java.util.ArrayList;
+
+
 /**
  * @author Hannes Koivusipilä
  * @version 20.2.2020
@@ -72,6 +75,8 @@ public class Sopimusrekisteri {
      *  sr.getJoukkueenLiiga(j2) == l2 === true;
      *  sr.lisaa(p2, j2, 1000000, 2020, 2023);
      *  sr.getPelaajanSopimus(p2).getPalkka() === 1000000;
+     *  sr.poista(sr.getPelaajanSopimus(p2));
+     *  sr.getPelaajanSopimus(p2); #THROWS SailoException
      * </pre>
      */
     public void lisaa(Pelaaja p) {
@@ -227,11 +232,19 @@ public class Sopimusrekisteri {
         sopimukset.lisaa(s);
     }
     
+    /**Poistaa liigan
+     * @param s poistettava sopimus
+     */
+    public void poista(Sopimus s) {
+        sopimukset.poista(s);
+    }
+    
+    
     /**etsii pelaajan joukkueen sopimuksista
      * @param p pelaaja
      * @return pelaajan joukkue
      */
-    public Joukkue getPelaajanJoukkue(Pelaaja p) {
+    public Joukkue getPelaajanJoukkue(Pelaaja p) { //TODO: turha, poista kun ei tarvi enää testatessa
         Joukkue j = null;
         try {
             j = joukkueet.getById(sopimukset.getJidByPid(p.getPid()));
@@ -273,6 +286,31 @@ public class Sopimusrekisteri {
         return l;
     }
     
+    /**palauttaa listan joukkueista joiden lid vastaa tuodun liigan lidiä
+     * @param l liiga jonka joukkueet halutaan hakea
+     * @return lista liigan joukkueista
+     */
+    public ArrayList<Joukkue> getLiiganJoukkueet(Liiga l){
+        var jLista = new ArrayList<Joukkue>();
+        for (int i = 0; i < joukkueet.getLkm(); i++)
+            if (joukkueet.get(i).getLid() == l.getLid()) jLista.add(joukkueet.get(i));
+        return jLista;
+    }
+    
+    /**palauttaa listan pelaajista joilla on sopimus tuodun joukkueen kanssa
+     * @param j joukkue jonka pelaajia haetaan
+     * @return lista pelaajista joilla on sopimus joukkueen kanssa
+     * @throws SailoException jos pidillä ei löydy pelaajaa
+     */
+    public ArrayList<Pelaaja> getJoukkueenPelaajat(Joukkue j) throws SailoException {
+        var pLista = new ArrayList<Pelaaja>();
+        for (int i = 0; i < sopimukset.getLkm(); i++) {
+            Sopimus s = sopimukset.get(i);
+            if (s.getJid() == j.getJid()) pLista.add(pelaajat.getById(s.getPid()));
+        }
+        return pLista;
+    }
+    
     
     /**
      * main sisältää vain Sopimusrekisteri-luokan testaamista
@@ -283,22 +321,19 @@ public class Sopimusrekisteri {
    
         Pelaaja p1 = new Pelaaja();
         Pelaaja p2 = new Pelaaja();
+        Pelaaja p3 = new Pelaaja();
         
         p1.taytaPelaaja();
         p1.rekisteroi();
         p2.taytaPelaaja();
         p2.rekisteroi();
-        
+        p3.taytaPelaaja();
+        p3.rekisteroi();
 
         sr.lisaa(p1);
         sr.lisaa(p2);
-        sr.lisaa(p2);
-        sr.lisaa(p2);
-        sr.lisaa(p2);
-        sr.lisaa(p2);
-        sr.lisaa(p2);
-        sr.lisaa(p2);
-        sr.lisaa(p2);
+        sr.lisaa(p3);
+
         
         System.out.println("===sopimusrekisterin testaus alla====");
         for (int i = 0; i < sr.getPelaajia(); i++) {
@@ -347,10 +382,23 @@ public class Sopimusrekisteri {
         System.out.println("===sopimusten testaamista===");
         //System.out.println(p1.getNimi() + " pelaa joukkueessa " + sr.getPelaajanJoukkue(p1).getNimiPitka());
         sr.lisaa(p1, j3, 1200000, 2020, 2022);
+        sr.lisaa(p3, j3, 800000, 2019, 2020);
 
         System.out.println(p1.getNimi() + " pelaa joukkueessa " + sr.getPelaajanJoukkue(p1).getNimiPitka());
         System.out.println(p1.getNimi() + " tienaa kaudessa " + sr.getPelaajanSopimus(p1).getPalkka());
-    }
+        
+        System.out.println("Joukkueen " + j3.getNimi() + " pelaajat: ");
+
+        try {
+            for (Pelaaja p : sr.getJoukkueenPelaajat(j3))
+                System.out.println(p.getNimi());
+        } catch (SailoException e) {
+            System.err.println(e.getMessage());
+            System.err.flush();
+        }
+
+
+        }
 
 
 
