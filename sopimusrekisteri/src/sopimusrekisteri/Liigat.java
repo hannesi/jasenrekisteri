@@ -61,4 +61,16 @@ public class Liigat {
         liigat.remove(l);
     }
     
+    /**hae liiga liiga-id:n perusteella
+     * @param lid haettava lid
+     * @return liiga jolla haettava lid
+     * @throws SailoException jos tuotua lidiä ei ole liigalla
+     */
+    public Liiga getById(int lid) throws SailoException {
+        for (int i = 0; i < liigat.size(); i++) {
+            if (liigat.get(i).getLid() == lid) return liigat.get(i);
+        }
+        throw new SailoException("Ei löydy liigaa, lid: " + lid);
+    }
+    
 }

@@ -38,6 +38,13 @@ public class Joukkue {
         
     }
     
+    /**palauttaa joukkue-id:n
+     * @return jid
+     */
+    public int getJid() {
+        return jid;
+    }
+    
     /**
      * tulostetaan joukkueen tiedot
      * @param out tietovirta, johon tulostetaan

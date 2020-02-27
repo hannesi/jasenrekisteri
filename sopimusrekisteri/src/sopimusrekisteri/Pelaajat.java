@@ -94,7 +94,17 @@ public class Pelaajat {
         return pelaajat[i];
     }
     
-
+    /**hae pelaaja pelaaja-id:n perusteella
+     * @param pid haettava pid
+     * @return pelaaja jolla haettava pid
+     * @throws SailoException jos tuotua pidiä ei ole pelaajalla
+     */
+    public Pelaaja getById(int pid) throws SailoException {
+        for (int i = 0; i < pelaajat.length; i++) {
+            if (pelaajat[i].getPid() == pid) return pelaajat[i];
+        }
+        throw new SailoException("Ei löydy pelaajaa, pid: " + pid);
+    }
 
     /**Poistaa pelaajan
      * @param p poistettava pelaaja

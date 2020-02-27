@@ -10,6 +10,7 @@ public class Sopimusrekisteri {
     Pelaajat    pelaajat    = new Pelaajat();
     Joukkueet   joukkueet   = new Joukkueet();
     Liigat      liigat      = new Liigat();
+    Sopimukset  sopimukset  = new Sopimukset();
     
     
     /**
@@ -63,6 +64,20 @@ public class Sopimusrekisteri {
         return pelaajat.get(i);
     }
     
+    /**palauttaa pelaajan pelaaja-id:n perusteella
+     * @param pid pelaaja-id
+     * @return pidiä vastaava pelaaja
+     */
+    public Pelaaja getPelaajaById(int pid) {
+        Pelaaja p = null;
+        try {
+            p = pelaajat.getById(pid);
+        } catch (SailoException e) {
+            System.err.println(e.getMessage());
+        }
+        return p;
+    }
+    
     /**Poistaa pelaajan
      * @param p poistettava pelaaja
      */
@@ -97,13 +112,27 @@ public class Sopimusrekisteri {
         return joukkueet.get(i);
     }
     
+    /**palauttaa joukkueen joukkue-id:n perusteella
+     * @param jid joukkue-id
+     * @return jidiä vastaava joukkue
+     */
+    public Joukkue getJoukkueById(int jid) {
+        Joukkue j = null;
+        try {
+            j = joukkueet.getById(jid);
+        } catch (SailoException e) {
+            System.err.println(e.getMessage());
+        }
+        return j;
+    }
+    
     /**Poistaa joukkueen
      * @param j poistettava joukkue
      */
     public void poista(Joukkue j) {
         joukkueet.poista(j);
     }
-    
+        
     
     
     /**lisää uusi liiga
@@ -129,6 +158,20 @@ public class Sopimusrekisteri {
      */
     public Liiga getLiiga(int i) {
         return liigat.get(i);
+    }
+    
+    /**palauttaa liigan liiga-id:n perusteella
+     * @param lid liiga-id
+     * @return lidiä vastaava liiga
+     */
+    public Liiga getLiigaById(int lid) {
+        Liiga l = null;
+        try {
+            l = liigat.getById(lid);
+        } catch (SailoException e) {
+            System.err.println(e.getMessage());
+        }
+        return l;
     }
     
     /**Poistaa liigan

@@ -37,6 +37,18 @@ public class Joukkueet {
         return joukkueet.get(indeksi);
     }
     
+    /**hae joukkue joukkue-id:n perusteella
+     * @param jid haettava jid
+     * @return joukkue jolla haettava jid
+     * @throws SailoException jos tuotua jidiä ei ole joukkueella
+     */
+    public Joukkue getById(int jid) throws SailoException {
+        for (int i = 0; i < joukkueet.size(); i++) {
+            if (joukkueet.get(i).getJid() == jid) return joukkueet.get(i);
+        }
+        throw new SailoException("Ei löydy joukkuetta, jid: " + jid);
+    }
+    
     /**Poistaa joukkueen 
      * @param j poistettava joukkue
      */
