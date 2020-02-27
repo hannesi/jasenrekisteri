@@ -14,6 +14,31 @@ public class Sopimusrekisteri {
     /**
      * Lisää uuden pelaajan
      * @param p Lisättävä pelaaja
+     *      * @example
+     * <pre name="test">
+     *  Sopimusrekisteri sr = new Sopimusrekisteri();
+     *  Pelaaja p1 = new Pelaaja();
+     *  Pelaaja p2 = new Pelaaja();
+     *  p1.taytaPelaaja();
+     *  p1.rekisteroi();
+     *  p2.taytaPelaaja();
+     *  p2.rekisteroi();
+     *  sr.lisaa(p1);
+     *  sr.lisaa(p2);
+     *  sr.lisaa(p2);
+     *  sr.lisaa(p2);
+     *  sr.lisaa(p2);
+     *  sr.lisaa(p2);
+     *  sr.lisaa(p2);
+     *  sr.lisaa(p2);
+     *  sr.lisaa(p2);
+     *  p1.getSukunimi() === "Doe";
+     *  p1.muokkaa("Doge", "John", "647832", "Canada");
+     *  p1.getSukunimi() === "Doge";
+     *  sr.getPelaajia() === 9;
+     *  sr.poista(p1);
+     *  sr.getPelaajia() === 8;
+     * </pre>
      */
     public void lisaa(Pelaaja p) {
         pelaajat.lisaa(p);
@@ -82,31 +107,6 @@ public class Sopimusrekisteri {
     /**
      * main sisältää vain Sopimusrekisteri-luokan testaamista
      * @param args ei käytössä
-     * @example
-     * <pre name="test">
-     *  Sopimusrekisteri sr = new Sopimusrekisteri();
-     *  Pelaaja p1 = new Pelaaja();
-     *  Pelaaja p2 = new Pelaaja();
-     *  p1.taytaPelaaja();
-     *  p1.rekisteroi();
-     *  p2.taytaPelaaja();
-     *  p2.rekisteroi();
-     *  sr.lisaa(p1);
-     *  sr.lisaa(p2);
-     *  sr.lisaa(p2);
-     *  sr.lisaa(p2);
-     *  sr.lisaa(p2);
-     *  sr.lisaa(p2);
-     *  sr.lisaa(p2);
-     *  sr.lisaa(p2);
-     *  sr.lisaa(p2);
-     *  p1.getSukunimi() === "Doe";
-     *  p1.muokkaa("Doge", "John", "647832", "Canada");
-     *  p1.getSukunimi() === "Doge";
-     *  sr.getPelaajia() === 9;
-     *  sr.poista(p1);
-     *  sr.getPelaajia() === 8;
-     * </pre>
      */
     public static void main(String[] args) {
         Sopimusrekisteri sr = new Sopimusrekisteri();
