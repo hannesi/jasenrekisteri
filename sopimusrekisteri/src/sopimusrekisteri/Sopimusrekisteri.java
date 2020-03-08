@@ -119,6 +119,7 @@ public class Sopimusrekisteri {
      */
     public void poista(Pelaaja p) {
         pelaajat.poista(p);
+        sopimukset.poista(sopimukset.getByPid(p.getPid()));
     }
     
     
