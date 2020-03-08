@@ -326,7 +326,9 @@ public class SopimusrekisteriGUIController implements Initializable {
     }
     
     private void sopimusPoista() {
-        ModalController.showModal(SopimusrekisteriGUIController.class.getResource("SopimusRemoveDialogView.fxml"), "Poista sopimus", null, "");
+        sopimusrekisteri.poista(sopimusrekisteri.getPelaajanSopimus(chooserPelaajat.getSelectedObject()));
+        naytaPelaaja();
+        //ModalController.showModal(SopimusrekisteriGUIController.class.getResource("SopimusRemoveDialogView.fxml"), "Poista sopimus", null, "");
     }
     
     private void sopimusUusi() {
