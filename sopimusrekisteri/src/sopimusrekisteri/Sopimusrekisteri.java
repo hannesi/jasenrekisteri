@@ -167,6 +167,7 @@ public class Sopimusrekisteri {
      * @param j poistettava joukkue
      */
     public void poista(Joukkue j) {
+        sopimukset.poistaByJid(j.getJid());
         joukkueet.poista(j);
     }
         

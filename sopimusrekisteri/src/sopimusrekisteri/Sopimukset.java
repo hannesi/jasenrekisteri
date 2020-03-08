@@ -40,6 +40,12 @@ public class Sopimukset {
         sopimukset.remove(s);
     }
     
+    public void poistaByJid(int jid) {
+        for (Sopimus s : sopimukset)
+            if (s.getJid() == jid)
+                poista(s);
+    }
+    
 
     //===============================================================================================
     //Tämän alapuolella hakuun liittyviä aliohjelmia
