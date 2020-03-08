@@ -5,6 +5,25 @@ import java.io.PrintStream;
 import java.util.Random;
 
 /**
+ * |------------------------------------------------------------------------|
+ * | Luokan nimi: Joukkue                               | Avustajat:        |
+ * |-------------------------------------------------------------------------
+ * | Vastuualueet:                                      |                   |
+ * |                                                    |                   |
+ * | - tietää joukkueen kentät                          |                   |
+ * | - osaa tarkistaa tietyn kentät oikeellisuuden      |                   |
+ * |                                                    |                   |
+ * | - osaa muuttaa merkkijonon joukkueen tiedoiksi     |                   |
+ * |(1|1|Hurricanes|Carolina|Aku Ankka|aku@ankka.vif)   |                   |
+ * | - osaa laittaa merkkijonon tietyn kentän tiedoiksi |                   |
+ * | - osaa palauttaa tietyn kentän tiedot merkkijonona |                   |
+ * |                                                    |                   |
+ * |                                                    |                   |
+ * |                                                    |                   |
+ * |                                                    |                   |
+ * |                                                    |                   |
+ * |                                                    |                   |
+ * |-------------------------------------------------------------------------
  * @author Hannes Koivusipilä
  * @version 27.2.2020
  *

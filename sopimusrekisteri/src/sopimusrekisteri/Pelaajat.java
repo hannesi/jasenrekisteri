@@ -1,7 +1,25 @@
 package sopimusrekisteri;
 
 /**
- * 
+ * |------------------------------------------------------------------------|
+ * | Luokan nimi: Pelaajat                              | Avustajat:        |
+ * |-------------------------------------------------------------------------
+ * | Vastuualueet:                                      |                   |
+ * |                                                    | - Pelaaja         |
+ * | - pitää yllä rekisteriä pelaajista eli osaa lisätä,|                   |
+ * |   poistaa ja muokata pelaajia                      |                   |
+ * | - lukee pelaajat tiedostosta ja kirjoittaa         |                   |
+ * |   tiedostoon                                       |                   |
+ * | - osaa etsiä ja lajitella pelaajia                 |                   |
+ * |                                                    |                   |
+ * |                                                    |                   |
+ * |                                                    |                   |
+ * |                                                    |                   |
+ * |                                                    |                   |
+ * |                                                    |                   |
+ * |                                                    |                   |
+ * |                                                    |                   |
+ * |-------------------------------------------------------------------------
  * @author Hannes Koivusipilä
  * @version 19.2.2020
  *

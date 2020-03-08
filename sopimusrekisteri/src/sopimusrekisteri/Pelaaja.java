@@ -5,6 +5,25 @@ import java.io.PrintStream;
 import java.util.Random;
 
 /**
+ * |------------------------------------------------------------------------|
+ * | Luokan nimi: Pelaaja                               | Avustajat:        |
+ * |-------------------------------------------------------------------------
+ * | Vastuualueet:                                      |                   |
+ * |                                                    |                   |
+ * | - tietää pelaajan kentät                           |                   |
+ * | - osaa tarkistaa tietyn kentät oikeellisuuden      |                   |
+ * |   (ei numeroita nimissä, syntymäaika jne)          |                   |
+ * | - osaa muuttaa merkkijonon pelaajan tiedoiksi      |                   |
+ * |   (1|Aho|Sebastian|01.01.1900|Suomi)               |                   |
+ * | - osaa laittaa merkkijonon tietyn kentän tiedoiksi |                   |
+ * | - osaa palauttaa tietyn kentän tiedot merkkijonona |                   |
+ * |                                                    |                   |
+ * |                                                    |                   |
+ * |                                                    |                   |
+ * |                                                    |                   |
+ * |                                                    |                   |
+ * |                                                    |                   |
+ * |-------------------------------------------------------------------------
  * @author Hannes Koivusipilä
  * @version 19.2.2020
  *

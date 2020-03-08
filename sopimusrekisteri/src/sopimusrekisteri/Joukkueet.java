@@ -3,6 +3,25 @@ package sopimusrekisteri;
 import java.util.ArrayList;
 
 /**
+ * |--------------------------------------------------------------------------|
+ * | Luokan nimi: Joukkueet                               | Avustajat:        |
+ * |---------------------------------------------------------------------------
+ * | Vastuualueet:                                        |                   |
+ * |                                                      | - Joukkue         |
+ * | - pitää yllä rekisteriä joukkueista eli osaa lisätä, |                   |
+ * |   poistaa ja muokata joukkueita                      |                   |
+ * | - lukee joukkueet tiedostosta ja kirjoittaa          |                   |
+ * |   tiedostoon                                         |                   |
+ * | - osaa etsiä ja lajitella joukkueita                 |                   |
+ * |                                                      |                   |
+ * |                                                      |                   |
+ * |                                                      |                   |
+ * |                                                      |                   |
+ * |                                                      |                   |
+ * |                                                      |                   |
+ * |                                                      |                   |
+ * |                                                      |                   |
+ * |---------------------------------------------------------------------------
  * @author Hannes Koivusipilä
  * @version 27.2.2020
  *

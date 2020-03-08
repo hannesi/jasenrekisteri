@@ -5,6 +5,25 @@ import java.io.PrintStream;
 import java.util.Random;
 
 /**
+ * |------------------------------------------------------------------------|
+ * | Luokan nimi: Liiga                                 | Avustajat:        |
+ * |-------------------------------------------------------------------------
+ * | Vastuualueet:                                      |                   |
+ * |                                                    |                   |
+ * | - tietää liigan kentät                             |                   |
+ * | - osaa tarkistaa tietyn kentät oikeellisuuden      |                   |
+ * |                                                    |                   |
+ * | - osaa muuttaa merkkijonon liigan tiedoiksi        |                   |
+ * |(1|Hokiliiga|700000|12500000|8|60240000|81500000|50)|                   |
+ * | - osaa laittaa merkkijonon tietyn kentän tiedoiksi |                   |
+ * | - osaa palauttaa tietyn kentän tiedot merkkijonona |                   |
+ * |                                                    |                   |
+ * |                                                    |                   |
+ * |                                                    |                   |
+ * |                                                    |                   |
+ * |                                                    |                   |
+ * |                                                    |                   |
+ * |-------------------------------------------------------------------------
  * @author Hannes Koivusipilä
  * @version 27.2.2020
  *

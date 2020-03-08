@@ -2,6 +2,25 @@ package sopimusrekisteri;
 
 
 /**
+ * |------------------------------------------------------------------------|
+ * | Luokan nimi: Sopimus                               | Avustajat:        |
+ * |-------------------------------------------------------------------------
+ * | Vastuualueet:                                      |                   |
+ * |                                                    |                   |
+ * | - tietää sopimuksen kentät                         |                   |
+ * | - osaa tarkistaa tietyn kentät oikeellisuuden      |                   |
+ * |                                                    |                   |
+ * | - osaa muuttaa merkkijonon sopimuksen tiedoiksi    |                   |
+ * |(1|1|1|8000000|2019|2025)                           |                   |
+ * | - osaa laittaa merkkijonon tietyn kentän tiedoiksi |                   |
+ * | - osaa palauttaa tietyn kentän tiedot merkkijonona |                   |
+ * |                                                    |                   |
+ * |                                                    |                   |
+ * |                                                    |                   |
+ * |                                                    |                   |
+ * |                                                    |                   |
+ * |                                                    |                   |
+ * |-------------------------------------------------------------------------
  * @author Hannes Koivusipilä
  * @version 27.2.2020
  *

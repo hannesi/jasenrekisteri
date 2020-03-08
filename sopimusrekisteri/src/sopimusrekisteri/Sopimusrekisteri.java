@@ -4,6 +4,25 @@ import java.util.ArrayList;
 
 
 /**
+ * |------------------------------------------------------------------------|
+ * | Luokan nimi: Sopimusrekisteri                      | Avustajat:        |
+ * |-------------------------------------------------------------------------
+ * | Vastuualueet:                                      |                   |
+ * |                                                    | - Pelaajat        |
+ * | - huolehtii Pelaajat-, Joukkueet-, Liigat- ja      | - Joukkueet       |
+ * |   Sopimukset-luokkien välisestä yhteistyöstä ja    | - Liigat          |
+ * |                                                    | - Sopimukset      |
+ * | - lukee ja kirjoittaa sopimusrekisterin tiedostoon | - Pelaaja         |
+ * |   pyytämällä apua avustajiltaan                    | - Joukkue         |
+ * |                                                    | - Liiga           |
+ * |                                                    | - Sopimus         |
+ * |                                                    |                   |
+ * |                                                    |                   |
+ * |                                                    |                   |
+ * |                                                    |                   |
+ * |                                                    |                   |
+ * |                                                    |                   |
+ * |-------------------------------------------------------------------------
  * @author Hannes Koivusipilä
  * @version 20.2.2020
  *

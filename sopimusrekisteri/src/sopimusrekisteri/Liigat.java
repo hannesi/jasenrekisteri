@@ -3,6 +3,25 @@ package sopimusrekisteri;
 import java.util.ArrayList;
 
 /**
+ * |--------------------------------------------------------------------------|
+ * | Luokan nimi: Liigat                                  | Avustajat:        |
+ * |---------------------------------------------------------------------------
+ * | Vastuualueet:                                        |                   |
+ * |                                                      | - Liiga           |
+ * | - pitää yllä rekisteriä liigoista eli osaa lisätä,   |                   |
+ * |   poistaa ja muokata liigoja                         |                   |
+ * | - lukee liigat tiedostosta ja kirjoittaa             |                   |
+ * |   tiedostoon                                         |                   |
+ * | - osaa etsiä ja lajitella liigoja                    |                   |
+ * |                                                      |                   |
+ * |                                                      |                   |
+ * |                                                      |                   |
+ * |                                                      |                   |
+ * |                                                      |                   |
+ * |                                                      |                   |
+ * |                                                      |                   |
+ * |                                                      |                   |
+ * |---------------------------------------------------------------------------
  * @author Hannes Koivusipilä
  * @version 27.2.2020
  *

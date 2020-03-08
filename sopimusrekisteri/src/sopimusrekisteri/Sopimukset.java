@@ -3,6 +3,25 @@ package sopimusrekisteri;
 import java.util.ArrayList;
 
 /**
+ * |--------------------------------------------------------------------------|
+ * | Luokan nimi: Sopimukset                              | Avustajat:        |
+ * |---------------------------------------------------------------------------
+ * | Vastuualueet:                                        |                   |
+ * |                                                      | - Sopimus         |
+ * | - pitää yllä rekisteriä sopimuksista eli osaa lisätä,|                   |
+ * |   poistaa ja muokata sopimuksia                      |                   |
+ * | - lukee sopimukset tiedostosta ja kirjoittaa         |                   |
+ * |   tiedostoon                                         |                   |
+ * | - osaa etsiä ja lajitella sopimuksia                 |                   |
+ * |                                                      |                   |
+ * |                                                      |                   |
+ * |                                                      |                   |
+ * |                                                      |                   |
+ * |                                                      |                   |
+ * |                                                      |                   |
+ * |                                                      |                   |
+ * |                                                      |                   |
+ * |---------------------------------------------------------------------------
  * @author Hannes Koivusipilä
  * @version 27.2.2020
  *
