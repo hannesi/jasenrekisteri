@@ -1,6 +1,7 @@
 package fxSopimusrekisteri;
 
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import javax.swing.JTextField;
@@ -245,6 +246,12 @@ public class SopimusrekisteriGUIController implements Initializable {
         pTextfieldSyntymaaika.setText(pKohdalla.getSyntymaaika());
         pTextfieldKansallisuus.setText(pKohdalla.getKansallisuus());
         
+        Sopimus sKohdalla = sopimusrekisteri.getPelaajanSopimus(pKohdalla);
+        pTextfieldJoukkue.setText(sKohdalla == null ? "Vapaa Agentti" : sopimusrekisteri.getJoukkueById(sKohdalla.getJid()).getNimiPitka());
+        pTextfieldSopimusAlku.setText(sKohdalla == null ? "" : Integer.toString(sKohdalla.getAlkamisvuosi()));
+        pTextfieldSopimusLoppu.setText(sKohdalla == null ? "" : Integer.toString(sKohdalla.getLoppumisvuosi()));
+        pTextfieldPalkka.setText(sKohdalla == null ? "" : Integer.toString(sKohdalla.getPalkka()));
+        
         //pTextfieldJoukkue.setText(sopimusrekisteri.getPelaajanJoukkue(pKohdalla).getNimiPitka());
         /*
         areaLisenssi.setText("");
@@ -323,7 +330,10 @@ public class SopimusrekisteriGUIController implements Initializable {
     }
     
     private void sopimusUusi() {
-        ModalController.showModal(SopimusrekisteriGUIController.class.getResource("SopimusNewDialogView.fxml"), "Uusi sopimus", null, "");
+        Random rand = new Random();  //TODO: temp
+        sopimusrekisteri.lisaa(chooserPelaajat.getSelectedObject(), chooserJoukkueet.getSelectedObject(), 1000 + rand.nextInt(10000) * 1000, 2020, 2023);
+        naytaPelaaja();
+        //ModalController.showModal(SopimusrekisteriGUIController.class.getResource("SopimusNewDialogView.fxml"), "Uusi sopimus", null, "");
     }
     
     private void sopimusSiirra() {

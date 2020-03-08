@@ -10,10 +10,10 @@ import java.util.ArrayList;
  */
 public class Sopimusrekisteri {
     
-    Pelaajat    pelaajat    = new Pelaajat();
-    Joukkueet   joukkueet   = new Joukkueet();
-    Liigat      liigat      = new Liigat();
-    Sopimukset  sopimukset  = new Sopimukset();
+    private Pelaajat    pelaajat    = new Pelaajat();
+    private Joukkueet   joukkueet   = new Joukkueet();
+    private Liigat      liigat      = new Liigat();
+    private Sopimukset  sopimukset  = new Sopimukset();
     
     
     /**
@@ -261,13 +261,7 @@ public class Sopimusrekisteri {
      * @return pelaajan sopimus
      */
     public Sopimus getPelaajanSopimus(Pelaaja p) {
-        Sopimus s = null;
-        try {
-            s = sopimukset.getByPid(p.getPid());
-        } catch (SailoException e) {
-            System.err.println(e.getMessage());
-        }
-        return s;
+        return sopimukset.getByPid(p.getPid());
     }
     
     
