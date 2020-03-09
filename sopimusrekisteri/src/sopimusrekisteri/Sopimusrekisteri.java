@@ -328,11 +328,19 @@ public class Sopimusrekisteri {
     }
     
 
+    /**palauttaa joukkueen pelaajien lukumäärän
+     * @param j joukkue jonka pelaajien lkm halutaan
+     * @return pelaajien lkm
+     */
     public int getJoukkueenPelaajatLkm(Joukkue j) {
         return sopimukset.getJoukkueenPelaajatLkm(j.getJid());
     }
 
 
+    /**palauttaa joukkueen kokonaispalkan vuodelta
+     * @param j joukkue jonka palkat halutaan
+     * @return joukkueen palkat
+     */
     public int getJoukkueenPalkat(Joukkue j) {
         return sopimukset.getJoukkueenPalkat(j.getJid());
     }

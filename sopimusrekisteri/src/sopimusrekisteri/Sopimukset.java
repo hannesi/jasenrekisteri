@@ -1,6 +1,7 @@
 package sopimusrekisteri;
 
 import java.util.ArrayList;
+import java.util.ListIterator;
 
 /**
  * |--------------------------------------------------------------------------|
@@ -65,9 +66,11 @@ public class Sopimukset {
      * @param jid joukkue jonka sopimukset poistetaan
      */
     public void poistaByJid(int jid) {      //TODO: KORJATTAVA! rytisee ja takkuaa
-        for (Sopimus s : sopimukset)
-            if (s.getJid() == jid)
-                poista(s);
+        ListIterator<Sopimus> iter = sopimukset.listIterator();
+        while(iter.hasNext()) {
+            if(iter.next().getJid() == jid)
+                iter.remove();
+        }
     }
     
 
