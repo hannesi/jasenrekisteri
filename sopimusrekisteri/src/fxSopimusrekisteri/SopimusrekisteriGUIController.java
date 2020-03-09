@@ -4,8 +4,6 @@ import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-import javax.swing.JTextField;
-
 import fi.jyu.mit.fxgui.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -37,6 +35,8 @@ public class SopimusrekisteriGUIController implements Initializable {
     @FXML TextField jTextfieldKaupunki;
     @FXML TextField jTextfieldOmistaja;
     @FXML TextField jTextfieldYhteystieto;
+    @FXML TextField jTextfieldSopimuksia;
+    @FXML TextField jTextfieldPalkat;
     
     @FXML TextField lTextfieldNimi;
     @FXML TextField lTextfieldMinPalkka;
@@ -196,6 +196,8 @@ public class SopimusrekisteriGUIController implements Initializable {
         jTextfieldKaupunki.setText(jKohdalla.getKaupunki());
         jTextfieldOmistaja.setText(jKohdalla.getOmistaja());
         jTextfieldYhteystieto.setText(jKohdalla.getYhteystieto());
+        jTextfieldSopimuksia.setText(Integer.toString(sopimusrekisteri.getJoukkueenPelaajatLkm(jKohdalla)));
+        jTextfieldPalkat.setText(Integer.toString(sopimusrekisteri.getJoukkueenPalkat(jKohdalla)));
         }
     
     
@@ -333,7 +335,11 @@ public class SopimusrekisteriGUIController implements Initializable {
     
     private void sopimusUusi() {
         Random rand = new Random();  //TODO: temp
-        sopimusrekisteri.lisaa(chooserPelaajat.getSelectedObject(), chooserJoukkueet.getSelectedObject(), 1000 + rand.nextInt(10000) * 1000, 2020, 2023);
+        try {
+            sopimusrekisteri.lisaa(chooserPelaajat.getSelectedObject(), chooserJoukkueet.getSelectedObject(), 1000 + rand.nextInt(10000) * 1000, 2020, 2023);
+        } catch (SailoException e) {
+            Dialogs.showMessageDialog(e.getMessage());
+        }
         naytaPelaaja();
         //ModalController.showModal(SopimusrekisteriGUIController.class.getResource("SopimusNewDialogView.fxml"), "Uusi sopimus", null, "");
     }

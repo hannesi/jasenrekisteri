@@ -245,8 +245,10 @@ public class Sopimusrekisteri {
      * @param palkka pelaajan palkka
      * @param alkaa sopimuksen alkamisvuosi
      * @param loppuu sopimuksen loppumisvuosi
+     * @throws SailoException jos pelaajalla on jo sopimus
      */
-    public void lisaa(Pelaaja p, Joukkue j, int palkka, int alkaa, int loppuu) {
+    public void lisaa(Pelaaja p, Joukkue j, int palkka, int alkaa, int loppuu) throws SailoException {
+        if (sopimukset.getByPid(p.getPid()) != null) throw new SailoException("Pelaajalla on jo sopimus!");
         Sopimus s = new Sopimus(p.getPid(), j.getJid(), palkka, alkaa, loppuu);
         s.rekisteroi();
         sopimukset.lisaa(s);
@@ -325,12 +327,25 @@ public class Sopimusrekisteri {
         return pLista;
     }
     
+
+    public int getJoukkueenPelaajatLkm(Joukkue jKohdalla) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+
+    public int getJoukkueenPalkat(Joukkue jKohdalla) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+    
     
     /**
      * main sisältää vain Sopimusrekisteri-luokan testaamista
      * @param args ei käytössä
+     * @throws SailoException jos pelaajalla jo sopimus
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SailoException {
         Sopimusrekisteri sr = new Sopimusrekisteri();
    
         Pelaaja p1 = new Pelaaja();
@@ -419,11 +434,12 @@ public class Sopimusrekisteri {
         System.out.println("Liigan " + l1.getNimi() + " joukkueet:");
         for (Joukkue j : sr.getLiiganJoukkueet(l1))
             System.out.println(j.getNimiPitka());
+        
+        System.out.println("===sopimusten poistaminen joukkueen poiston yhteydessä===");
+        
+        //Pelaaja sp1 = new Pelaaja();
 
 
     }
-
-
-
 
 }
