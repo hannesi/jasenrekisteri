@@ -65,7 +65,7 @@ public class Sopimukset {
     /**poistaa tuodun jidin joukkuetta koskevat sopimukset
      * @param jid joukkue jonka sopimukset poistetaan
      */
-    public void poistaByJid(int jid) {      //TODO: KORJATTAVA! rytisee ja takkuaa
+    public void poistaByJid(int jid) {
         ListIterator<Sopimus> iter = sopimukset.listIterator();
         while(iter.hasNext()) {
             if(iter.next().getJid() == jid)
