@@ -339,7 +339,11 @@ public class SopimusrekisteriGUIController implements Initializable {
     private void liigaPoista() {
         Liiga lKohdalla = chooserLiigat.getSelectedObject();
         if (lKohdalla == null) return;
-        sopimusrekisteri.poista(lKohdalla);
+        try {
+            sopimusrekisteri.poista(lKohdalla);
+        } catch (SailoException e) {
+            Dialogs.showMessageDialog(e.getMessage());
+        }
         haeLiiga(-1);
         //ModalController.showModal(SopimusrekisteriGUIController.class.getResource("SarjaRemoveDialogView.fxml"), "Poista sarja", null, "");
     }

@@ -48,6 +48,19 @@ public class Joukkueet {
     }
     
     
+    /**palauttaa liigassa jonka lid pelaavien joukkueiden lkm
+     * @param lid liiga jonka joukkueiden lkm halutaan
+     * @return joukkueiden lkm ko liigassa
+     */
+    public int getLkm(int lid) {
+        int laskuri = 0;
+        for (Joukkue j : joukkueet)
+            if (j.getLid() == lid)
+                laskuri++;
+        return laskuri;
+    }
+    
+    
     /**palauttaa joukkueen listasta indeksin perusteella
      * @param indeksi palautettavan joukkueen indeksi
      * @return joukkue
@@ -111,4 +124,5 @@ public class Joukkueet {
         j1.tulosta(System.out);
 
     }
+
 }

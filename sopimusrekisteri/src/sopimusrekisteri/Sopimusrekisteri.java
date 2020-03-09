@@ -233,11 +233,22 @@ public class Sopimusrekisteri {
     
     /**Poistaa liigan
      * @param l poistettava liiga
+     * @throws SailoException jos liigassa on vielä joukkueita
      */
-    public void poista(Liiga l) {
+    public void poista(Liiga l) throws SailoException {
+        if (getLiiganJoukkueetLkm(l) != 0) throw new SailoException("Ei voida poistaa, koska liigassa on vielä joukkueita!"); 
         liigat.poista(l);
     }
     
+
+    /**palauttaa liigassa pelaavien joukkueiden määrän
+     * @param l liiga jonka joukkueiden lkm halutaan
+     * @return joukkueiden lkm
+     */
+    public int getLiiganJoukkueetLkm(Liiga l) {
+        return joukkueet.getLkm(l.getLid());
+    }
+
 
     /**lisää uuden sopimuksen
      * @param p pelaajaosapuoli
@@ -249,6 +260,7 @@ public class Sopimusrekisteri {
      */
     public void lisaa(Pelaaja p, Joukkue j, int palkka, int alkaa, int loppuu) throws SailoException {
         if (sopimukset.getByPid(p.getPid()) != null) throw new SailoException("Pelaajalla on jo sopimus!");
+        if (j == null) throw new SailoException("Valitse joukkue jonka kanssa sopimus tehdään!"); //TODO: mahdollisesti poistetaan tämä rivi kun oikea sopimuksen luominen toteutetaan
         Sopimus s = new Sopimus(p.getPid(), j.getJid(), palkka, alkaa, loppuu);
         s.rekisteroi();
         sopimukset.lisaa(s);
