@@ -49,7 +49,7 @@
    <left>
       <TabPane tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab text="Pelaaja">
+          <Tab onSelectionChanged="#handleTabPelaaja" text="Pelaaja">
             <content>
               <AnchorPane>
                      <children>
@@ -219,7 +219,7 @@
                      </children></AnchorPane>
             </content>
           </Tab>
-          <Tab text="Joukkue">
+          <Tab onSelectionChanged="#handleTabJoukkue" text="Joukkue">
             <content>
               <AnchorPane>
                      <children>
@@ -286,6 +286,7 @@
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                              <children>
                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nimi" GridPane.halignment="RIGHT">
@@ -312,6 +313,12 @@
                                                 <TextField fx:id="jTextfieldKaupunki" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <TextField fx:id="jTextfieldOmistaja" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                 <TextField fx:id="jTextfieldYhteystieto" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sarja" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                                <TextField fx:id="jTextfieldSarja" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                              </children>
                                           </GridPane>
                                           <ButtonBar>
@@ -365,7 +372,7 @@
                      </children></AnchorPane>
             </content>
           </Tab>
-          <Tab text="Sarja">
+          <Tab onSelectionChanged="#handleTabLiiga" text="Sarja">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>

@@ -37,6 +37,7 @@ public class SopimusrekisteriGUIController implements Initializable {
     @FXML TextField jTextfieldYhteystieto;
     @FXML TextField jTextfieldSopimuksia;
     @FXML TextField jTextfieldPalkat;
+    @FXML TextField jTextfieldSarja;
     
     @FXML TextField lTextfieldNimi;
     @FXML TextField lTextfieldMinPalkka;
@@ -125,6 +126,21 @@ public class SopimusrekisteriGUIController implements Initializable {
     @FXML void handleTietoja() {
         tietoja();
     }
+    
+    
+    @FXML void handleTabPelaaja() {
+        naytaPelaaja();
+    }
+    
+    @FXML void handleTabJoukkue() {
+        naytaJoukkue();
+    }
+
+    @FXML void handleTabLiiga() {
+        naytaLiiga();
+    }
+    
+    
       
     //=====================================Tämän alapuolella ie suoraa käyttöliittymään liittyvää koodia================================================
     
@@ -173,7 +189,7 @@ public class SopimusrekisteriGUIController implements Initializable {
         //ModalController.showModal(SopimusrekisteriGUIController.class.getResource("JoukkueNewDialogView.fxml"), "Lisää joukkue", null, "");
     }
     
-    //hakee joukkueen tiedot ruudulle jidin perusteella
+    //hakee joukkueet listaan
     //TODO: tämä korvataan samoin kuin haePelaaja
     private void haeJoukkue(int jid) {
         chooserJoukkueet.clear();
@@ -196,6 +212,7 @@ public class SopimusrekisteriGUIController implements Initializable {
         jTextfieldKaupunki.setText(jKohdalla.getKaupunki());
         jTextfieldOmistaja.setText(jKohdalla.getOmistaja());
         jTextfieldYhteystieto.setText(jKohdalla.getYhteystieto());
+        jTextfieldSarja.setText(sopimusrekisteri.getJoukkueenLiiga(jKohdalla) == null ? "" : sopimusrekisteri.getJoukkueenLiiga(jKohdalla).getNimi()); //TODO: korvataan sillä että joukkueen liiga valitaan luodessa jolloin olematonta lidiä ei pitäisi päätyä joukkueen tietoihin.
         jTextfieldSopimuksia.setText(Integer.toString(sopimusrekisteri.getJoukkueenPelaajatLkm(jKohdalla)));
         jTextfieldPalkat.setText(Integer.toString(sopimusrekisteri.getJoukkueenPalkat(jKohdalla)));
         }
