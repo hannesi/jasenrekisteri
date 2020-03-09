@@ -328,15 +328,13 @@ public class Sopimusrekisteri {
     }
     
 
-    public int getJoukkueenPelaajatLkm(Joukkue jKohdalla) {
-        // TODO Auto-generated method stub
-        return 0;
+    public int getJoukkueenPelaajatLkm(Joukkue j) {
+        return sopimukset.getJoukkueenPelaajatLkm(j.getJid());
     }
 
 
-    public int getJoukkueenPalkat(Joukkue jKohdalla) {
-        // TODO Auto-generated method stub
-        return 0;
+    public int getJoukkueenPalkat(Joukkue j) {
+        return sopimukset.getJoukkueenPalkat(j.getJid());
     }
     
     

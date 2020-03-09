@@ -59,7 +59,12 @@ public class Sopimukset {
         sopimukset.remove(s);
     }
     
-    public void poistaByJid(int jid) {
+    
+    
+    /**poistaa tuodun jidin joukkuetta koskevat sopimukset
+     * @param jid joukkue jonka sopimukset poistetaan
+     */
+    public void poistaByJid(int jid) {      //TODO: KORJATTAVA! rytisee ja takkuaa
         for (Sopimus s : sopimukset)
             if (s.getJid() == jid)
                 poista(s);
@@ -91,6 +96,30 @@ public class Sopimukset {
                 return sopimukset.get(i);
         //throw new SailoException("Ei löytynyt sopimusta jossa pid: " + pid);
         return null;
+    }
+
+    /**palauttaa joukkueen sopimusten lukumäärän
+     * @param jid joukkue jonka sopimusten lkm palautetaan
+     * @return joukkueen sopimusten lkm
+     */
+    public int getJoukkueenPelaajatLkm(int jid) {
+        int laskuri = 0;
+        for (Sopimus s : sopimukset)
+            if (s.getJid() == jid)
+                laskuri++;
+        return laskuri;
+    }
+
+    /**palauttaa joukkueen sopimusten kokonaisvuosipalkkojen määrän
+     * @param jid joukkue jonka sopimusten palkkamenot palautetaan
+     * @return joukkueen sopimusten palkkamenot
+     */
+    public int getJoukkueenPalkat(int jid) {
+        int laskuri = 0;
+        for (Sopimus s: sopimukset)
+            if (s.getJid() == jid)
+                laskuri += s.getPalkka();
+        return laskuri;
     }
 
 }
