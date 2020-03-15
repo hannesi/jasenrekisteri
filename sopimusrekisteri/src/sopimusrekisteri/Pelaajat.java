@@ -1,5 +1,8 @@
 package sopimusrekisteri;
 
+import java.io.*;
+import java.util.Scanner;
+
 /**
  * |------------------------------------------------------------------------|
  * | Luokan nimi: Pelaajat                              | Avustajat:        |
@@ -29,8 +32,37 @@ public class Pelaajat {
     private static final int    PELAAJAT_KASVATUS   = 5;
     private static final int    MAX_PELAAJIA        = 5;
     private int                 lkm                 = 0;
-    private String              tiedostonNimi       = "";
+    private String              tiedostonNimi       = "./dat/pelaajat.dat";
     private Pelaaja[]           pelaajat;
+    
+    
+    /**tallentaa pelaajat tiedostoon
+     * @throws SailoException jos tiedostoa ei löydy
+     */
+    public void tallenna() throws SailoException {
+        try(PrintStream fo = new PrintStream(new FileOutputStream(tiedostonNimi))){
+            for (int i = 0; i < lkm; i++)
+                pelaajat[i].tallenna(fo);
+        } catch (FileNotFoundException e) {
+            throw new SailoException("Tiedostoa " + tiedostonNimi + " ei löydy!");
+        }
+    }
+    
+    
+    /**lataa pelaajat tiedostosta
+     * @throws SailoException jos tiedostoa ei löydy
+     */
+    public void lataa() throws SailoException {
+        try(Scanner fi = new Scanner(new FileInputStream(new File(tiedostonNimi)))){
+            while (fi.hasNext()) {
+                Pelaaja p = new Pelaaja();
+                p.parse(fi.nextLine());
+                lisaa(p);
+            }
+        } catch (FileNotFoundException e) {
+            throw new SailoException("Tiedostoa " + tiedostonNimi + " ei löydy!");
+        }
+    }
     
     
     /**
@@ -165,6 +197,7 @@ public class Pelaajat {
         pelaajat.lisaa(p2);
         pelaajat.lisaa(p2);
         pelaajat.poista(p3);
+        pelaajat.lisaa(p1);
         
 
 
@@ -178,6 +211,13 @@ public class Pelaajat {
         p1.tulosta(System.out);
         p1.muokkaa("Mynttinen", "Pertti", "02.01.2000", "Suomi");
         p1.tulosta(System.out);
+        
+        try {
+            pelaajat.tallenna();
+        } catch (SailoException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
     }
 

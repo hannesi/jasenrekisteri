@@ -4,6 +4,8 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.Random;
 
+import fi.jyu.mit.ohj2.Mjonot;
+
 /**
  * |------------------------------------------------------------------------|
  * | Luokan nimi: Pelaaja                               | Avustajat:        |
@@ -37,6 +39,22 @@ public class Pelaaja {
     private String  kansallisuus    = "";
     
     private static int seuraavaPid;
+    
+    
+    /**muuttaa merkkijonon pelaajan tiedoiksi
+     * @param s merkkijono muodossa:
+     * "123|Meikalainen|Matti|01.01.1900|Suomi"
+     *  pid|sukunimi   |etun.|syntymäa. | kansallisuus
+     */
+    public void parse(String s) {
+        var sb = new StringBuilder(s);
+        this.pid = Integer.parseInt(Mjonot.erota(sb, '|'));
+        this.sukunimi = Mjonot.erota(sb, '|');
+        this.etunimi = Mjonot.erota(sb, '|');
+        this.syntymaaika = Mjonot.erota(sb, '|');
+        this.kansallisuus = sb.toString();
+        seuraavaPid = this.pid <= seuraavaPid ? seuraavaPid : this.pid + 1;
+    }
     
     
     /**palauttaa pelaaja-id:n
@@ -101,6 +119,15 @@ public class Pelaaja {
         this.kansallisuus = kansallisuus;
     }
     
+    
+    /**tallentaa pelaajan tiedot tuotuun kohteeseen
+     * @param out mihin tallennetaan
+     */
+    public void tallenna(PrintStream out) {
+        out.println(pid + "|" + sukunimi + "|" + etunimi + "|" + syntymaaika + "|" + kansallisuus);
+    }
+    
+    
     /**
      * tulostetaan pelaajan tiedot
      * @param out tietovirta, johon tulostetaan
@@ -129,6 +156,7 @@ public class Pelaaja {
         pid = seuraavaPid++;
         return pid;
     }
+    
     
     /**
      * Pääohjelmassa vain luokan testailua
