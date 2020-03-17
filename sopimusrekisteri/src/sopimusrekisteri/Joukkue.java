@@ -4,6 +4,8 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.Random;
 
+import fi.jyu.mit.ohj2.Mjonot;
+
 /**
  * |------------------------------------------------------------------------|
  * | Luokan nimi: Joukkue                               | Avustajat:        |
@@ -58,6 +60,31 @@ public class Joukkue {
         this.lid = lid;
         
     }
+    
+    /**tallentaa pelaajan tiedot tuotuun tiedostoon
+     * @param out mihin tallennetaan
+     */
+    public void tallenna(PrintStream out) {
+        out.println(jid + "|" + lid + "|" + nimi + "|" + kaupunki + "|" + omistaja + "|" + yhteystieto);
+    }
+
+    
+    /**muuttaa merkkijonon joukkueen tiedoiksi
+     * @param s merkkijono muodossa:
+     * "123|456|Palloilijat|Uuskaarlepyy|R. Ankka|e@mail.com"
+     *  jid|lid|nimi       |kaupunki    |omistaja|yhteystieto
+     */
+    public void parse(String s) {
+        var sb = new StringBuilder(s);
+        this.jid = Integer.parseInt(Mjonot.erota(sb, '|'));
+        this.lid = Integer.parseInt(Mjonot.erota(sb, '|'));
+        this.nimi = Mjonot.erota(sb, '|');
+        this.kaupunki = Mjonot.erota(sb, '|');
+        this.omistaja = Mjonot.erota(sb, '|');
+        this.yhteystieto = sb.toString();
+        seuraavaJid = this.jid <= seuraavaJid ? seuraavaJid : this.jid + 1;
+    }
+    
     
     /**palauttaa joukkue-id:n
      * @return jid
@@ -168,6 +195,5 @@ public class Joukkue {
         Random rand = new Random();
         yhteystieto = Integer.toString(rand.nextInt(9999)) + "@email.vif";        
     }
-
 
 }

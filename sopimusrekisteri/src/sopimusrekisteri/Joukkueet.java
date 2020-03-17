@@ -1,6 +1,12 @@
 package sopimusrekisteri;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * |--------------------------------------------------------------------------|
@@ -28,8 +34,37 @@ import java.util.ArrayList;
  */
 public class Joukkueet {
     
-    private String              tiedostonNimi       = "";
+    private String              tiedostonNimi       = "./dat/joukkueet.dat";
     private ArrayList<Joukkue>  joukkueet           = new ArrayList<Joukkue>();
+    
+    
+    
+    /**tallentaa joukkueet tiedostoon
+     * @throws SailoException jos tiedostoa ei löydy
+     */
+    public void tallenna() throws SailoException {
+        try(PrintStream fo = new PrintStream(new FileOutputStream(tiedostonNimi))){
+            for (Joukkue j : joukkueet)
+                j.tallenna(fo);
+        } catch (FileNotFoundException e) {
+            throw new SailoException("Tiedostoa " + tiedostonNimi + " ei löydy!");
+        }
+    }
+    
+    /**lataa joukkueet tiedostosta
+     * @throws SailoException jos tiedostoa ei löydy
+     */
+    public void lataa() throws SailoException {
+        try(Scanner fi = new Scanner(new FileInputStream(new File(tiedostonNimi)))){
+            while (fi.hasNext()) {
+                Joukkue j = new Joukkue();
+                j.parse(fi.nextLine());
+                lisaa(j);
+            }
+        } catch (FileNotFoundException e) {
+            throw new SailoException("Tiedostoa " + tiedostonNimi + " ei löydy!");
+        }
+    }
     
     
     /**lisää joukkue 
