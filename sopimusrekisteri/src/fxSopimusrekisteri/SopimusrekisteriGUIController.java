@@ -52,7 +52,7 @@ public class SopimusrekisteriGUIController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle bundle) {
-            alusta();
+        alusta();
     }
     
     @FXML void handleApua() {
@@ -156,11 +156,24 @@ public class SopimusrekisteriGUIController implements Initializable {
     }
     
     private void tallenna() {
-        Dialogs.showMessageDialog("Ei osata vielä tallentaa!");
+        try {
+            sopimusrekisteri.tallenna();
+        } catch (SailoException e) {
+            Dialogs.showMessageDialog(e.getMessage());
+        }
+        //Dialogs.showMessageDialog("Ei osata vielä tallentaa!");
     }
     
     private void lataa() {
-        Dialogs.showMessageDialog("Ei osata vielä ladata!");
+        try {
+            sopimusrekisteri.lataa();
+            haeLiiga(0);
+            haeJoukkue(0);
+            haePelaaja(0);
+        } catch (SailoException e) {
+            Dialogs.showMessageDialog(e.getMessage());
+        }
+        //Dialogs.showMessageDialog("Ei osata vielä ladata!");
     }
     
     private void sulje() {

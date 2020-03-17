@@ -34,6 +34,13 @@ public class Sopimusrekisteri {
     private Liigat      liigat      = new Liigat();
     private Sopimukset  sopimukset  = new Sopimukset();
     
+    /**lataa tiedot tiedostoista kun olio luodaan
+     * @throws SailoException jos tiedostoja hukassa
+     */
+    public Sopimusrekisteri() throws SailoException {
+        this.lataa();
+    }
+    
     
     /**
      * tallentaa avoinna olevat tiedot
