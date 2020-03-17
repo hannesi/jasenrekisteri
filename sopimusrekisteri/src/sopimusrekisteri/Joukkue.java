@@ -82,7 +82,7 @@ public class Joukkue {
         this.kaupunki = Mjonot.erota(sb, '|');
         this.omistaja = Mjonot.erota(sb, '|');
         this.yhteystieto = sb.toString();
-        seuraavaJid = this.jid <= seuraavaJid ? seuraavaJid : this.jid + 1;
+        seuraavaJid = this.jid < seuraavaJid ? seuraavaJid : this.jid + 1;
     }
     
     

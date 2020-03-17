@@ -4,6 +4,8 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.Random;
 
+import fi.jyu.mit.ohj2.Mjonot;
+
 /**
  * |------------------------------------------------------------------------|
  * | Luokan nimi: Liiga                                 | Avustajat:        |
@@ -41,6 +43,35 @@ public class Liiga {
     
 
     private static int seuraavaLid;
+    
+    
+    /**kirjoittaa liigan tiedot tuotuun tietovirtaan
+     * @param out mihin tallennetaan
+     */
+    public void tallenna(PrintStream out) {
+         out.println(lid + "|" + nimi + "|" + minPalkka + "|" + maxPalkka + "|" + maxPituus + "|" + palkkalattia + "|" + palkkakatto + "|" + maxSopimuksia);
+    }
+    
+    
+    /**muuttaa merkkijonon liigan tiedoiksi
+     * @param s merkkijono muodossa:
+     * "123|hokiliiga|123123213|654654654|     5|123765324|867987674566|22"
+     *  lid|nimi     |minpalkka|maxpalkka|pituus|p.lattia |p.katto     |max sopimuksia
+     */
+    public void parse(String s) {
+        var sb = new StringBuilder(s);
+        this.lid = Integer.parseInt(Mjonot.erota(sb, '|'));
+        this.nimi = Mjonot.erota(sb, '|');
+        this.minPalkka = Integer.parseInt(Mjonot.erota(sb, '|'));
+        this.maxPalkka = Integer.parseInt(Mjonot.erota(sb, '|'));
+        this.maxPituus = Integer.parseInt(Mjonot.erota(sb, '|'));
+        this.palkkalattia = Integer.parseInt(Mjonot.erota(sb, '|'));
+        this.palkkakatto = Integer.parseInt(Mjonot.erota(sb, '|'));
+        this.maxSopimuksia = Integer.parseInt(Mjonot.erota(sb, '|'));
+        seuraavaLid = this.lid < seuraavaLid ? seuraavaLid : this.lid + 1;
+    }
+    
+    
     
     /**palauttaa liigan liiga-id:n
      * @return liigan lid
@@ -185,5 +216,7 @@ public class Liiga {
         maxSopimuksia = rand.nextInt(99);
         
     }
+
+    
 
 }

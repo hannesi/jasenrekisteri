@@ -1,6 +1,12 @@
 package sopimusrekisteri;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * |--------------------------------------------------------------------------|
@@ -28,9 +34,43 @@ import java.util.ArrayList;
  */
 public class Liigat {
     
-    private String              tiedostonNimi   = "";
+    private String              tiedostonNimi   = "./dat/liigat.dat";
     private ArrayList<Liiga>    liigat          = new ArrayList<Liiga>();
 
+    
+    /**
+     * tallentaa liigat tiedostoon
+     * @throws SailoException jos tiedostoa ei löydy 
+     */
+    public void tallenna() throws SailoException {
+        try(PrintStream fo = new PrintStream(new FileOutputStream(tiedostonNimi))) {
+            for (Liiga l : liigat)
+                l.tallenna(fo);
+        } catch (FileNotFoundException e) {
+            throw new SailoException("Tiedostoa " + tiedostonNimi + " ei löydy!");
+        }
+    }
+    
+    
+    /**
+     * lataa liigat tiedostosta
+     * @throws SailoException jos tiedostoa ei löydy
+     */
+    public void lataa() throws SailoException {
+        try(Scanner fi = new Scanner(new FileInputStream(new File(tiedostonNimi)))){
+            while (fi.hasNext()) {
+                Liiga l = new Liiga();
+                l.parse(fi.nextLine());
+                lisaa(l);
+            }
+        } catch (FileNotFoundException e) {
+            throw new SailoException("Tiedostoa " + tiedostonNimi + " ei löydy!");
+        }
+            
+    }
+    
+    
+    
     /**lisää liiga
      * @param l lisättävä liiga
      * @example
@@ -91,5 +131,5 @@ public class Liigat {
         }
         throw new SailoException("Ei löydy liigaa, lid: " + lid);
     }
-    
+  
 }

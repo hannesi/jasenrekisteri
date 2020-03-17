@@ -42,7 +42,7 @@ public class Sopimusrekisteri {
     public void tallenna() throws SailoException {
         pelaajat.tallenna();
         joukkueet.tallenna();
-        //TODO: liigat.tallenna();
+        liigat.tallenna();
         //TODO: sopimukset.tallenna();
     }
     
@@ -52,7 +52,7 @@ public class Sopimusrekisteri {
      * @throws SailoException jos menee pieleen
      */
     public void lataa() throws SailoException {
-        //TODO: liigat.lataa();
+        liigat.lataa();
         joukkueet.lataa();
         pelaajat.lataa();
         //TODO: sopimukset.lataa();
@@ -389,7 +389,7 @@ public class Sopimusrekisteri {
      */
     public static void main(String[] args) throws SailoException {
         Sopimusrekisteri sr = new Sopimusrekisteri();
-        /*
+
         Pelaaja p1 = new Pelaaja();
         Pelaaja p2 = new Pelaaja();
         Pelaaja p3 = new Pelaaja();
@@ -409,6 +409,14 @@ public class Sopimusrekisteri {
         l1.taytaLiiga();
         l1.rekisteroi();
         sr.lisaa(l1);
+        
+        Liiga l2 = new Liiga();
+        l2.taytaLiiga();
+        l2.rekisteroi();
+        sr.lisaa(l2);
+        
+        System.out.println(l1.getLid());
+        System.out.println(l2.getLid());
 
         
         System.out.println("===sopimusrekisterin testaus alla====");
@@ -482,7 +490,6 @@ public class Sopimusrekisteri {
         //Pelaaja sp1 = new Pelaaja();
 
         sr.tallenna();
-        */
         sr.lataa();
         for (int i = 0; i < sr.getPelaajia(); i++)
             sr.getPelaaja(i).tulosta(System.out);

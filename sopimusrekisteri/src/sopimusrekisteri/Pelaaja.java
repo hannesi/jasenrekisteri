@@ -53,7 +53,7 @@ public class Pelaaja {
         this.etunimi = Mjonot.erota(sb, '|');
         this.syntymaaika = Mjonot.erota(sb, '|');
         this.kansallisuus = sb.toString();
-        seuraavaPid = this.pid <= seuraavaPid ? seuraavaPid : this.pid + 1;
+        seuraavaPid = this.pid < seuraavaPid ? seuraavaPid : this.pid + 1;
     }
     
     
