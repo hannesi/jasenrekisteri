@@ -43,7 +43,7 @@ public class Sopimusrekisteri {
         pelaajat.tallenna();
         joukkueet.tallenna();
         liigat.tallenna();
-        //TODO: sopimukset.tallenna();
+        sopimukset.tallenna();
     }
     
     
@@ -55,7 +55,7 @@ public class Sopimusrekisteri {
         liigat.lataa();
         joukkueet.lataa();
         pelaajat.lataa();
-        //TODO: sopimukset.lataa();
+        sopimukset.lataa();
     }
     
     

@@ -1,7 +1,13 @@
 package sopimusrekisteri;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.ListIterator;
+import java.util.Scanner;
 
 /**
  * |--------------------------------------------------------------------------|
@@ -28,8 +34,41 @@ import java.util.ListIterator;
  *
  */
 public class Sopimukset {
+    
+    private String              tiedostonNimi   = "./dat/sopimukset.dat";
     private ArrayList<Sopimus> sopimukset = new ArrayList<Sopimus>();
    
+    
+    /**tallentaa sopimukset tiedostoon
+     * @throws SailoException jos tiedostoa ei löydy
+     */
+    public void tallenna() throws SailoException {
+        try(PrintStream fo = new PrintStream(new FileOutputStream(tiedostonNimi))) {
+            for (Sopimus sop : sopimukset)
+                sop.tallenna(fo);
+        } catch (FileNotFoundException e) {
+            throw new SailoException("Tiedostoa " + tiedostonNimi + " ei löydy!");
+        }
+    }
+    
+    
+    /**
+     * lataa sopimukset tiedostosta
+     * @throws SailoException jos tiedostoa ei löydy
+     */
+    public void lataa() throws SailoException {
+        try(Scanner fi = new Scanner(new FileInputStream(new File(tiedostonNimi)))){
+            while (fi.hasNext()) {
+                Sopimus sop = new Sopimus();
+                sop.parse(fi.nextLine());
+                lisaa(sop);
+            }
+        } catch (FileNotFoundException e) {
+            throw new SailoException("Tiedostoa " + tiedostonNimi + " ei löydy!");
+        }
+            
+    }
+    
     
     /**lisää sopimuksen
      * @param s lisättävä sopimus

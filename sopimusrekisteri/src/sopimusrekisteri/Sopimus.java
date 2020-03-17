@@ -1,5 +1,8 @@
 package sopimusrekisteri;
 
+import java.io.PrintStream;
+
+import fi.jyu.mit.ohj2.Mjonot;
 
 /**
  * |------------------------------------------------------------------------|
@@ -49,6 +52,40 @@ public class Sopimus {
         this.alkamisvuosi = alkamisvuosi;
         this.loppumisvuosi = loppumisvuosi;
     }
+    
+    
+    /**
+     * tyhjä constructor jota käytetään kun luodaan sopimus tiedostosta ladattaessa
+     */
+    public Sopimus() {
+        //
+    }
+
+
+    /**kirjoittaa sopimuksen tiedot tuotuun tietovirtaan
+     * @param out mihin tallennetaan
+     */
+    public void tallenna(PrintStream out) {
+         out.println(sid + "|" + pid + "|" + jid + "|" + palkka + "|" + alkamisvuosi + "|" + loppumisvuosi);
+    }
+    
+    /**muuttaa merkkijonon sopimuksen tiedoiksi
+     * @param s merkkijono muodossa:
+     * "000|123|987|10000000|2019|2020"
+     *  sid|pid|jid|palkka  |alku|loppu
+     */
+    public void parse(String s) {
+        var sb = new StringBuilder(s);
+        this.sid = Integer.parseInt(Mjonot.erota(sb, '|'));
+        this.pid = Integer.parseInt(Mjonot.erota(sb, '|'));
+        this.jid = Integer.parseInt(Mjonot.erota(sb, '|'));
+        this.palkka = Integer.parseInt(Mjonot.erota(sb, '|'));
+        this.alkamisvuosi = Integer.parseInt(Mjonot.erota(sb, '|'));
+        this.loppumisvuosi = Integer.parseInt(Mjonot.erota(sb, '|'));
+        seuraavaSid = this.sid < seuraavaSid ? seuraavaSid : this.sid + 1;
+    }
+    
+    
     
     /**palauttaa sopimuksen pelaajaosapuolen pelaaja-id:n
      * @return pid
