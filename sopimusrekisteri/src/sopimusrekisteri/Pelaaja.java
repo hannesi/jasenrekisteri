@@ -158,6 +158,18 @@ public class Pelaaja {
     }
     
     
+    @Override
+    public Pelaaja clone() {
+        Pelaaja p = new Pelaaja();
+        p.pid = this.pid;
+        p.etunimi = this.etunimi;
+        p.sukunimi = this.sukunimi;
+        p.syntymaaika = this.syntymaaika;
+        p.kansallisuus = this.kansallisuus;
+        return p;
+    }
+    
+    
     /**
      * Pääohjelmassa vain luokan testailua
      * @param args ei käytössä

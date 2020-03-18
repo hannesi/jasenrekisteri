@@ -155,13 +155,7 @@ public class Sopimusrekisteri {
      * @return pidiä vastaava pelaaja
      */
     public Pelaaja getPelaajaById(int pid) {
-        Pelaaja p = null;
-        try {
-            p = pelaajat.getById(pid);
-        } catch (SailoException e) {
-            System.err.println(e.getMessage());
-        }
-        return p;
+        return pelaajat.getById(pid);
     }
     
     /**Poistaa pelaajan
@@ -328,6 +322,18 @@ public class Sopimusrekisteri {
      */
     public Sopimus getPelaajanSopimus(Pelaaja p) {
         return sopimukset.getByPid(p.getPid());
+    }
+    
+    
+    /**korvaa pelaajan pid perusteella. jos pid ei löydy, luo uuden pelaajan.
+     * @param p pelaaja, joka korvaa vanhan tai joka luodaan
+     */
+    public void korvaaTaiLisaa(Pelaaja p) {
+        if (pelaajat.getById(p.getPid()) != null) {
+            pelaajat.korvaa(p);
+            return;
+        }
+        pelaajat.lisaa(p);
     }
     
     

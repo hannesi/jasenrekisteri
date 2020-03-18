@@ -142,9 +142,12 @@ public class SopimusrekisteriGUIController implements Initializable {
     
     
       
-    //=====================================Tämän alapuolella ie suoraa käyttöliittymään liittyvää koodia================================================
+    //=====================================Tämän alapuolella ei suoraa käyttöliittymään liittyvää koodia================================================
     
-    private Sopimusrekisteri sopimusrekisteri;
+    private Sopimusrekisteri    sopimusrekisteri;
+    private Pelaaja             pKohdalla;
+    private Joukkue             jKohdalla;
+    private Liiga               lKohdalla;
     
     private void alusta() {
         chooserPelaajat.clear();
@@ -218,7 +221,7 @@ public class SopimusrekisteriGUIController implements Initializable {
     
   //Näyttää valitun joukkueen tiedot kentissä
     private void naytaJoukkue() {
-        Joukkue jKohdalla = chooserJoukkueet.getSelectedObject();
+        jKohdalla = chooserJoukkueet.getSelectedObject();
         if (jKohdalla == null) return;
         
         jTextfieldNimi.setText(jKohdalla.getNimi());
@@ -236,7 +239,7 @@ public class SopimusrekisteriGUIController implements Initializable {
     }
     
     private void joukkuePoista() {
-        Joukkue jKohdalla = chooserJoukkueet.getSelectedObject();
+        jKohdalla = chooserJoukkueet.getSelectedObject();
         if (jKohdalla == null) return;
         sopimusrekisteri.poista(jKohdalla);
         haeJoukkue(-1);
@@ -270,7 +273,7 @@ public class SopimusrekisteriGUIController implements Initializable {
     
     //Näyttää valitun pelaajan tiedot kentissä
     private void naytaPelaaja() {
-        Pelaaja pKohdalla = chooserPelaajat.getSelectedObject();
+        pKohdalla = chooserPelaajat.getSelectedObject();
         if (pKohdalla == null) return;
 
         pTextfieldSukunimi.setText(pKohdalla.getSukunimi());
@@ -295,11 +298,16 @@ public class SopimusrekisteriGUIController implements Initializable {
     }
     
     private void pelaajaMuokkaa() {
-        ModalController.showModal(SopimusrekisteriGUIController.class.getResource("PelaajaEditDialogView.fxml"), "Muokkaa pelaajaa", null, "");
+        //ModalController.showModal(SopimusrekisteriGUIController.class.getResource("PelaajaEditDialogView.fxml"), "Muokkaa pelaajaa", null, "");
+        if (pKohdalla == null) return;
+        Pelaaja p = PelaajaEditDialogController.kysyPelaaja(null, pKohdalla.clone());
+        if (p == null) return;
+        p.tulosta(System.err);
+        sopimusrekisteri.korvaaTaiLisaa(p);
+        haePelaaja(p.getPid());
     }
     
     private void pelaajaPoista() {
-        Pelaaja pKohdalla = chooserPelaajat.getSelectedObject();
         if (pKohdalla == null) return;
         sopimusrekisteri.poista(pKohdalla);
         haePelaaja(-1);
@@ -318,7 +326,7 @@ public class SopimusrekisteriGUIController implements Initializable {
     
   //Näyttää valitun liigan tiedot kentissä
     private void naytaLiiga() {
-        Liiga lKohdalla = chooserLiigat.getSelectedObject();
+        lKohdalla = chooserLiigat.getSelectedObject();
         if (lKohdalla == null) return;
 
         lTextfieldNimi.setText(lKohdalla.getNimi());
@@ -350,7 +358,6 @@ public class SopimusrekisteriGUIController implements Initializable {
     }
     
     private void liigaPoista() {
-        Liiga lKohdalla = chooserLiigat.getSelectedObject();
         if (lKohdalla == null) return;
         try {
             sopimusrekisteri.poista(lKohdalla);
@@ -362,7 +369,7 @@ public class SopimusrekisteriGUIController implements Initializable {
     }
     
     private void sopimusPoista() {
-        sopimusrekisteri.poista(sopimusrekisteri.getPelaajanSopimus(chooserPelaajat.getSelectedObject()));
+        sopimusrekisteri.poista(sopimusrekisteri.getPelaajanSopimus(pKohdalla));
         naytaPelaaja();
         //ModalController.showModal(SopimusrekisteriGUIController.class.getResource("SopimusRemoveDialogView.fxml"), "Poista sopimus", null, "");
     }
@@ -370,7 +377,7 @@ public class SopimusrekisteriGUIController implements Initializable {
     private void sopimusUusi() {
         Random rand = new Random();  //TODO: temp
         try {
-            sopimusrekisteri.lisaa(chooserPelaajat.getSelectedObject(), chooserJoukkueet.getSelectedObject(), 1000 + rand.nextInt(10000) * 1000, 2020, 2023);
+            sopimusrekisteri.lisaa(pKohdalla, jKohdalla, 1000 + rand.nextInt(10000) * 1000, 2020, 2023);
         } catch (SailoException e) {
             Dialogs.showMessageDialog(e.getMessage());
         }

@@ -119,6 +119,21 @@ public class Pelaajat {
     }
     
     
+    /**yrittää korvata olemassa olevan pelaajan jolla sama pid kuin tuodulla pelaajalla. Jos tuodun pelaajan pidiä vastaavaa pelaajaa ei ole olemassa, ei tehdä mitään.
+     * @param p korvaava pelaaja
+     * @return true jos korvattava löytyi ja korvattiin, false jos tuodun pelaajan pidiä vastaavaa pelaajaa ei löytynyt
+     */
+    public boolean korvaa(Pelaaja p) {
+        for (int i = 0; i < lkm; i++) {
+            if (pelaajat[i].getPid() == p.getPid()) {
+                pelaajat[i] = p;
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    
     /**
      * Siirtää pelaajat-taulukon sisällön alkuperäisessä järjestyksessä uuteen taulukkoon, 
      * joka on kooltaan PELAAJAT_KASVATUS indeksiä suurempi.
@@ -147,13 +162,13 @@ public class Pelaajat {
     /**hae pelaaja pelaaja-id:n perusteella
      * @param pid haettava pid
      * @return pelaaja jolla haettava pid
-     * @throws SailoException jos tuotua pidiä ei ole pelaajalla
      */
-    public Pelaaja getById(int pid) throws SailoException {
+    public Pelaaja getById(int pid) {
         for (int i = 0; i < pelaajat.length; i++) {
             if (pelaajat[i].getPid() == pid) return pelaajat[i];
         }
-        throw new SailoException("Ei löydy pelaajaa, pid: " + pid);
+        return null;
+        //throw new SailoException("Ei löydy pelaajaa, pid: " + pid);
     }
 
     /**Poistaa pelaajan
@@ -220,6 +235,5 @@ public class Pelaajat {
         }
 
     }
-
 
 }
