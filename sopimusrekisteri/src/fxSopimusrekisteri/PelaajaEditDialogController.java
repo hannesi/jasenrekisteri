@@ -29,8 +29,12 @@ public class PelaajaEditDialogController implements ModalControllerInterface<Pel
         
     }
     
+    //TODO: tarkistin syntymäaikaan
     @FXML private void handleTallenna() {
-        pelaaja.muokkaa(editSukunimi.getText(), editEtunimi.getText(), editSyntymaaika.getText(), editKansallisuus.getText());
+        pelaaja.muokkaa(editSukunimi.getText(), 
+                        editEtunimi.getText(), 
+                        editSyntymaaika.getText(), 
+                        editKansallisuus.getText());
         ModalController.closeStage(editEtunimi);
     }
     
