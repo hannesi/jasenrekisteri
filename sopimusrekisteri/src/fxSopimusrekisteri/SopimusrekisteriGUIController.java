@@ -149,6 +149,8 @@ public class SopimusrekisteriGUIController implements Initializable {
     private Joukkue             jKohdalla;
     private Liiga               lKohdalla;
     
+    
+    //TODO: selvitä miksei listassa näy pelaajia, joukkueita, liigoja avatessa
     private void alusta() {
         chooserPelaajat.clear();
         chooserPelaajat.addSelectionListener(e -> naytaPelaaja());
@@ -249,12 +251,12 @@ public class SopimusrekisteriGUIController implements Initializable {
     
     private void pelaajaLisaa() {
         Pelaaja p = new Pelaaja();
-        
+        p = PelaajaEditDialogController.kysyPelaaja(null, p);
+        if (p == null) return;
         p.rekisteroi();
         sopimusrekisteri.lisaa(p);
 
         haePelaaja(p.getPid());
-        //ModalController.showModal(SopimusrekisteriGUIController.class.getResource("PelaajaNewDialogView.fxml"), "Lisää pelaaja", null, "");
     }
     
     //mikähän pointti pidin perusteella hakemisessa oli olevinaan?
@@ -299,10 +301,15 @@ public class SopimusrekisteriGUIController implements Initializable {
     
     private void pelaajaMuokkaa() {
         if (pKohdalla == null) return;
-        Pelaaja p = PelaajaEditDialogController.kysyPelaaja(null, pKohdalla.clone());
-        if (p == null) return;
-        sopimusrekisteri.korvaaTaiLisaa(p);
-        haePelaaja(p.getPid());
+        Pelaaja p;
+        try {
+            p = PelaajaEditDialogController.kysyPelaaja(null, pKohdalla.clone());
+            if (p == null) return;
+            sopimusrekisteri.korvaaTaiLisaa(p);
+            haePelaaja(p.getPid());
+        } catch (CloneNotSupportedException e) {
+            //
+        }
     }
     
     private void pelaajaPoista() {

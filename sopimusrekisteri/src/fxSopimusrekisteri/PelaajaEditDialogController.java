@@ -35,6 +35,7 @@ public class PelaajaEditDialogController implements ModalControllerInterface<Pel
     }
     
     @FXML private void handlePeruuta() {
+        pelaaja = null;
         ModalController.closeStage(editEtunimi);
     }
     
@@ -44,7 +45,6 @@ public class PelaajaEditDialogController implements ModalControllerInterface<Pel
     
     @Override
     public Pelaaja getResult() {
-        // TODO Auto-generated method stub
         return pelaaja;
     }
 

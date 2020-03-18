@@ -30,7 +30,7 @@ import fi.jyu.mit.ohj2.Mjonot;
  * @version 19.2.2020
  *
  */
-public class Pelaaja {
+public class Pelaaja implements Cloneable{
     
     private int     pid;            //Pelaaja-id
     private String  sukunimi        = "";
@@ -159,14 +159,8 @@ public class Pelaaja {
     
     
     @Override
-    public Pelaaja clone() {
-        Pelaaja p = new Pelaaja();
-        p.pid = this.pid;
-        p.etunimi = this.etunimi;
-        p.sukunimi = this.sukunimi;
-        p.syntymaaika = this.syntymaaika;
-        p.kansallisuus = this.kansallisuus;
-        return p;
+    public Pelaaja clone() throws CloneNotSupportedException {
+        return (Pelaaja) super.clone();
     }
     
     
