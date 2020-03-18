@@ -119,17 +119,18 @@ public class Pelaajat {
     }
     
     
-    /**yrittää korvata olemassa olevan pelaajan jolla sama pid kuin tuodulla pelaajalla. Jos tuodun pelaajan pidiä vastaavaa pelaajaa ei ole olemassa, ei tehdä mitään.
+    /**yrittää korvata olemassa olevan pelaajan jolla sama pid kuin tuodulla pelaajalla. Jos tuodun pelaajan pidiä vastaavaa pelaajaa ei ole olemassa, luodaan uusi pelaaja.
      * @param p korvaava pelaaja
-     * @return true jos korvattava löytyi ja korvattiin, false jos tuodun pelaajan pidiä vastaavaa pelaajaa ei löytynyt
+     * @return true jos korvattava löytyi ja korvattiin, false jos luotiin uusi
      */
-    public boolean korvaa(Pelaaja p) {
+    public boolean korvaaTaiLisaa(Pelaaja p) {
         for (int i = 0; i < lkm; i++) {
             if (pelaajat[i].getPid() == p.getPid()) {
                 pelaajat[i] = p;
                 return true;
             }
         }
+        this.lisaa(p);
         return false;
     }
     

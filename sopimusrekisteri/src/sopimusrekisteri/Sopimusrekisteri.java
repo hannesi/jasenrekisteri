@@ -329,11 +329,7 @@ public class Sopimusrekisteri {
      * @param p pelaaja, joka korvaa vanhan tai joka luodaan
      */
     public void korvaaTaiLisaa(Pelaaja p) {
-        if (pelaajat.getById(p.getPid()) != null) {
-            pelaajat.korvaa(p);
-            return;
-        }
-        pelaajat.lisaa(p);
+        pelaajat.korvaaTaiLisaa(p);
     }
     
     

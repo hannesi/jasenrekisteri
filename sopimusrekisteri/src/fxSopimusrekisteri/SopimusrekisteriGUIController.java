@@ -249,8 +249,8 @@ public class SopimusrekisteriGUIController implements Initializable {
     
     private void pelaajaLisaa() {
         Pelaaja p = new Pelaaja();
+        
         p.rekisteroi();
-        p.taytaPelaaja();//TODO: Korvaa oikealla dialogilla
         sopimusrekisteri.lisaa(p);
 
         haePelaaja(p.getPid());
@@ -298,11 +298,9 @@ public class SopimusrekisteriGUIController implements Initializable {
     }
     
     private void pelaajaMuokkaa() {
-        //ModalController.showModal(SopimusrekisteriGUIController.class.getResource("PelaajaEditDialogView.fxml"), "Muokkaa pelaajaa", null, "");
         if (pKohdalla == null) return;
         Pelaaja p = PelaajaEditDialogController.kysyPelaaja(null, pKohdalla.clone());
         if (p == null) return;
-        p.tulosta(System.err);
         sopimusrekisteri.korvaaTaiLisaa(p);
         haePelaaja(p.getPid());
     }
