@@ -158,6 +158,7 @@ public class SopimusrekisteriGUIController implements Initializable {
         chooserJoukkueet.addSelectionListener(e -> naytaJoukkue());
         chooserLiigat.clear();
         chooserLiigat.addSelectionListener(e -> naytaLiiga());
+        
     }
     
     private void tallenna() {
@@ -170,15 +171,9 @@ public class SopimusrekisteriGUIController implements Initializable {
     }
     
     private void lataa() {
-        try {
-            sopimusrekisteri.lataa();
-            haeLiiga(0);
-            haeJoukkue(0);
-            haePelaaja(0);
-        } catch (SailoException e) {
-            Dialogs.showMessageDialog(e.getMessage());
-        }
-        //Dialogs.showMessageDialog("Ei osata vielä ladata!");
+       haeLiiga(0);
+       haeJoukkue(0);
+       haePelaaja(0);
     }
     
     private void sulje() {
@@ -400,7 +395,9 @@ public class SopimusrekisteriGUIController implements Initializable {
      */
     public void setSopimusrekisteri(Sopimusrekisteri sopimusrekisteri) {
         this.sopimusrekisteri = sopimusrekisteri;
-        
+        haePelaaja(-1);
+        haeJoukkue(-1);
+        haeLiiga(-1);
     }
     
 }
