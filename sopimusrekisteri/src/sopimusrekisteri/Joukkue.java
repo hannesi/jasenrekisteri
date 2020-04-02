@@ -30,7 +30,7 @@ import fi.jyu.mit.ohj2.Mjonot;
  * @version 27.2.2020
  *
  */
-public class Joukkue implements Cloneable {
+public class Joukkue implements Cloneable, Comparable<Joukkue> {
     
     private int     jid;
     private int     lid;
@@ -168,6 +168,10 @@ public class Joukkue implements Cloneable {
         return (Joukkue) super.clone();
     }
     
+    @Override
+    public int compareTo(Joukkue j) {
+        return this.getNimiPitka().compareTo(j.getNimiPitka());
+    }
     
     /**luokan testaamista
      * @param args ei käytössä

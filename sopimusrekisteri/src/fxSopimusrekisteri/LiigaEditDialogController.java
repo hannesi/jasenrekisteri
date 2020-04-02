@@ -3,6 +3,7 @@ package fxSopimusrekisteri;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import fi.jyu.mit.fxgui.Dialogs;
 import fi.jyu.mit.fxgui.ModalController;
 import fi.jyu.mit.fxgui.ModalControllerInterface;
 import javafx.fxml.FXML;
@@ -33,14 +34,19 @@ public class LiigaEditDialogController implements ModalControllerInterface<Liiga
         
     }
     
-    @FXML private void handleTallenna() { //TODO: tarkistin kokonaisluvuille
-        liiga.muokkaa(editNimi.getText(),
-                      Integer.parseInt(editPalkkaMin.getText()),
-                      Integer.parseInt(editPalkkaMax.getText()),
-                      Integer.parseInt(editKestoMax.getText()),
-                      Integer.parseInt(editMenotMin.getText()),
-                      Integer.parseInt(editMenotMax.getText()),
-                      Integer.parseInt(editLkmMax.getText()));
+    @FXML private void handleTallenna() { //TODO: tarkistin ja visuaalinen palaute kokonaislukukentille
+        try {
+            liiga.muokkaa(editNimi.getText(),
+                          Integer.parseInt(editPalkkaMin.getText()),
+                          Integer.parseInt(editPalkkaMax.getText()),
+                          Integer.parseInt(editKestoMax.getText()),
+                          Integer.parseInt(editMenotMin.getText()),
+                          Integer.parseInt(editMenotMax.getText()),
+                          Integer.parseInt(editLkmMax.getText()));
+        } catch (Exception e) {
+            Dialogs.showMessageDialog("Virheellinen syöte:\n" + e.getMessage());
+            return;
+        }
         ModalController.closeStage(editMenotMax);
     }
     

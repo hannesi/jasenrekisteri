@@ -129,6 +129,14 @@ public class Sopimus {
         this.jid = jid;
     }
     
+    /**aseta uusi arvo pelaaja-id:lle
+     * @param pid uusi pelaaja-id
+     */
+    public void setPid(int pid) {
+        this.pid = pid;
+        
+    }
+    
     /** 
      * Antaa sopimukselle sopimus-id:n (sid) ja kasvattaa seuraavaa rekisteröitävää sopimus-id:tä yhdellä.
      * @return sid
@@ -137,4 +145,22 @@ public class Sopimus {
         sid = seuraavaSid++;
         return sid;
     }
+
+
+    /**muokkaa sopimuksen tietoja pelaajaa lukuun ottamatta
+     * @param jid jid
+     * @param alku alkamisvuosi
+     * @param loppu loppumisvuosi
+     * @param palkka palkka
+     */
+    @SuppressWarnings("hiding")
+    public void muokkaa(int jid, int alku, int loppu, int palkka) {
+        this.jid = jid;
+        this.alkamisvuosi = alku;
+        this.loppumisvuosi = loppu;
+        this.palkka = palkka;     
+    }
+
+
+
 }

@@ -1,7 +1,6 @@
 package fxSopimusrekisteri;
 
 import java.net.URL;
-import java.util.Random;
 import java.util.ResourceBundle;
 
 import fi.jyu.mit.fxgui.*;
@@ -184,7 +183,7 @@ public class SopimusrekisteriGUIController implements Initializable {
     
     private void joukkueLisaa() {
         Joukkue j = new Joukkue();
-        j = JoukkueEditDialogController.kysyJoukkue(null, j, sopimusrekisteri.getKaikkiLiigat());
+        j = JoukkueEditDialogController.kysyJoukkue(null, j, sopimusrekisteri.getKaikkiLiigatSorted());
         if (j == null) return;
         j.rekisteroi();
         sopimusrekisteri.lisaa(j);
@@ -225,7 +224,7 @@ public class SopimusrekisteriGUIController implements Initializable {
     if (jKohdalla == null) return;
     Joukkue j;
     try {
-        j = JoukkueEditDialogController.kysyJoukkue(null, jKohdalla.clone(), sopimusrekisteri.getKaikkiLiigat());
+        j = JoukkueEditDialogController.kysyJoukkue(null, jKohdalla.clone(), sopimusrekisteri.getKaikkiLiigatSorted());
         if (j == null) return;
         sopimusrekisteri.korvaaTaiLisaa(j);
         haePelaaja(j.getJid());
@@ -383,14 +382,18 @@ public class SopimusrekisteriGUIController implements Initializable {
     }
     
     private void sopimusUusi() {
-        Random rand = new Random();  //TODO: temp
-        try {
-            sopimusrekisteri.lisaa(pKohdalla, jKohdalla, 1000 + rand.nextInt(10000) * 1000, 2020, 2023);
-        } catch (SailoException e) {
-            Dialogs.showMessageDialog(e.getMessage());
+        if (sopimusrekisteri.getPelaajanSopimus(pKohdalla) != null) {
+            Dialogs.showMessageDialog("Pelaajalla on jo sopimus!"); //TODO: tämä pois jos toteutetaan versio jossa voi olla useampi perättäinen sopimus tallessa
+            return;
         }
+        Sopimus s = new Sopimus();
+        s.setPid(pKohdalla.getPid());
+        s = SopimusNewDialogController.kysySopimus(null, s, sopimusrekisteri.getKaikkiJoukkueetSorted());
+        if (s == null) return;
+        s.rekisteroi();
+        sopimusrekisteri.lisaa(s);
+
         naytaPelaaja();
-        //ModalController.showModal(SopimusrekisteriGUIController.class.getResource("SopimusNewDialogView.fxml"), "Uusi sopimus", null, "");
     }
     
     private void sopimusSiirra() {

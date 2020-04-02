@@ -208,6 +208,14 @@ public class Sopimusrekisteri {
         return j;
     }
     
+
+    /**palauttaa listan kaikista joukkueista aakkosjärjestyksessä
+     * @return lista joukkueista
+     */
+    public List<Joukkue> getKaikkiJoukkueetSorted() {
+        return joukkueet.getKaikkiJoukkueetSorted();
+    }
+    
     /**Poistaa joukkueen
      * @param j poistettava joukkue
      */
@@ -260,7 +268,7 @@ public class Sopimusrekisteri {
     /**palauttaa kaikki liigat listassa aakkojärjestyksessä
      * @return lista jossa kaikki sopimusrekisterin liigat
      */
-    public List<Liiga> getKaikkiLiigat() {
+    public List<Liiga> getKaikkiLiigatSorted() {
         return liigat.getKaikkiLiigatSorted();
     }
     
@@ -284,18 +292,9 @@ public class Sopimusrekisteri {
 
 
     /**lisää uuden sopimuksen
-     * @param p pelaajaosapuoli
-     * @param j joukkueosapuoli
-     * @param palkka pelaajan palkka
-     * @param alkaa sopimuksen alkamisvuosi
-     * @param loppuu sopimuksen loppumisvuosi
-     * @throws SailoException jos pelaajalla on jo sopimus
+     * @param s sopimus
      */
-    public void lisaa(Pelaaja p, Joukkue j, int palkka, int alkaa, int loppuu) throws SailoException {
-        if (sopimukset.getByPid(p.getPid()) != null) throw new SailoException("Pelaajalla on jo sopimus!");
-        if (j == null) throw new SailoException("Valitse joukkue jonka kanssa sopimus tehdään!"); //TODO: mahdollisesti poistetaan tämä rivi kun oikea sopimuksen luominen toteutetaan
-        Sopimus s = new Sopimus(p.getPid(), j.getJid(), palkka, alkaa, loppuu);
-        s.rekisteroi();
+    public void lisaa(Sopimus s) {
         sopimukset.lisaa(s);
     }
     
@@ -340,11 +339,17 @@ public class Sopimusrekisteri {
         pelaajat.korvaaTaiLisaa(p);
     }
 
+    /**korvaa joukkueen jid perusteella. jos jid ei löydy, luo uuden joukkueen.
+     * @param j joukkue, joka korvaa vanhan tai joka luodaan
+     */
     public void korvaaTaiLisaa(Joukkue j) {
         joukkueet.korvaaTaiLisaa(j);
         
     }
     
+    /**korvaa liigan lid perusteella. jos lid ei löydy, luo uuden liigan.
+     * @param l liiga, joka korvaa vanhan tai joka luodaan
+     */
     public void korvaaTaiLisaa(Liiga l) {
         liigat.korvaaTaiLisaa(l);
     }
@@ -491,8 +496,7 @@ public class Sopimusrekisteri {
         sr.lisaa(j3);
         System.out.println("===sopimusten testaamista===");
         //System.out.println(p1.getNimi() + " pelaa joukkueessa " + sr.getPelaajanJoukkue(p1).getNimiPitka());
-        sr.lisaa(p1, j3, 1200000, 2020, 2022);
-        sr.lisaa(p3, j3, 800000, 2019, 2020);
+
 
         System.out.println(p1.getNimi() + " pelaa joukkueessa " + sr.getPelaajanJoukkue(p1).getNimiPitka());
         System.out.println(p1.getNimi() + " tienaa kaudessa " + sr.getPelaajanSopimus(p1).getPalkka());
@@ -524,10 +528,12 @@ public class Sopimusrekisteri {
         
         
         System.out.println("getKaikkiLiigat testiä");
-        List<Liiga> liigatGetattuna = sr.getKaikkiLiigat();
+        List<Liiga> liigatGetattuna = sr.getKaikkiLiigatSorted();
         for (Liiga l : liigatGetattuna) System.out.println(l.getNimi());
 
     }
+
+
 
 
 }

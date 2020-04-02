@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -140,6 +142,20 @@ public class Joukkueet {
         return false;
     }
     
+
+    /**
+     * 
+     * @return lista kaikista joukkueista aakkosjärjestyksessä (kaupunki + nimi)
+     */
+    public List<Joukkue> getKaikkiJoukkueetSorted() {
+        var sortedLista = new ArrayList<Joukkue>();
+        for (Joukkue j : joukkueet)
+            sortedLista.add(j);
+        Collections.sort(sortedLista);
+        return sortedLista;
+        
+    }
+    
     /**
      * main sisältää vain testaamista
      * @param args ei käytössä
@@ -175,6 +191,7 @@ public class Joukkueet {
         j1.tulosta(System.out);
 
     }
+
 
 
 }
