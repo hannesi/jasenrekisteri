@@ -33,6 +33,8 @@ public class SopimusNewDialogController implements ModalControllerInterface<Sopi
         
     }
     
+    
+    //TODO: sopimuksen keston ja palkan sopivuus valitun joukkueen liigan sopimussääntöihin nähden tarkistimen läpi
     @FXML private void handleTallenna() {
         try {
             sopimus.muokkaa(cbJoukkueValitsin.getSelectedObject().getJid(),

@@ -190,7 +190,15 @@ public class Liiga implements Cloneable, Comparable<Liiga> {
     public int compareTo(Liiga o) {
         return this.getNimi().compareTo(o.getNimi());
     }
-    
+
+    /**tarkistaa sopiiko palkka ja kesto liigan sopimussääntöihin
+     * @param palkka tarkistettava palkka
+     * @param kesto tarkistettava kesto
+     * @return true jos sopii
+     */
+    public boolean tarkistaPalkkaKesto(int palkka, int kesto) {
+        return kesto <= this.maxPituus && palkka <= this.maxPalkka && palkka >= this.minPalkka ? true : false;
+    }
     /**
      * Pääohjelmassa vain luokan testailua
      * @param args ei käytössä
@@ -227,5 +235,7 @@ public class Liiga implements Cloneable, Comparable<Liiga> {
         maxSopimuksia = rand.nextInt(99);
         
     }
+
+
 
 }

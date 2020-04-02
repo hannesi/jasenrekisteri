@@ -397,7 +397,11 @@ public class SopimusrekisteriGUIController implements Initializable {
     }
     
     private void sopimusSiirra() {
-        ModalController.showModal(SopimusrekisteriGUIController.class.getResource("SopimusTransferDialogView.fxml"), "Siirrä sopimus", null, "");
+        Sopimus s = sopimusrekisteri.getPelaajanSopimus(pKohdalla);
+        if (s != null)
+            SopimusTransferDialogViewController.muokkaa(null, s, sopimusrekisteri.getJoukkueetForSopimus(s));
+        
+        naytaPelaaja();
     }
 
     /**

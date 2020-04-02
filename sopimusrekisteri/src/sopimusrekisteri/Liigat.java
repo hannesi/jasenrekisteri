@@ -134,6 +134,20 @@ public class Liigat {
         throw new SailoException("Ei löydy liigaa, lid: " + lid);
     }
     
+
+    /**palauttaa listan liigoista, jotka sallivat tuodun palkan ja keston sopimussäännöissään
+     * @param palkka palkka
+     * @param kesto kesto
+     * @return lista liigoista
+     */
+    public List<Integer> getJokainenLidForSopimus(int palkka, int kesto) {
+        var palautettava = new ArrayList<Integer>();
+        for (Liiga l : liigat)
+            if (l.tarkistaPalkkaKesto(palkka, kesto))
+                palautettava.add(l.getLid());
+        return palautettava;
+    }
+    
     /**yrittää korvata olemassa olevan liigan jolla sama lid kuin tuodulla liigalla. Jos tuodun liigan lidiä vastaavaa liigaa ei ole olemassa, luodaan uusi liiga.
      * @param l korvaava liiga
      * @return true jos korvattava löytyi ja korvattiin, false jos luotiin uusi
@@ -160,5 +174,7 @@ public class Liigat {
         Collections.sort(sortedLista);
         return sortedLista;
     }
+
+
   
 }

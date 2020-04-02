@@ -118,6 +118,21 @@ public class Joukkueet {
         throw new SailoException("Ei löydy joukkuetta, jid: " + jid);
     }
     
+
+    /**palauttaa listan joukkueista joiden lid täsmää johonkin listassa olevaan lidiin
+     * @param lids haettavat lidit
+     * @return lista täsmäävistä joukkueista
+     */
+    public List<Joukkue> getJoukkueetByLids(List<Integer> lids) {
+        var palautettava = new ArrayList<Joukkue>();
+        for (Joukkue j : joukkueet)
+            for (int i : lids)
+                if (i == j.getLid())
+                    palautettava.add(j);
+        return palautettava;
+    }
+
+    
     /**Poistaa joukkueen 
      * @param j poistettava joukkue
      */

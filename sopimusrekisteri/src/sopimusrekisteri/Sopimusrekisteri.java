@@ -1,6 +1,7 @@
 package sopimusrekisteri;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -412,6 +413,27 @@ public class Sopimusrekisteri {
         return sopimukset.getJoukkueenPalkat(j.getJid());
     }
     
+
+    /**palauttaa lista joukkueista jotka pelaavat sarjoissa joiden sopimussääntöihin sopimus sopii
+     * @param s sopimus jonka kanssa yhteensopivien sarjojen joukkueet halutaan
+     * @return lista joukkueista
+     */
+    public List<Joukkue> getJoukkueetForSopimus(Sopimus s) {
+        int kesto = s.getLoppumisvuosi() - s.getAlkamisvuosi();
+        var sopivatLiigat = liigat.getJokainenLidForSopimus(s.getPalkka(), kesto);
+        var sopivatJoukkueet = getJoukkueetByLids(sopivatLiigat);
+        Collections.sort(sopivatJoukkueet);
+        return sopivatJoukkueet;
+    }
+    
+    /** palauttaa lidejä vastaavissa liigoissa pelaavat joukkueet
+     * @param lids lista lideistä
+     * @return lista joukkueista
+     */
+    public List<Joukkue> getJoukkueetByLids(List<Integer> lids) {
+        return joukkueet.getJoukkueetByLids(lids);
+    }
+    
     
     /**
      * main sisältää vain Sopimusrekisteri-luokan testaamista
@@ -532,8 +554,6 @@ public class Sopimusrekisteri {
         for (Liiga l : liigatGetattuna) System.out.println(l.getNimi());
 
     }
-
-
 
 
 }
