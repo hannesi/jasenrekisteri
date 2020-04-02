@@ -30,7 +30,7 @@ import fi.jyu.mit.ohj2.Mjonot;
  * @version 27.2.2020
  *
  */
-public class Liiga {
+public class Liiga implements Cloneable, Comparable<Liiga> {
     
     private int     lid;
     private String  nimi            = "";
@@ -180,6 +180,17 @@ public class Liiga {
         return lid;
     }
     
+    
+    @Override
+    public Liiga clone() throws CloneNotSupportedException {
+        return (Liiga) super.clone();
+    }
+    
+    @Override
+    public int compareTo(Liiga o) {
+        return this.getNimi().compareTo(o.getNimi());
+    }
+    
     /**
      * Pääohjelmassa vain luokan testailua
      * @param args ei käytössä
@@ -216,7 +227,5 @@ public class Liiga {
         maxSopimuksia = rand.nextInt(99);
         
     }
-
-    
 
 }

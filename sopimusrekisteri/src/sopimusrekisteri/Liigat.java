@@ -6,6 +6,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -130,6 +133,33 @@ public class Liigat {
             if (liigat.get(i).getLid() == lid) return liigat.get(i);
         }
         throw new SailoException("Ei löydy liigaa, lid: " + lid);
+    }
+    
+    /**yrittää korvata olemassa olevan liigan jolla sama lid kuin tuodulla liigalla. Jos tuodun liigan lidiä vastaavaa liigaa ei ole olemassa, luodaan uusi liiga.
+     * @param l korvaava liiga
+     * @return true jos korvattava löytyi ja korvattiin, false jos luotiin uusi
+     */
+    public boolean korvaaTaiLisaa(Liiga l) {
+        for (int i = 0; i < getLkm(); i++) {
+            if (liigat.get(i).getLid() == l.getLid()) {
+                liigat.set(i, l);
+                return true;
+            }
+        }
+        this.lisaa(l);
+        return false;
+    }
+
+
+    /**palauttaa aakkosjärjestyksessä olevan kopion liigat-listasta.
+     * @return liigat-lista
+     */
+    public List<Liiga> getKaikkiLiigatSorted() {
+        var sortedLista = new ArrayList<Liiga>();
+        for (Liiga l : liigat)
+            sortedLista.add(l);
+        Collections.sort(sortedLista);
+        return sortedLista;
     }
   
 }

@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sopimusrekisteri.Pelaaja;
 
-/**pelaajan tietojen muokkaamiseen käytettävä ikkuna
+/**pelaajan tietojen muokkaamiseen käytettävä ikkunan controller
  * @author hannesk
  * @version 18.3.2020
  *

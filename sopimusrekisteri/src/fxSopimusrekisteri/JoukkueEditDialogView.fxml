@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import fi.jyu.mit.fxgui.ComboBoxChooser?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
@@ -12,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fi.jyu.mit.fxgui.ModalController">
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxSopimusrekisteri.JoukkueEditDialogController">
    <left>
       <VBox prefWidth="285.0" BorderPane.alignment="CENTER">
          <children>
@@ -28,38 +29,45 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nimi" GridPane.halignment="RIGHT">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nimi" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="5.0" right="5.0" />
                      </GridPane.margin>
                   </Text>
-                  <Text layoutX="53.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kaupunki" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                  <Text layoutX="53.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kaupunki" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="5.0" right="5.0" />
                      </GridPane.margin>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Omistaja" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Omistaja" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="5.0" right="5.0" />
                      </GridPane.margin>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Yhteystieto" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Yhteystieto" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="5.0" right="5.0" />
                      </GridPane.margin>
                   </Text>
-                  <TextField maxWidth="1.7976931348623157E308" text="Coyotes" GridPane.columnIndex="1" />
-                  <TextField maxWidth="1.7976931348623157E308" text="Arizona" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField maxWidth="1.7976931348623157E308" text="Karhukopla" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField maxWidth="1.7976931348623157E308" text="176671@karhukopla.vif" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="editNimi" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="editKaupunki" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="editOmistaja" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="editYhteystieto" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Liiga" GridPane.halignment="RIGHT">
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <ComboBoxChooser fx:id="cbLiigaValitsin" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
                </children>
             </GridPane>
             <ButtonBar>
                <buttons>
-                  <Button mnemonicParsing="false" onAction="#handleDefaultCancel" text="Peruuta" />
-                  <Button mnemonicParsing="false" onAction="#handleDefaultOK" text="Tallenna" />
+                  <Button mnemonicParsing="false" onAction="#handlePeruuta" text="Peruuta" />
+                  <Button mnemonicParsing="false" onAction="#handleTallenna" text="Tallenna" />
                </buttons>
                <VBox.margin>
                   <Insets />

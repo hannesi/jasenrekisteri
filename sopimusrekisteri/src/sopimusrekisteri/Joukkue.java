@@ -30,7 +30,7 @@ import fi.jyu.mit.ohj2.Mjonot;
  * @version 27.2.2020
  *
  */
-public class Joukkue {
+public class Joukkue implements Cloneable {
     
     private int     jid;
     private int     lid;
@@ -161,6 +161,11 @@ public class Joukkue {
     public int rekisteroi() {
         jid = seuraavaJid++;
         return jid;
+    }
+    
+    @Override
+    public Joukkue clone() throws CloneNotSupportedException {
+        return (Joukkue) super.clone();
     }
     
     

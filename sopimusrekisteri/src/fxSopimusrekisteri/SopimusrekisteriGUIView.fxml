@@ -28,7 +28,6 @@
           <Menu mnemonicParsing="false" text="Tiedosto">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#handleTallenna" text="Tallenna" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleLataa" text="Avaa..." />
                   <MenuItem mnemonicParsing="false" onAction="#handleSulje" text="Sulje" />
             </items>
           </Menu>

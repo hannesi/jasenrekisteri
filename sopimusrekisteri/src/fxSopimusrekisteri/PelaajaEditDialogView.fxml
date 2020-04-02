@@ -58,8 +58,8 @@
             </GridPane>
             <ButtonBar>
               <buttons>
-                  <Button mnemonicParsing="false" onAction="#handlePeruuta" text="Peruuta" />
-                <Button mnemonicParsing="false" onAction="#handleTallenna" text="Tallenna" />
+                 <Button mnemonicParsing="false" onAction="#handlePeruuta" text="Peruuta" />
+                 <Button mnemonicParsing="false" onAction="#handleTallenna" text="Tallenna" />
               </buttons>
                <VBox.margin>
                   <Insets />

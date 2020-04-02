@@ -1,6 +1,7 @@
 package sopimusrekisteri;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -256,6 +257,13 @@ public class Sopimusrekisteri {
         return l;
     }
     
+    /**palauttaa kaikki liigat listassa aakkojärjestyksessä
+     * @return lista jossa kaikki sopimusrekisterin liigat
+     */
+    public List<Liiga> getKaikkiLiigat() {
+        return liigat.getKaikkiLiigatSorted();
+    }
+    
     /**Poistaa liigan
      * @param l poistettava liiga
      * @throws SailoException jos liigassa on vielä joukkueita
@@ -330,6 +338,15 @@ public class Sopimusrekisteri {
      */
     public void korvaaTaiLisaa(Pelaaja p) {
         pelaajat.korvaaTaiLisaa(p);
+    }
+
+    public void korvaaTaiLisaa(Joukkue j) {
+        joukkueet.korvaaTaiLisaa(j);
+        
+    }
+    
+    public void korvaaTaiLisaa(Liiga l) {
+        liigat.korvaaTaiLisaa(l);
     }
     
     
@@ -504,7 +521,13 @@ public class Sopimusrekisteri {
             sr.getPelaaja(i).tulosta(System.out);
         for (int i = 0; i < sr.getJoukkueita(); i++)
             sr.getJoukkue(i).tulosta(System.out);
+        
+        
+        System.out.println("getKaikkiLiigat testiä");
+        List<Liiga> liigatGetattuna = sr.getKaikkiLiigat();
+        for (Liiga l : liigatGetattuna) System.out.println(l.getNimi());
 
     }
+
 
 }

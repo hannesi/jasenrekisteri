@@ -122,6 +122,22 @@ public class Joukkueet {
     //TODO: kun joukkue poistetaan, poistetaan myös sopimukset, joissa se on osapuolena
     public void poista(Joukkue j) {
         joukkueet.remove(j);
+    }    
+    
+    
+    /**yrittää korvata olemassa olevan joukkueen jolla sama jid kuin tuodulla joukkueella. Jos tuodun joukkueen jidiä vastaavaa joukkuetta ei ole olemassa, luodaan uusi joukkue.
+     * @param j korvaava joukkue
+     * @return true jos korvattava löytyi ja korvattiin, false jos luotiin uusi
+     */
+    public boolean korvaaTaiLisaa(Joukkue j) {
+        for (int i = 0; i < getLkm(); i++) {
+            if (joukkueet.get(i).getJid() == j.getJid()) {
+                joukkueet.set(i, j);
+                return true;
+            }
+        }
+        this.lisaa(j);
+        return false;
     }
     
     /**
@@ -159,5 +175,6 @@ public class Joukkueet {
         j1.tulosta(System.out);
 
     }
+
 
 }

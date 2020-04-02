@@ -71,10 +71,6 @@ public class SopimusrekisteriGUIController implements Initializable {
         joukkuePoista();
     }
 
-    @FXML void handleLataa() {
-        lataa();
-    }
-
     @FXML void handlePelaajaLisaa() {
         pelaajaLisaa();
     }
@@ -170,12 +166,6 @@ public class SopimusrekisteriGUIController implements Initializable {
         //Dialogs.showMessageDialog("Ei osata vielä tallentaa!");
     }
     
-    private void lataa() {
-       haeLiiga(0);
-       haeJoukkue(0);
-       haePelaaja(0);
-    }
-    
     private void sulje() {
         Dialogs.showMessageDialog("Ei osata vielä sulkea!");
     }
@@ -194,12 +184,12 @@ public class SopimusrekisteriGUIController implements Initializable {
     
     private void joukkueLisaa() {
         Joukkue j = new Joukkue();
+        j = JoukkueEditDialogController.kysyJoukkue(null, j, sopimusrekisteri.getKaikkiLiigat());
+        if (j == null) return;
         j.rekisteroi();
-        j.taytaJoukkue();//TODO: Korvaa oikealla dialogilla
         sopimusrekisteri.lisaa(j);
 
         haeJoukkue(j.getJid());
-        //ModalController.showModal(SopimusrekisteriGUIController.class.getResource("JoukkueNewDialogView.fxml"), "Lisää joukkue", null, "");
     }
     
     //hakee joukkueet listaan
@@ -231,8 +221,17 @@ public class SopimusrekisteriGUIController implements Initializable {
         }
     
     
-    private void joukkueMuokkaa() {
-        ModalController.showModal(SopimusrekisteriGUIController.class.getResource("JoukkueEditDialogView.fxml"), "Muokkaa joukkuetta", null, "");
+    private void joukkueMuokkaa() {        
+    if (jKohdalla == null) return;
+    Joukkue j;
+    try {
+        j = JoukkueEditDialogController.kysyJoukkue(null, jKohdalla.clone(), sopimusrekisteri.getKaikkiLiigat());
+        if (j == null) return;
+        sopimusrekisteri.korvaaTaiLisaa(j);
+        haePelaaja(j.getJid());
+    } catch (CloneNotSupportedException e) {
+        //
+    }
     }
     
     private void joukkuePoista() {
@@ -316,12 +315,12 @@ public class SopimusrekisteriGUIController implements Initializable {
     
     private void liigaLisaa() {
         Liiga l = new Liiga();
+        l = LiigaEditDialogController.kysyLiiga(null, l);
+        if (l == null) return;
         l.rekisteroi();
-        l.taytaLiiga();//TODO: Korvaa oikealla dialogilla
         sopimusrekisteri.lisaa(l);
 
         haeLiiga(l.getLid());
-        //ModalController.showModal(SopimusrekisteriGUIController.class.getResource("SarjaNewDialogView.fxml"), "Lisää sarja", null, "");
     }
     
   //Näyttää valitun liigan tiedot kentissä
@@ -341,7 +340,16 @@ public class SopimusrekisteriGUIController implements Initializable {
     
     
     private void liigaMuokkaa() {
-        ModalController.showModal(SopimusrekisteriGUIController.class.getResource("SarjaEditDialogView.fxml"), "Muokkaa sarjaa", null, "");
+        if (lKohdalla == null) return;
+        Liiga l;
+        try {
+            l = LiigaEditDialogController.kysyLiiga(null, lKohdalla.clone());
+            if (l == null) return;
+            sopimusrekisteri.korvaaTaiLisaa(l);
+            haeLiiga(l.getLid());
+        } catch (CloneNotSupportedException e) {
+            //
+        }
     }
     
     //TODO: sama hoito kuin haePelaaja
