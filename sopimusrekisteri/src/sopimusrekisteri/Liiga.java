@@ -5,6 +5,7 @@ import java.io.PrintStream;
 import java.util.Random;
 
 import fi.jyu.mit.ohj2.Mjonot;
+import fi.jyu.mit.ohj2.WildChars;
 
 /**
  * |------------------------------------------------------------------------|
@@ -180,6 +181,16 @@ public class Liiga implements Cloneable, Comparable<Liiga> {
         return lid;
     }
     
+
+
+    /**kertoo täsmääkö merkkijono liigan nimeen (jokeri * ?)
+     * @param s merkkijono
+     * @return true jos täsmää
+     */
+    public boolean onkoNimeni(String s) {
+        return WildChars.onkoSamat(this.nimi, s);
+    }
+    
     
     @Override
     public Liiga clone() throws CloneNotSupportedException {
@@ -235,6 +246,7 @@ public class Liiga implements Cloneable, Comparable<Liiga> {
         maxSopimuksia = rand.nextInt(99);
         
     }
+
 
 
 

@@ -375,9 +375,10 @@ public class SopimusrekisteriGUIController implements Initializable {
     //TODO: sama hoito kuin haePelaaja
     private void haeLiiga(int lid) {
         chooserLiigat.clear();
+        var listattavatLiigat = sopimusrekisteri.getLiigalista("*" + editHakusanaLiiga.getText() + "*"); 
         int index = 0;
-        for (int i = 0; i < sopimusrekisteri.getLiigoja(); i++) {
-            Liiga l = sopimusrekisteri.getLiiga(i);
+        for (int i = 0; i < listattavatLiigat.size(); i++) {
+            Liiga l = listattavatLiigat.get(i);
             if (l.getLid() == lid) index = i;
             chooserLiigat.add(l.getNimi(), l);
         }

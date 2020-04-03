@@ -113,6 +113,20 @@ public class Liigat {
         return liigat.get(indeksi);
     }
     
+
+
+    /**palauttaa listan liigoista joiden nimi täsmää parametrina tuotuun merkkijonoon
+     * @param s hakusana
+     * @return lista liigoja
+     */
+    public List<Liiga> get(String s) {
+        var palautettava = new ArrayList<Liiga>();
+        for (Liiga l : liigat)
+            if (l.onkoNimeni(s))
+                palautettava.add(l);
+        return palautettava;
+    }
+    
     /**poistaa liigan
      * @param l poistettava liiga
      *
@@ -147,6 +161,20 @@ public class Liigat {
                 palautettava.add(l.getLid());
         return palautettava;
     }
+
+    
+
+    /**palauttaa listan lidejä joita vastaavien liigojen nimet täsmäävät hakuehtoon
+     * @param s  hakuehto
+     * @return lista lidejä kokonaislukuina
+     */
+    public List<Integer> getLids(String s) {
+        var palautettava = new ArrayList<Integer>();
+        for (Liiga l : this.get(s))
+            palautettava.add(l.getLid());
+        return palautettava;
+    }
+
     
     /**yrittää korvata olemassa olevan liigan jolla sama lid kuin tuodulla liigalla. Jos tuodun liigan lidiä vastaavaa liigaa ei ole olemassa, luodaan uusi liiga.
      * @param l korvaava liiga
@@ -174,6 +202,8 @@ public class Liigat {
         Collections.sort(sortedLista);
         return sortedLista;
     }
+
+
 
 
   

@@ -188,6 +188,23 @@ public class Joukkueet {
         
     }
     
+
+    /**palauttaa listan joukkueista joiden lid löytyy parametrina tuodusta listasta
+     * @param lidLista lista lideistä joita vastaavia joukkueita haetaan
+     * @return lista joukkueista jotka pelaavat listan lidiä edustavissa liigoissa
+     */
+    public List<Joukkue> getByLid(List<Integer> lidLista) {
+        var palautettava = new ArrayList<Joukkue>();
+        for (Joukkue j : joukkueet)
+            for (int i : lidLista)
+                if (j.getLid() == i) {
+                    palautettava.add(j);
+                    break;
+                }
+                    
+        return palautettava;
+    }
+    
     /**
      * main sisältää vain testaamista
      * @param args ei käytössä
@@ -223,5 +240,6 @@ public class Joukkueet {
         j1.tulosta(System.out);
 
     }
+
 
 }

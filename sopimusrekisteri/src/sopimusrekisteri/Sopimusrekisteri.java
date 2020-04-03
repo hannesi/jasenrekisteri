@@ -473,11 +473,25 @@ public class Sopimusrekisteri {
         case 0:
             palautettava = joukkueet.get(hakusana);
             break;
+        case 1:
+            List<Integer> lidLista = liigat.getLids(hakusana);
+            palautettava = joukkueet.getByLid(lidLista);
+            break;
         default:
             break;
         }
         Collections.sort(palautettava);
         return palautettava;
+    }
+    
+
+
+    /**liigojen haun suorittava aliohjelma
+     * @param hakusana millä hakusanalla suodatetaan
+     * @return lista hakuehdot täyttävistä liigoista
+     */
+    public List<Liiga> getLiigalista(String hakusana) {
+        return liigat.get(hakusana);
     }
 
     
@@ -601,5 +615,6 @@ public class Sopimusrekisteri {
         for (Liiga l : liigatGetattuna) System.out.println(l.getNimi());
 
     }
+
 
 }
