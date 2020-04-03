@@ -446,19 +446,18 @@ public class Sopimusrekisteri {
                 palautettava = pelaajat.get(hakusana, new ArrayList<Integer>());
                 break;
             case 1:
-                var pidLista = sopimukset.getKaikkiPid();
-                palautettava = pelaajat.get(hakusana, pidLista);
+                palautettava = pelaajat.get(hakusana, sopimukset.getKaikkiPid());
                 break;
             case 2:
-                var jidLista = joukkueet.getJids(hakusana);
-                var pidLista1 = sopimukset.getPidsByJids(jidLista);
-                palautettava = pelaajat.get(pidLista1);
+                palautettava = pelaajat.get(
+                               sopimukset.getPidsByJids(
+                               joukkueet.getJids(hakusana)));
                 break;
             case 3:
-                var lidLista = liigat.getLids(hakusana);
-                var jidLista1 = joukkueet.getJidsByLids(lidLista);
-                var pidLista2 = sopimukset.getPidsByJids(jidLista1);
-                palautettava = pelaajat.get(pidLista2);
+                palautettava = pelaajat.get(
+                               sopimukset.getPidsByJids(
+                               joukkueet.getJidsByLids(
+                               liigat.getLids(hakusana))));
                 break;
         default:
                 break;
@@ -480,8 +479,7 @@ public class Sopimusrekisteri {
             palautettava = joukkueet.get(hakusana);
             break;
         case 1:
-            List<Integer> lidLista = liigat.getLids(hakusana);
-            palautettava = joukkueet.getByLid(lidLista);
+            palautettava = joukkueet.getByLid(liigat.getLids(hakusana));
             break;
         default:
             break;
