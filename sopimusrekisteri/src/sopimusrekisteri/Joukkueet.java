@@ -205,6 +205,19 @@ public class Joukkueet {
         return palautettava;
     }
     
+
+    /**palauttaa listan hakuehtoja vastaavien joukkueiden jideistä
+     * @param hakusana hakusana
+     * @return lista jidejä
+     */
+    public List<Integer> getJids(String hakusana) {
+        var palautettava = new ArrayList<Integer>();
+        for (Joukkue j : this.get(hakusana))
+            palautettava.add(j.getJid());
+        return palautettava;
+    }
+
+    
     /**
      * main sisältää vain testaamista
      * @param args ei käytössä

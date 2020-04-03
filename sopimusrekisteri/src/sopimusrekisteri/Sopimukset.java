@@ -177,5 +177,22 @@ public class Sopimukset {
     }
 
 
+    /**palauttaa listan pelaajien pidejä joilla sopimus jonkun tuodun listan jidiä vastaavan joukkueen kanssa
+     * @param jidLista jidit joiden pelaajien pidit halutaan
+     * @return lista pidejä
+     */
+    public List<Integer> getPidsByJids(List<Integer> jidLista) {
+        var palautettava = new ArrayList<Integer>();
+        for (Sopimus s : sopimukset)
+            for (int i : jidLista) 
+                if (s.getJid() == i) {
+                    palautettava.add(s.getPid());
+                    break;
+                }
+        return palautettava;
+    }
+
+
+
 
 }

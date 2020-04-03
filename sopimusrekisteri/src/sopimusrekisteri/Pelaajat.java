@@ -176,6 +176,24 @@ public class Pelaajat {
         
     }
     
+
+
+    /**palauttaa listan pelaajista jotka vastaavat parametrina tuodun listan pidejä 
+     * @param pidLista pidit joita vastaavat pelaajat halutaan
+     * @return lista täsmäävistä pelaajista
+     */
+    public List<Pelaaja> get(List<Integer> pidLista) {
+        var palautettava = new ArrayList<Pelaaja>();
+        for (int i = 0; i < lkm; i++)
+            for (int j : pidLista)
+                if (pelaajat[i].getPid() == j) {
+                    palautettava.add(pelaajat[i]);
+                    break;
+                }
+        return palautettava;
+    }
+
+    
     /**hae pelaaja pelaaja-id:n perusteella
      * @param pid haettava pid
      * @return pelaaja jolla haettava pid

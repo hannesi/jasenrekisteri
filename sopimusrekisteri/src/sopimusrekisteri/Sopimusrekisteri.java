@@ -446,11 +446,13 @@ public class Sopimusrekisteri {
                 palautettava = pelaajat.get(hakusana, new ArrayList<Integer>());
                 break;
             case 1:
-                List<Integer> pidLista = sopimukset.getKaikkiPid();
+                var pidLista = sopimukset.getKaikkiPid();
                 palautettava = pelaajat.get(hakusana, pidLista);
                 break;
             case 2:
-                //TODO: Haku joukkueen pelaajat
+                var jidLista = joukkueet.getJids(hakusana);
+                List<Integer> pidLista1 = sopimukset.getPidsByJids(jidLista);
+                palautettava = pelaajat.get(pidLista1);
                 break;
             case 3:
                 //TODO: Haku sarjan pelaajat
