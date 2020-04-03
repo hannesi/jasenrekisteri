@@ -216,6 +216,22 @@ public class Joukkueet {
             palautettava.add(j.getJid());
         return palautettava;
     }
+    
+
+    /**palauttaa listan joukkueiden jidejä jotka vastaavat tuodun listan lidejä
+     * @param lidLista lista lidejä joita vastaavien liigojen joukkueiden jidit halutaan
+     * @return lista jidejä
+     */
+    public List<Integer> getJidsByLids(List<Integer> lidLista) {
+        var palautettava = new ArrayList<Integer>();
+        for (Joukkue j : joukkueet)
+            for (int i : lidLista)
+                if (j.getLid() == i) {
+                    palautettava.add(j.getJid());
+                    break;
+                }
+        return palautettava;
+    }
 
     
     /**
@@ -253,6 +269,7 @@ public class Joukkueet {
         j1.tulosta(System.out);
 
     }
+
 
 
 }

@@ -451,11 +451,15 @@ public class Sopimusrekisteri {
                 break;
             case 2:
                 var jidLista = joukkueet.getJids(hakusana);
-                List<Integer> pidLista1 = sopimukset.getPidsByJids(jidLista);
+                var pidLista1 = sopimukset.getPidsByJids(jidLista);
                 palautettava = pelaajat.get(pidLista1);
                 break;
             case 3:
-                //TODO: Haku sarjan pelaajat
+                var lidLista = liigat.getLids(hakusana);
+                var jidLista1 = joukkueet.getJidsByLids(lidLista);
+                var pidLista2 = sopimukset.getPidsByJids(jidLista1);
+                palautettava = pelaajat.get(pidLista2);
+                break;
         default:
                 break;
         }
