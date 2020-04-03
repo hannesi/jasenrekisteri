@@ -434,6 +434,33 @@ public class Sopimusrekisteri {
         return joukkueet.getJoukkueetByLids(lids);
     }
     
+    /**pelaajien haun suorittava aliohjelma
+     * @param hakusana millä hakusanalla suodatetaan
+     * @param hakutyyppi millä perusteella suodatetaan. 0: Pelaajan nimi (kaikki pelaajat), 1: Pelaajan nimi (sopimuksettomat), 2: Joukkueen nimi jonka kanssa pelaajalla sopimus, 3: Sarjan nimi jossa pelaavalla joukkueella sopimus pelaajan kanssa
+     * @return lista hakuehdot täyttävistä pelaajista
+     */
+    public List<Pelaaja> getPelaajalista(String hakusana, int hakutyyppi) {
+        List<Pelaaja> palautettava = null;
+        switch (hakutyyppi) {
+            case 0:
+                palautettava = pelaajat.get(hakusana, new ArrayList<Integer>());
+                break;
+            case 1:
+                List<Integer> pidLista = sopimukset.getKaikkiPid();
+                palautettava = pelaajat.get(hakusana, pidLista);
+                break;
+            case 2:
+                //TODO: Haku joukkueen pelaajat
+                break;
+            case 3:
+                //TODO: Haku sarjan pelaajat
+        default:
+                break;
+        }
+        Collections.sort(palautettava);
+        return palautettava;
+    }
+    
     
     /**
      * main sisältää vain Sopimusrekisteri-luokan testaamista
@@ -554,6 +581,9 @@ public class Sopimusrekisteri {
         for (Liiga l : liigatGetattuna) System.out.println(l.getNimi());
 
     }
+
+
+
 
 
 }

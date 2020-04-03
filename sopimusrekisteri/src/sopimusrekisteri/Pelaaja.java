@@ -5,6 +5,7 @@ import java.io.PrintStream;
 import java.util.Random;
 
 import fi.jyu.mit.ohj2.Mjonot;
+import fi.jyu.mit.ohj2.WildChars;
 
 /**
  * |------------------------------------------------------------------------|
@@ -30,7 +31,7 @@ import fi.jyu.mit.ohj2.Mjonot;
  * @version 19.2.2020
  *
  */
-public class Pelaaja implements Cloneable{
+public class Pelaaja implements Cloneable, Comparable<Pelaaja>{
     
     private int     pid;            //Pelaaja-id
     private String  sukunimi        = "";
@@ -157,11 +158,27 @@ public class Pelaaja implements Cloneable{
         return pid;
     }
     
+
+
+    /**tarkistaa täsmääkö pelaajan nimi (muodossa "sukunimi, etunimi") tuotuun merkkijonoon (jokerimerkit * ?)
+     * @param s merkkijono johon pelaajan nimeä verrataan
+     * @return true jos täsmää
+     */
+    public boolean onkoNimeni(String s) {
+        return WildChars.onkoSamat(this.getNimi(), s);
+    }
+    
     
     @Override
     public Pelaaja clone() throws CloneNotSupportedException {
         return (Pelaaja) super.clone();
     }
+
+    @Override
+    public int compareTo(Pelaaja o) {
+        return this.getNimi().compareTo(o.getNimi());
+    }
+
     
     
     /**
@@ -197,5 +214,7 @@ public class Pelaaja implements Cloneable{
         kansallisuus = "Yhdysvallat";
         
     }
+
+
 
 }

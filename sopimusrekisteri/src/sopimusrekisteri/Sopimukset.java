@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ListIterator;
 import java.util.Scanner;
 
@@ -112,6 +113,17 @@ public class Sopimukset {
         }
     }
     
+    
+    /**palauttaa kaikkien sopimusten pid:it kokonaislukuina
+     * @return lista pideistä
+     */
+    public List<Integer> getKaikkiPid() {
+        var palautettava = new ArrayList<Integer>();
+        for (Sopimus s : sopimukset)
+            palautettava.add(s.getPid());
+        return palautettava;
+    }
+    
 
     //===============================================================================================
     //Tämän alapuolella hakuun liittyviä aliohjelmia
@@ -163,5 +175,7 @@ public class Sopimukset {
                 laskuri += s.getPalkka();
         return laskuri;
     }
+
+
 
 }

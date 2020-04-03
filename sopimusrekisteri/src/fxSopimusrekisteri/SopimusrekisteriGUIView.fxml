@@ -69,9 +69,9 @@
                                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
-                                                <ComboBoxChooser maxWidth="1.7976931348623157E308" rivit="Pelaaja (kaikki)&#10;Pelaaja (vapaat agentit)&#10;Joukkue&#10;Sarja" GridPane.columnIndex="1" />
-                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hakuehto" GridPane.halignment="RIGHT">
+                                                <ComboBoxChooser fx:id="cbHakuvalitsinPelaaja" maxWidth="1.7976931348623157E308" onAction="#handleHaePelaaja" rivit="Pelaaja (kaikki)&#10;Pelaaja (vapaat agentit)&#10;Joukkue&#10;Sarja" GridPane.columnIndex="1" />
+                                                <TextField fx:id="editHakusanaPelaaja" maxWidth="1.7976931348623157E308" onKeyTyped="#handleHaePelaaja" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hae" GridPane.halignment="RIGHT">
                                                    <GridPane.margin>
                                                       <Insets left="5.0" right="5.0" />
                                                    </GridPane.margin>
@@ -218,7 +218,7 @@
                      </children></AnchorPane>
             </content>
           </Tab>
-          <Tab onSelectionChanged="#handleTabJoukkue" text="Joukkue">
+          <Tab fx:id="cbHakuvalitsinJoukkue" onSelectionChanged="#handleTabJoukkue" text="Joukkue">
             <content>
               <AnchorPane>
                      <children>
@@ -239,9 +239,9 @@
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                              <children>
-                                                <ComboBoxChooser maxWidth="1.7976931348623157E308" rivit="Joukkue&#10;Sarja" GridPane.columnIndex="1" />
-                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hakuehto" GridPane.halignment="RIGHT">
+                                                <ComboBoxChooser fx:id="cgHakutermiJoukkue" maxWidth="1.7976931348623157E308" onAction="#handleHaeJoukkue" rivit="Joukkue&#10;Sarja" GridPane.columnIndex="1" />
+                                                <TextField fx:id="editHakusanaJoukkue" maxWidth="1.7976931348623157E308" onKeyTyped="#handleHaeJoukkue" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hae" GridPane.halignment="RIGHT">
                                                    <GridPane.margin>
                                                       <Insets left="5.0" right="5.0" />
                                                    </GridPane.margin>
@@ -392,8 +392,8 @@
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                              <children>
-                                                <TextField maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hakusana" GridPane.halignment="RIGHT">
+                                                <TextField fx:id="editHakusanaLiiga" maxWidth="1.7976931348623157E308" onKeyTyped="#handleHaeLiiga" GridPane.columnIndex="1" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hae" GridPane.halignment="RIGHT">
                                                    <GridPane.margin>
                                                       <Insets left="5.0" right="5.0" />
                                                    </GridPane.margin>

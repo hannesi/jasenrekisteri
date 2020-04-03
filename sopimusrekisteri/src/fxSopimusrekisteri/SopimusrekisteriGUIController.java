@@ -19,8 +19,6 @@ public class SopimusrekisteriGUIController implements Initializable {
     
     //Pelaaja-tabi
     @FXML ListChooser<Pelaaja> chooserPelaajat;
-    @FXML ListChooser<Joukkue> chooserJoukkueet;
-    @FXML ListChooser<Liiga> chooserLiigat;
     @FXML TextField pTextfieldSukunimi;
     @FXML TextField pTextfieldEtunimi;
     @FXML TextField pTextfieldSyntymaaika;
@@ -29,7 +27,9 @@ public class SopimusrekisteriGUIController implements Initializable {
     @FXML TextField pTextfieldSopimusAlku;
     @FXML TextField pTextfieldSopimusLoppu;
     @FXML TextField pTextfieldPalkka;
-    
+
+    //Joukkue-tabi
+    @FXML ListChooser<Joukkue> chooserJoukkueet;
     @FXML TextField jTextfieldNimi;
     @FXML TextField jTextfieldKaupunki;
     @FXML TextField jTextfieldOmistaja;
@@ -37,7 +37,9 @@ public class SopimusrekisteriGUIController implements Initializable {
     @FXML TextField jTextfieldSopimuksia;
     @FXML TextField jTextfieldPalkat;
     @FXML TextField jTextfieldSarja;
-    
+
+    //Liiga-tabi
+    @FXML ListChooser<Liiga> chooserLiigat;
     @FXML TextField lTextfieldNimi;
     @FXML TextField lTextfieldMinPalkka;
     @FXML TextField lTextfieldMaxPalkka;
@@ -46,6 +48,12 @@ public class SopimusrekisteriGUIController implements Initializable {
     @FXML TextField lTextfieldLattia;
     @FXML TextField lTextfieldKatto;
     
+    //hakuvärmeet
+    @FXML TextField editHakusanaPelaaja;
+    @FXML TextField editHakusanaJoukkue;
+    @FXML TextField editHakusanaLiiga;
+    @FXML ComboBoxChooser<String> cbHakuvalitsinPelaaja;
+    @FXML ComboBoxChooser<String> cbHakuvalitsiJoukkue;
     
     
     
@@ -133,6 +141,18 @@ public class SopimusrekisteriGUIController implements Initializable {
 
     @FXML void handleTabLiiga() {
         naytaLiiga();
+    }
+    
+    @FXML void handleHaePelaaja() {
+        haePelaaja(-1);
+    }
+    
+    @FXML void handleHaeJoukkue() {
+        haeJoukkue(-1);
+    }
+    
+    @FXML void handleHaeLiiga() {
+        haeLiiga(-1);
     }
     
     
@@ -252,13 +272,13 @@ public class SopimusrekisteriGUIController implements Initializable {
         haePelaaja(p.getPid());
     }
     
-    //mikähän pointti pidin perusteella hakemisessa oli olevinaan?
-    //TODO: korvaa päivitä-metodilla jolle tuodaan lista listattavista pelaajista parametrina(?)
+    
     private void haePelaaja(int pid) {
         chooserPelaajat.clear();
+        var listattavatPelaajat = sopimusrekisteri.getPelaajalista("*" + editHakusanaPelaaja.getText() + "*", cbHakuvalitsinPelaaja.getSelectedIndex()); 
         int index = 0;
-        for (int i = 0; i < sopimusrekisteri.getPelaajia(); i++) {
-            Pelaaja p = sopimusrekisteri.getPelaaja(i);
+        for (int i = 0; i < listattavatPelaajat.size(); i++) {
+            Pelaaja p = listattavatPelaajat.get(i);
             if (p.getPid() == pid) index = i;
             chooserPelaajat.add(p.getNimi(), p);
         }

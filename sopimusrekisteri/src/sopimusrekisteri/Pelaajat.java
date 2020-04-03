@@ -1,6 +1,8 @@
 package sopimusrekisteri;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -158,6 +160,20 @@ public class Pelaajat {
     public Pelaaja get(int i) throws IndexOutOfBoundsException {
         if (i < 0 || lkm <= i) throw new IndexOutOfBoundsException("Laiton indeksi:" + i);
         return pelaajat[i];
+    }
+    
+    /**palauttaa listan pelaajia joiden nimi täsmää hakuehtoon
+     * @param s hakuehto
+     * @param pidLista pid-lista, johon täsmäävät pelaajat jätetään pois tuloksista
+     * @return lista täsmääviä pelaajia
+     */
+    public List<Pelaaja> get(String s, List<Integer> pidLista) {
+        var palautettava = new ArrayList<Pelaaja>();
+        for (int i = 0; i < lkm; i++)
+            if (pelaajat[i].onkoNimeni(s) && !pidLista.contains(pelaajat[i].getPid()))
+                palautettava.add(pelaajat[i]);
+        return palautettava;
+        
     }
     
     /**hae pelaaja pelaaja-id:n perusteella
