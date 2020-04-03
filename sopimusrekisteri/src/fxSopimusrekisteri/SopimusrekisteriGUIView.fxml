@@ -218,7 +218,7 @@
                      </children></AnchorPane>
             </content>
           </Tab>
-          <Tab fx:id="cbHakuvalitsinJoukkue" onSelectionChanged="#handleTabJoukkue" text="Joukkue">
+          <Tab onSelectionChanged="#handleTabJoukkue" text="Joukkue">
             <content>
               <AnchorPane>
                      <children>
@@ -239,7 +239,7 @@
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                              <children>
-                                                <ComboBoxChooser fx:id="cgHakutermiJoukkue" maxWidth="1.7976931348623157E308" onAction="#handleHaeJoukkue" rivit="Joukkue&#10;Sarja" GridPane.columnIndex="1" />
+                                                <ComboBoxChooser fx:id="cbHakuvalitsinJoukkue" maxWidth="1.7976931348623157E308" onAction="#handleHaeJoukkue" rivit="Joukkue&#10;Sarja" GridPane.columnIndex="1" />
                                                 <TextField fx:id="editHakusanaJoukkue" maxWidth="1.7976931348623157E308" onKeyTyped="#handleHaeJoukkue" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hae" GridPane.halignment="RIGHT">
                                                    <GridPane.margin>

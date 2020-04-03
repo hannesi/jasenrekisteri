@@ -5,6 +5,7 @@ import java.io.PrintStream;
 import java.util.Random;
 
 import fi.jyu.mit.ohj2.Mjonot;
+import fi.jyu.mit.ohj2.WildChars;
 
 /**
  * |------------------------------------------------------------------------|
@@ -163,6 +164,15 @@ public class Joukkue implements Cloneable, Comparable<Joukkue> {
         return jid;
     }
     
+
+    /**kertoo täsmääkö joukkueen nimi tuotuun merkkijonoon (jokerimerkillä * ?)
+     * @param s maski
+     * @return true jos täsmää
+     */
+    public boolean onkoNimeni(String s) {
+        return WildChars.onkoSamat(this.getNimiPitka(), s);
+    }
+    
     @Override
     public Joukkue clone() throws CloneNotSupportedException {
         return (Joukkue) super.clone();
@@ -204,5 +214,6 @@ public class Joukkue implements Cloneable, Comparable<Joukkue> {
         Random rand = new Random();
         yhteystieto = Integer.toString(rand.nextInt(9999)) + "@email.vif";        
     }
+
 
 }

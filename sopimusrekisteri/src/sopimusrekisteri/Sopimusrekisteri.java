@@ -461,6 +461,26 @@ public class Sopimusrekisteri {
         return palautettava;
     }
     
+
+    /**joukkueiden haun suorittava aliohjelma
+     * @param hakusana millä hakusanalla suodatetaan
+     * @param hakutyyppi millä perusteella suodatetaan. 0: joukkueen nimi, 1: sarjan nimi jossa pelaavat joukkueet halutaan
+     * @return lista hakuehdot täyttävistä joukkueista
+     */
+    public List<Joukkue> getJoukkuelista(String hakusana, int hakutyyppi) {
+        List<Joukkue> palautettava = null;
+        switch (hakutyyppi) {
+        case 0:
+            palautettava = joukkueet.get(hakusana);
+            break;
+        default:
+            break;
+        }
+        Collections.sort(palautettava);
+        return palautettava;
+    }
+
+    
     
     /**
      * main sisältää vain Sopimusrekisteri-luokan testaamista
@@ -581,9 +601,5 @@ public class Sopimusrekisteri {
         for (Liiga l : liigatGetattuna) System.out.println(l.getNimi());
 
     }
-
-
-
-
 
 }

@@ -53,7 +53,7 @@ public class SopimusrekisteriGUIController implements Initializable {
     @FXML TextField editHakusanaJoukkue;
     @FXML TextField editHakusanaLiiga;
     @FXML ComboBoxChooser<String> cbHakuvalitsinPelaaja;
-    @FXML ComboBoxChooser<String> cbHakuvalitsiJoukkue;
+    @FXML ComboBoxChooser<String> cbHakuvalitsinJoukkue;
     
     
     
@@ -215,9 +215,10 @@ public class SopimusrekisteriGUIController implements Initializable {
     //TODO: tämä korvataan samoin kuin haePelaaja
     private void haeJoukkue(int jid) {
         chooserJoukkueet.clear();
+        var listattavatJoukkueet = sopimusrekisteri.getJoukkuelista("*" + editHakusanaJoukkue.getText() + "*", cbHakuvalitsinJoukkue.getSelectedIndex()); 
         int index = 0;
-        for (int i = 0; i < sopimusrekisteri.getJoukkueita(); i++) {
-            Joukkue j = sopimusrekisteri.getJoukkue(i);
+        for (int i = 0; i < listattavatJoukkueet.size(); i++) {
+            Joukkue j = listattavatJoukkueet.get(i);
             if (j.getJid() == jid) index = i;
             chooserJoukkueet.add(j.getNimiPitka(), j);
         }

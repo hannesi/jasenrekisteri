@@ -106,6 +106,23 @@ public class Joukkueet {
         return joukkueet.get(indeksi);
     }
     
+    
+    /**palauttaa listan joukkueista joiden nimi täsmää tuodun hakusanan kanssa
+     * @param s hakusana
+     * @return lista täsmääviä joukkueita
+     */
+    public List<Joukkue> get(String s) {
+        var palautettava = new ArrayList<Joukkue>();
+        for (Joukkue j : joukkueet)
+            if (j.onkoNimeni(s))
+                palautettava.add(j);
+        return palautettava;
+                
+    }
+
+
+
+    
     /**hae joukkue joukkue-id:n perusteella
      * @param jid haettava jid
      * @return joukkue jolla haettava jid
@@ -206,7 +223,5 @@ public class Joukkueet {
         j1.tulosta(System.out);
 
     }
-
-
 
 }
