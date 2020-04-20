@@ -165,7 +165,7 @@ public class SopimusrekisteriGUIController implements Initializable {
     private Liiga               lKohdalla;
     
     
-    //TODO: selvitä miksei listassa näy pelaajia, joukkueita, liigoja avatessa
+    // alustaa chooserit ja lisää kuuntelijat
     private void alusta() {
         chooserPelaajat.clear();
         chooserPelaajat.addSelectionListener(e -> naytaPelaaja());
@@ -176,6 +176,7 @@ public class SopimusrekisteriGUIController implements Initializable {
         
     }
     
+    //tallentaa pelaajat, joukkueet, liigat ja sopimukset
     private void tallenna() {
         try {
             sopimusrekisteri.tallenna();
@@ -185,22 +186,32 @@ public class SopimusrekisteriGUIController implements Initializable {
         //Dialogs.showMessageDialog("Ei osata vielä tallentaa!");
     }
     
+    //sulkee ohjelman
     private void sulje() {
         Dialogs.showMessageDialog("Ei osata vielä sulkea!");
     }
     
+    
+    //tarkistaa joukkueet ja näyttää tulokset uudessa ikkunassa
     private void tarkistaJoukkueet() {
-        Dialogs.showMessageDialog("Ei osata vielä tarkistaa joukkueita!");
+        try {
+            TarkistusController.tarkista(sopimusrekisteri.tarkistaJoukkueet());
+        } catch (SailoException e) {
+            Dialogs.showMessageDialog(e.getMessage());
+        }
     }
     
+    //näyttää apustuksen
     private void apua() {
         Dialogs.showMessageDialog("Ei osata vielä auttaa!");
     }
     
+    //näyttää tietoja ohjelmasta
     private void tietoja() {
         Dialogs.showMessageDialog("Sopimusrekisteri\n\nHannes Koivusipilä");
     }
     
+    //avaa dialogin joukkueen lisäämiseksi
     private void joukkueLisaa() {
         Joukkue j = new Joukkue();
         j = JoukkueEditDialogController.kysyJoukkue(null, j, sopimusrekisteri.getKaikkiLiigatSorted());
@@ -211,8 +222,7 @@ public class SopimusrekisteriGUIController implements Initializable {
         haeJoukkue(j.getJid());
     }
     
-    //hakee joukkueet listaan
-    //TODO: tämä korvataan samoin kuin haePelaaja
+    //hakee joukkueet chooseriin
     private void haeJoukkue(int jid) {
         chooserJoukkueet.clear();
         var listattavatJoukkueet = sopimusrekisteri.getJoukkuelista("*" + editHakusanaJoukkue.getText() + "*", cbHakuvalitsinJoukkue.getSelectedIndex()); 
@@ -240,7 +250,7 @@ public class SopimusrekisteriGUIController implements Initializable {
         jTextfieldPalkat.setText(Integer.toString(sopimusrekisteri.getJoukkueenPalkat(jKohdalla)));
         }
     
-    
+    //avaa dialogin jossa muokataan joukkueen tietoja
     private void joukkueMuokkaa() {        
     if (jKohdalla == null) return;
     Joukkue j;
@@ -248,12 +258,13 @@ public class SopimusrekisteriGUIController implements Initializable {
         j = JoukkueEditDialogController.kysyJoukkue(null, jKohdalla.clone(), sopimusrekisteri.getKaikkiLiigatSorted());
         if (j == null) return;
         sopimusrekisteri.korvaaTaiLisaa(j);
-        haePelaaja(j.getJid());
+        haeJoukkue(j.getJid());
     } catch (CloneNotSupportedException e) {
         //
     }
     }
     
+    //poistaa joukkueen TODO: vois lisätä confirmation-hommelin
     private void joukkuePoista() {
         jKohdalla = chooserJoukkueet.getSelectedObject();
         if (jKohdalla == null) return;
@@ -262,7 +273,7 @@ public class SopimusrekisteriGUIController implements Initializable {
         //ModalController.showModal(SopimusrekisteriGUIController.class.getResource("JoukkueRemoveDialogView.fxml"), "Poista joukkue", null, "");
     }
     
-    
+    //avaa dialogin jossa annetaan uuden pelaajan tiedot
     private void pelaajaLisaa() {
         Pelaaja p = new Pelaaja();
         p = PelaajaEditDialogController.kysyPelaaja(null, p);
@@ -273,7 +284,7 @@ public class SopimusrekisteriGUIController implements Initializable {
         haePelaaja(p.getPid());
     }
     
-    
+    //hakee pelaajat chooseriin
     private void haePelaaja(int pid) {
         chooserPelaajat.clear();
         var listattavatPelaajat = sopimusrekisteri.getPelaajalista("*" + editHakusanaPelaaja.getText() + "*", cbHakuvalitsinPelaaja.getSelectedIndex()); 
@@ -313,6 +324,7 @@ public class SopimusrekisteriGUIController implements Initializable {
         
     }
     
+    //avaa dialogin jossa voi muokata pelaajan tietoja
     private void pelaajaMuokkaa() {
         if (pKohdalla == null) return;
         Pelaaja p;
@@ -326,6 +338,8 @@ public class SopimusrekisteriGUIController implements Initializable {
         }
     }
     
+    
+    //poistaa pelaajan
     private void pelaajaPoista() {
         if (pKohdalla == null) return;
         sopimusrekisteri.poista(pKohdalla);
@@ -333,6 +347,7 @@ public class SopimusrekisteriGUIController implements Initializable {
         //ModalController.showModal(SopimusrekisteriGUIController.class.getResource("PelaajaRemoveDialogView.fxml"), "Poista pelaaja", null, "");
     }
     
+    //avaa dialogin jossa syötetään uuden liigan tiedot
     private void liigaLisaa() {
         Liiga l = new Liiga();
         l = LiigaEditDialogController.kysyLiiga(null, l);
@@ -358,7 +373,7 @@ public class SopimusrekisteriGUIController implements Initializable {
     }
     
     
-    
+    //avaa dialogin jossa voi muokata liigan tietoja
     private void liigaMuokkaa() {
         if (lKohdalla == null) return;
         Liiga l;
@@ -372,7 +387,7 @@ public class SopimusrekisteriGUIController implements Initializable {
         }
     }
     
-    //TODO: sama hoito kuin haePelaaja
+    //hakee liigat chooseriin
     private void haeLiiga(int lid) {
         chooserLiigat.clear();
         var listattavatLiigat = sopimusrekisteri.getLiigalista("*" + editHakusanaLiiga.getText() + "*"); 
@@ -386,6 +401,7 @@ public class SopimusrekisteriGUIController implements Initializable {
         naytaLiiga();
     }
     
+    //poistaa liigan
     private void liigaPoista() {
         if (lKohdalla == null) return;
         try {
@@ -397,12 +413,14 @@ public class SopimusrekisteriGUIController implements Initializable {
         //ModalController.showModal(SopimusrekisteriGUIController.class.getResource("SarjaRemoveDialogView.fxml"), "Poista sarja", null, "");
     }
     
+    //poistaa sopimuksen
     private void sopimusPoista() {
         sopimusrekisteri.poista(sopimusrekisteri.getPelaajanSopimus(pKohdalla));
         naytaPelaaja();
         //ModalController.showModal(SopimusrekisteriGUIController.class.getResource("SopimusRemoveDialogView.fxml"), "Poista sopimus", null, "");
     }
     
+    //avaa dialogin jossa luodaan uusi sopimus
     private void sopimusUusi() {
         if (sopimusrekisteri.getPelaajanSopimus(pKohdalla) != null) {
             Dialogs.showMessageDialog("Pelaajalla on jo sopimus!"); //TODO: tämä pois jos toteutetaan versio jossa voi olla useampi perättäinen sopimus tallessa
@@ -418,6 +436,7 @@ public class SopimusrekisteriGUIController implements Initializable {
         naytaPelaaja();
     }
     
+    //avaa dialogin jossa sopimus voidaan siirtää toiseen joukkueeseen
     private void sopimusSiirra() {
         Sopimus s = sopimusrekisteri.getPelaajanSopimus(pKohdalla);
         if (s != null)

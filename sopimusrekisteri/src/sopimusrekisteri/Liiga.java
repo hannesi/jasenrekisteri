@@ -210,6 +210,24 @@ public class Liiga implements Cloneable, Comparable<Liiga> {
     public boolean tarkistaPalkkaKesto(int palkka, int kesto) {
         return kesto <= this.maxPituus && palkka <= this.maxPalkka && palkka >= this.minPalkka ? true : false;
     }
+    
+    /**vertaa parametrina tuotuja tietoja liigan sallimiin ja palauttaa merkkijonon valituksen aiheista
+     * @param joukkueenPalkat joukkueen palkat
+     * @param joukkueenPelaajatLkm joukkueen pelaajien lkm
+     * @return merkkijono valituksia
+     */
+    public String tarkistaJoukkue(int joukkueenPalkat, int joukkueenPelaajatLkm) {
+        var palautettava = new StringBuilder();
+        if (joukkueenPalkat > palkkakatto)
+            palautettava.append(" Liian suuret palkkamenot.");
+        else if (joukkueenPalkat < palkkalattia)
+            palautettava.append(" Liian pienet palkkamenot.");
+        if (joukkueenPelaajatLkm > maxSopimuksia)
+            palautettava.append(" Liikaa sopimuksia.");
+        return palautettava.toString();
+    }
+    
+    
     /**
      * Pääohjelmassa vain luokan testailua
      * @param args ei käytössä
@@ -246,6 +264,7 @@ public class Liiga implements Cloneable, Comparable<Liiga> {
         maxSopimuksia = rand.nextInt(99);
         
     }
+
 
 
 

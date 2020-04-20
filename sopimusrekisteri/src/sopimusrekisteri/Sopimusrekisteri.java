@@ -497,6 +497,25 @@ public class Sopimusrekisteri {
     public List<Liiga> getLiigalista(String hakusana) {
         return liigat.get(hakusana);
     }
+    
+
+
+    /**tarkistaa joukkueet ja palauttaa rivitetyn merkkijonon huomautuksista
+     * @return merkkijono huomautuksista
+     * @throws SailoException jos jotain menee mönkään
+     */
+    public String tarkistaJoukkueet() throws SailoException {
+        var palautettava = new StringBuilder();
+        for (int i = 0; i < joukkueet.getLkm(); i++) {
+            Joukkue j = joukkueet.get(i);
+            String apuJono = liigat.getById(j.getLid()).tarkistaJoukkue(
+                                                        sopimukset.getJoukkueenPalkat(j.getJid()),
+                                                        sopimukset.getJoukkueenPelaajatLkm(j.getJid())); //TODO: tätä vois siistiä aika paljonki
+            if (!apuJono.equals(""))
+                palautettava.append(j.getNimiPitka() + ": " + apuJono + "\n");
+        }
+        return palautettava.toString();
+    }
 
     
     
@@ -619,6 +638,7 @@ public class Sopimusrekisteri {
         for (Liiga l : liigatGetattuna) System.out.println(l.getNimi());
 
     }
+
 
 
 }

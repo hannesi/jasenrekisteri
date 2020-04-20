@@ -70,8 +70,16 @@ public class JoukkueEditDialogController implements ModalControllerInterface<Jou
     private void nayta(Joukkue j) {
         if (j==null) return;
 
-        for (Liiga l : liigat)
+        int indeksi = 0;
+        int valinta = 0;
+        for (Liiga l : liigat) {
             cbLiigaValitsin.add(l.getNimi(), l);
+            if (l.getLid() == j.getLid())
+                valinta = indeksi;
+            indeksi++;
+        }
+        cbLiigaValitsin.setSelectedIndex(valinta);
+        
         editNimi.setText(j.getNimi());
         editKaupunki.setText(j.getKaupunki());
         editOmistaja.setText(j.getOmistaja());

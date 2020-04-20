@@ -42,30 +42,92 @@ public class Joukkueet {
     
     
     /**tallentaa joukkueet tiedostoon
+     * @param kohde tiedoston polku
      * @throws SailoException jos tiedostoa ei löydy
+     * @example
+     * <pre name="test">
+     * #import java.io.File;
+     * #import java.util.Scanner;
+     * #import java.io.FileInputStream;
+     *  File f = new File("./test/joukkueet.dat");
+     *  Joukkueet joukkueet = new Joukkueet();
+     *  Joukkue j1 = new Joukkue();
+     *  Joukkue j2 = new Joukkue();
+     *  j1.muokkaa("a", "b", "c", "d", 0);
+     *  j2.muokkaa("h", "i", "j", "k", 4);
+     *  j1.rekisteroi();
+     *  j2.rekisteroi();
+     *  joukkueet.lisaa(j1);
+     *  joukkueet.lisaa(j2);
+     *  
+     *  //testataan joukkueiden tallentaminen tiedostoon
+     *  
+     *  try {
+     *   joukkueet.tallenna("./test/joukkueet.dat"); 
+     *   } catch (Exception e){ 
+     *   // 
+     *   }
+     *   
+     *   //tiedoston sisällön testaaminen
+     *   
+     *   try(Scanner fi = new Scanner(new FileInputStream(f))){
+     *   fi.nextLine() === "0|0|a|b|c|d";
+     *   fi.nextLine() === "1|4|h|i|j|k";
+     *   fi.hasNext() === false; 
+     *   } catch (Exception e) {
+     *   //
+     *   }
+     *   
+     *   Joukkueet joukkueetLadattu = new Joukkueet();
+     *   try{
+     *   joukkueetLadattu.lataa("./test/joukkueet.dat");
+     *   } catch (Exception e) {
+     *   //
+     *   }
+     *   joukkueetLadattu.getLkm() === 2;
+     *   joukkueetLadattu.get(1).getJid() === 1;
+     *   joukkueetLadattu.get(0).getNimi() === "a";
+     *          
+     *  f.delete();
+     * </pre>
      */
-    public void tallenna() throws SailoException {
-        try(PrintStream fo = new PrintStream(new FileOutputStream(tiedostonNimi))){
+    public void tallenna(String kohde) throws SailoException {
+        try(PrintStream fo = new PrintStream(new FileOutputStream(kohde))){
             for (Joukkue j : joukkueet)
                 j.tallenna(fo);
         } catch (FileNotFoundException e) {
-            throw new SailoException("Tiedostoa " + tiedostonNimi + " ei löydy!");
+            throw new SailoException("Tiedostoa " + kohde + " ei löydy!");
         }
     }
     
-    /**lataa joukkueet tiedostosta
+    /**tallentaa joukkueet tiedostoon
      * @throws SailoException jos tiedostoa ei löydy
      */
-    public void lataa() throws SailoException {
-        try(Scanner fi = new Scanner(new FileInputStream(new File(tiedostonNimi)))){
+    public void tallenna() throws SailoException {
+        tallenna(tiedostonNimi);
+    }
+    
+    /**lataa joukkueet tiedostosta
+     * @param kohde mistä ladataan
+     * @throws SailoException jos tiedostoa ei löydy
+     */
+    public void lataa(String kohde) throws SailoException {
+        try(Scanner fi = new Scanner(new FileInputStream(new File(kohde)))){
             while (fi.hasNext()) {
                 Joukkue j = new Joukkue();
                 j.parse(fi.nextLine());
                 lisaa(j);
             }
         } catch (FileNotFoundException e) {
-            throw new SailoException("Tiedostoa " + tiedostonNimi + " ei löydy!");
+            throw new SailoException("Tiedostoa " + kohde + " ei löydy!");
         }
+    }
+    
+    /**lataa joukkueet tiedostosta
+     * @throws SailoException jos tieodostoa ei löydy
+     */
+    public void lataa() throws SailoException {
+        lataa(tiedostonNimi);
     }
     
     
@@ -239,6 +301,10 @@ public class Joukkueet {
      * @param args ei käytössä
      */
     public static void main(String[] args) {
+
+        
+        
+        
         Joukkueet joukkueet = new Joukkueet();
         var j1 = new Joukkue();
         var j2 = new Joukkue();
