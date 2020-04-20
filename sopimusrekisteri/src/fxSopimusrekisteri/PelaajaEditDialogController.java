@@ -3,11 +3,13 @@ package fxSopimusrekisteri;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import fi.jyu.mit.fxgui.Dialogs;
 import fi.jyu.mit.fxgui.ModalController;
 import fi.jyu.mit.fxgui.ModalControllerInterface;
 import javafx.fxml.*;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import misc.Tarkistimet;
 import sopimusrekisteri.Pelaaja;
 
 /**pelaajan tietojen muokkaamiseen käytettävä ikkunan controller
@@ -31,9 +33,13 @@ public class PelaajaEditDialogController implements ModalControllerInterface<Pel
     
     //TODO: tarkistin syntymäaikaan
     @FXML private void handleTallenna() {
+        if (!Tarkistimet.onkoPvm(editSyntymaaika.getText())) {
+            Dialogs.showMessageDialog("Syntymäaika ei ole kelvollinen päivämäärä! Käytä muotoa 01.01.2020");
+            return;
+        }
         pelaaja.muokkaa(editSukunimi.getText(), 
                         editEtunimi.getText(), 
-                        editSyntymaaika.getText(), 
+                        Tarkistimet.muotoiltuPvm(editSyntymaaika.getText()), 
                         editKansallisuus.getText());
         ModalController.closeStage(editEtunimi);
     }
@@ -41,6 +47,11 @@ public class PelaajaEditDialogController implements ModalControllerInterface<Pel
     @FXML private void handlePeruuta() {
         pelaaja = null;
         ModalController.closeStage(editEtunimi);
+    }
+    
+    @FXML private void handleSyntymaaikaChanged() {
+        if (Tarkistimet.onkoPvm(editSyntymaaika.getText())) editSyntymaaika.setStyle("");
+        else editSyntymaaika.setStyle("-fx-background-color: red");
     }
     
     //==========================================================================================================================

@@ -52,7 +52,7 @@
                   </Text>
                   <TextField fx:id="editEtunimi" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
                   <TextField fx:id="editSukunimi" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="editSyntymaaika" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="editSyntymaaika" maxWidth="1.7976931348623157E308" onKeyTyped="#handleSyntymaaikaChanged" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField fx:id="editKansallisuus" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
             </GridPane>

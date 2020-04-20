@@ -35,17 +35,20 @@ public class JoukkueetTest {
     try {
     joukkueet.tallenna("./test/joukkueet.dat"); 
     } catch (Exception e){
+        //
     }
     try(Scanner fi = new Scanner(new FileInputStream(f))){
     assertEquals("From: Joukkueet line: 74", "0|0|a|b|c|d", fi.nextLine()); 
     assertEquals("From: Joukkueet line: 75", "1|4|h|i|j|k", fi.nextLine()); 
     assertEquals("From: Joukkueet line: 76", false, fi.hasNext()); 
     } catch (Exception e) {
+        //
     }
     Joukkueet joukkueetLadattu = new Joukkueet(); 
     try{
     joukkueetLadattu.lataa("./test/joukkueet.dat"); 
     } catch (Exception e) {
+        //
     }
     assertEquals("From: Joukkueet line: 87", 2, joukkueetLadattu.getLkm()); 
     assertEquals("From: Joukkueet line: 88", 1, joukkueetLadattu.get(1).getJid()); 
