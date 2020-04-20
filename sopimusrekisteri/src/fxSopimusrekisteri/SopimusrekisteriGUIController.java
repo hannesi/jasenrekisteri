@@ -415,6 +415,7 @@ public class SopimusrekisteriGUIController implements Initializable {
     
     //poistaa sopimuksen
     private void sopimusPoista() {
+        if (pKohdalla == null) return;
         sopimusrekisteri.poista(sopimusrekisteri.getPelaajanSopimus(pKohdalla));
         naytaPelaaja();
         //ModalController.showModal(SopimusrekisteriGUIController.class.getResource("SopimusRemoveDialogView.fxml"), "Poista sopimus", null, "");
@@ -422,6 +423,7 @@ public class SopimusrekisteriGUIController implements Initializable {
     
     //avaa dialogin jossa luodaan uusi sopimus
     private void sopimusUusi() {
+        if (pKohdalla == null) return;
         if (sopimusrekisteri.getPelaajanSopimus(pKohdalla) != null) {
             Dialogs.showMessageDialog("Pelaajalla on jo sopimus!"); //TODO: tämä pois jos toteutetaan versio jossa voi olla useampi perättäinen sopimus tallessa
             return;
@@ -438,6 +440,7 @@ public class SopimusrekisteriGUIController implements Initializable {
     
     //avaa dialogin jossa sopimus voidaan siirtää toiseen joukkueeseen
     private void sopimusSiirra() {
+        if (pKohdalla == null) return;
         Sopimus s = sopimusrekisteri.getPelaajanSopimus(pKohdalla);
         if (s != null)
             SopimusTransferDialogViewController.muokkaa(null, s, sopimusrekisteri.getJoukkueetForSopimus(s));
