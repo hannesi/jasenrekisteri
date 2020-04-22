@@ -153,8 +153,9 @@ public class Liigat {
      * @param palkka palkka
      * @param kesto kesto
      * @return lista liigoista
+     * @throws SailoException mikä meni mönkään
      */
-    public List<Integer> getJokainenLidForSopimus(int palkka, int kesto) {
+    public List<Integer> getJokainenLidForSopimus(int palkka, int kesto) throws SailoException {
         var palautettava = new ArrayList<Integer>();
         for (Liiga l : liigat)
             if (l.tarkistaPalkkaKesto(palkka, kesto))

@@ -417,8 +417,9 @@ public class Sopimusrekisteri {
     /**palauttaa lista joukkueista jotka pelaavat sarjoissa joiden sopimussääntöihin sopimus sopii
      * @param s sopimus jonka kanssa yhteensopivien sarjojen joukkueet halutaan
      * @return lista joukkueista
+     * @throws SailoException sopimusvirheitä
      */
-    public List<Joukkue> getJoukkueetForSopimus(Sopimus s) {
+    public List<Joukkue> getJoukkueetForSopimus(Sopimus s) throws SailoException {
         int kesto = s.getLoppumisvuosi() - s.getAlkamisvuosi();
         var sopivatLiigat = liigat.getJokainenLidForSopimus(s.getPalkka(), kesto);
         var sopivatJoukkueet = getJoukkueetByLids(sopivatLiigat);
@@ -515,6 +516,15 @@ public class Sopimusrekisteri {
                 palautettava.append(j.getNimiPitka() + ": " + apuJono + "\n");
         }
         return palautettava.toString();
+    }
+    
+    /**tarkistaa käykö sopimuksen palkka ja kesto sarjan sääntöihin
+     * @param s tarkastettava sopimus
+     * @return null jos ei täsmää
+     * @throws SailoException jos ei täsmää
+     */
+    public boolean tarkistaSopimus(Sopimus s) throws SailoException {
+        return (liigat.getById(joukkueet.getById(s.getJid()).getLid()).tarkistaPalkkaKestoExceptionilla(s.getPalkka(), s.getLoppumisvuosi()-s.getAlkamisvuosi()));
     }
 
     

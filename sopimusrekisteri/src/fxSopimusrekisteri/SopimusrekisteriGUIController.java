@@ -430,8 +430,17 @@ public class SopimusrekisteriGUIController implements Initializable {
         }
         Sopimus s = new Sopimus();
         s.setPid(pKohdalla.getPid());
-        s = SopimusNewDialogController.kysySopimus(null, s, sopimusrekisteri.getKaikkiJoukkueetSorted());
-        if (s == null) return;
+        boolean b = false;   
+        while (!b) {        //jatkuu kunnes sopimus menee läpi tarkistimesta tai kysySopimus palauttaa null
+            s = SopimusNewDialogController.kysySopimus(null, s, sopimusrekisteri.getKaikkiJoukkueetSorted());
+            if (s == null) return;
+            try {
+                b = sopimusrekisteri.tarkistaSopimus(s);
+            } catch (SailoException e) {
+                Dialogs.showMessageDialog(e.getMessage());
+            }
+        }
+
         s.rekisteroi();
         sopimusrekisteri.lisaa(s);
 
@@ -442,8 +451,13 @@ public class SopimusrekisteriGUIController implements Initializable {
     private void sopimusSiirra() {
         if (pKohdalla == null) return;
         Sopimus s = sopimusrekisteri.getPelaajanSopimus(pKohdalla);
-        if (s != null)
-            SopimusTransferDialogViewController.muokkaa(null, s, sopimusrekisteri.getJoukkueetForSopimus(s));
+        if (s != null) {
+            try {
+                SopimusTransferDialogViewController.muokkaa(null, s, sopimusrekisteri.getJoukkueetForSopimus(s));
+            } catch (SailoException e) {
+                //
+            }
+        }
         
         naytaPelaaja();
     }

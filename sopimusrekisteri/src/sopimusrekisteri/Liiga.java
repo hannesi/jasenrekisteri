@@ -206,8 +206,22 @@ public class Liiga implements Cloneable, Comparable<Liiga> {
      * @param palkka tarkistettava palkka
      * @param kesto tarkistettava kesto
      * @return true jos sopii
+     * @throws SailoException mikä meni mönkään
      */
-    public boolean tarkistaPalkkaKesto(int palkka, int kesto) {
+    public boolean tarkistaPalkkaKesto(int palkka, int kesto) throws SailoException {
+        return kesto <= this.maxPituus && palkka <= this.maxPalkka && palkka >= this.minPalkka ? true : false;
+    }
+    
+    /**tarkistaa sopiiko palkka ja kesto liigan sopimussääntöihin
+     * @param palkka tarkistettava palkka
+     * @param kesto tarkistettava kesto
+     * @return true jos sopii
+     * @throws SailoException mikä meni mönkään
+     */
+    public boolean tarkistaPalkkaKestoExceptionilla(int palkka, int kesto) throws SailoException {
+        if (palkka < this.minPalkka) throw new SailoException("Sarjan minimipalkka on " + this.minPalkka);
+        if (palkka > this.maxPalkka) throw new SailoException("Sarjan maksimipalkka on " + this.maxPalkka);
+        if (kesto > this.maxPituus) throw new SailoException("Sarjan sopimuksen maksimikesto on " + this.maxPituus);
         return kesto <= this.maxPituus && palkka <= this.maxPalkka && palkka >= this.minPalkka ? true : false;
     }
     
