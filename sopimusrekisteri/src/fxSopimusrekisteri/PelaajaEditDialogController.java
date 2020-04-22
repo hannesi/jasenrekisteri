@@ -39,7 +39,7 @@ public class PelaajaEditDialogController implements ModalControllerInterface<Pel
         }
         pelaaja.muokkaa(editSukunimi.getText(), 
                         editEtunimi.getText(), 
-                        Tarkistimet.muotoiltuPvm(editSyntymaaika.getText()), 
+                        editSyntymaaika.getText(), 
                         editKansallisuus.getText());
         ModalController.closeStage(editEtunimi);
     }

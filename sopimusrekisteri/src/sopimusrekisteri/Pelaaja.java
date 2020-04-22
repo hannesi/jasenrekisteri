@@ -6,6 +6,7 @@ import java.util.Random;
 
 import fi.jyu.mit.ohj2.Mjonot;
 import fi.jyu.mit.ohj2.WildChars;
+import misc.Tarkistimet;
 
 /**
  * |------------------------------------------------------------------------|
@@ -116,7 +117,7 @@ public class Pelaaja implements Cloneable, Comparable<Pelaaja>{
     public void muokkaa(String sukunimi, String etunimi, String syntymaaika, String kansallisuus) {
         this.sukunimi = sukunimi;
         this.etunimi = etunimi;
-        this.syntymaaika = syntymaaika;
+        this.syntymaaika = Tarkistimet.muotoiltuPvm(syntymaaika);
         this.kansallisuus = kansallisuus;
     }
     
